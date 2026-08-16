@@ -1,0 +1,482 @@
+/* EditListingPage.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.CarPartListingContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.CarPartListingMainContent {
+  margin-left: 0px;
+  width: calc(100% - 240px);
+  min-height: 100vh;
+  padding: 20px 40px;
+  box-sizing: border-box;
+}
+
+.CarPartListingTopHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.CarPartListingPageTitle {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.CarPartListingBackBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* padding: 8px 16px; */
+  /* background: transparent; */
+  /* border: 1px solid #ddd; */
+  border-radius: 6px;
+  color: #0a0a0a;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 38px;
+  margin-top: 4px;
+}
+
+.CarPartListingBackBtn:hover {
+  background: #f0f0f0;
+  border-color: #bbb;
+}
+
+.CarPartListingPageTitle h1 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #222;
+}
+
+.CarPartListingHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.CarPartListingProfilePic {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ddd;
+}
+
+
+.CarPartListingEditForm {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-sizing: border-box;
+}
+
+/* --- Edit Form2 --- */
+.CarPartListingEditForm2 {
+  background: white;
+  border-radius: 12px;
+  margin-top: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  flex: 1;
+}
+
+.CarPartListingEditForm3 {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-sizing: border-box;
+}
+
+.CarPartListingGeneral-information {
+  font-size: 25px;
+  font-weight: 600;
+  text-align: left;
+  color: #143b67;
+  /* background-color: #143b67; */
+  border-radius: 30px;
+  width: fit-content;
+  /* padding: 12px 30px; */
+  margin-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.CarPartListingFormFields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.CarPartListingFormRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.CarPartListingFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.CarPartListingFormGroup.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.CarPartListingFormGroup label {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+
+.CarPartListingFormGroup input,
+.CarPartListingFormGroup select,
+.CarPartListingFormGroup textarea {
+  padding: 10px 14px;
+  border: 1px solid #d1d9e6;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  transition: 0.3s;
+  background: #f8fafc;
+  font-family: inherit;
+}
+
+.CarPartListingFormGroup input:focus,
+.CarPartListingFormGroup select:focus,
+.CarPartListingFormGroup textarea:focus {
+  outline: none;
+  border-color: #2e52f2;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(46, 82, 242, 0.1);
+}
+
+.CarPartListingFormGroup input:hover,
+.CarPartListingFormGroup select:hover,
+.CarPartListingFormGroup textarea:hover {
+  border-color: #999;
+}
+
+.CarPartListingFormGroup textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* --- Action Buttons --- */
+.CarPartListingActionButtons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  /* margin-top: 30px; */
+  /* padding-top: 20px; */
+  /* border-top: 1px solid #eee; */
+  flex-wrap: wrap;
+  gap: 15px;
+
+}
+
+.CarPartListingPrice-stock{
+  font-size: 25px;
+  font-weight: 600;
+  text-align: left;
+  color: #143b67;
+  /* background-color: #143b67; */
+  border-radius: 30px;
+  width: fit-content;
+  /* padding: 12px 30px; */
+  margin-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+.CarPartListingLeftActions {
+  display: flex;
+  gap: 10px;
+}
+
+.CarPartListingRightActions {
+  display: flex;
+  gap: 10px;
+}
+
+/* .CarPartListingBtnDelete:hover {
+  background: #fdd;
+  border-color: #e74c3c;
+} */
+
+.CarPartListingBtnCancel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 50px;
+  background: #f5f5f5;
+  color: #555;
+  border: 2px solid #F2681C;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.CarPartListingBtnCancel:hover {
+  background: #F2681C;
+}
+
+.CarPartListingBtnSubmit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 40px;
+  background: #F2681C;
+  color: rgb(241, 238, 238);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+  opacity: 0px;
+}
+
+.CarPartListingBtnSubmit:hover:not(.disabled) {
+  background: #1e3647;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 82, 242, 0.3);
+}
+
+.CarPartListingBtnSubmit.disabled {
+  /* opacity: 0.6; */
+  cursor: not-allowed;
+}
+
+.CarPartListingCreate-listing {
+  font-size: 25px;
+  font-weight: 600;
+  color: #143b67;
+  /* background-color: #143b67; */
+  border-radius: 30px;
+  width: fit-content;
+  /* padding: 12px 30px; */
+  margin-bottom: 40px;
+}
+
+/* ----------------------------------------------------- Animations -------------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------ Responsive -------------------------------- */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 80px;
+    padding: 15px 0;
+  }
+  
+  .logo2 {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 20px auto;
+    padding: 0;
+  }
+  
+  .navItem span,
+  .logout span {
+    display: none;
+  }
+  
+  .navItem {
+    justify-content: center;
+    padding: 15px;
+    font-size: 1.5rem;
+  }
+  
+  .logout {
+    justify-content: center;
+    padding: 15px;
+    font-size: 1.5rem;
+  }
+  
+  .mainContent {
+    padding: 15px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    flex-direction: row;
+    padding: 10px 20px;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+  }
+  
+  .logo2 {
+    width: 120px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navMenu {
+    display: flex;
+    flex: 1;
+    overflow-y: visible;
+    justify-content: flex-end;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  
+  .navItem {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-right: none;
+  }
+  
+  .navItem span {
+    display: inline;
+    font-size: 0.85rem;
+  }
+  
+  .navItemActive {
+    border-right: none;
+    border-bottom: 3px solid #e67e22;
+  }
+  
+  .logout {
+    padding: 8px 12px;
+    border-top: none;
+    margin-top: 0;
+    font-size: 0.85rem;
+  }
+  
+  .logout span {
+    display: inline;
+  }
+  
+  .mainContent {
+    padding: 15px;
+  }
+  
+  .editForm {
+    padding: 20px;
+  }
+  
+  .imageSection {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .imageStats {
+    justify-content: center;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .leftActions,
+  .rightActions {
+    justify-content: center;
+  }
+  
+  .pageTitle h1 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 10px;
+  }
+  
+  .editForm {
+    padding: 15px;
+  }
+  
+  .imagePreview {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .pageTitle {
+    flex-wrap: wrap;
+  }
+  
+  .pageTitle h1 {
+    font-size: 1.1rem;
+  }
+  
+  .backBtn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  .btnSave,
+  .btnCancel,
+  .btnDelete {
+    font-size: 13px;
+    padding: 8px 16px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .rightActions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .modal {
+    padding: 20px;
+    margin: 20px;
+  }
+}

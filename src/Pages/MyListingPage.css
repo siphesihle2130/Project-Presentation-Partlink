@@ -1,0 +1,598 @@
+/* MyListingPage.css */
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+.MyListingscontainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Main Content --- */
+.MyListingsmainContent {
+  flex: 1;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  position: relative;
+}
+
+.MyListingstopHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.MyListingspageTitle h1 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #222;
+}
+
+.MyListingsheaderActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.MyListingsprofilePic {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ddd;
+}
+
+/* --- Tabs --- */
+.MyListingstabs-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.MyListingstabs-container {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.MyListingstab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  position: relative;
+  text-align: center;
+}
+
+.MyListingstab-btn:hover {
+  color: #333;
+}
+
+.MyListingstab-btn.active {
+  color: #000;
+}
+
+.MyListingstab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #2e52f2;
+  z-index: 2;
+}
+
+.MyListingstabs-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #c3c3c3;
+  z-index: 1;
+}
+
+/* --- Cards Grid --- */
+.MyListingslist {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.MyListingscard1, .MyListingscard2, .MyListingscard3, .MyListingscard4 {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  border: 2px solid #162b3a;
+  border-radius: 8px;
+  background: white;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 15px;
+  align-items: center;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.MyListingscard1:hover, .MyListingscard2:hover, .MyListingscard3:hover, .MyListingscard4:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Card Image */
+.MyListingsalt1, .MyListingsalt2, .MyListingsalt3, .MyListingsalt4 {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  grid-row: 1 / span 4;
+  justify-self: center;
+}
+
+/* Card Content */
+.MyListingsname1, .MyListingsname2, .MyListingsname3, .MyListingsname4 {
+  color: black;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 600;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.MyListingsveh1, .MyListingsveh2, .MyListingsveh3, .MyListingsveh4 {
+  color: #555;
+  text-align: left;
+  font-size: 0.9rem;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.MyListingsprice1, .MyListingsprice2, .MyListingsprice3, .MyListingsprice4 {
+  color: #2e52f2;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: bolder;
+  grid-column: 2;
+  grid-row: 3;
+}
+
+/* Card Stats */
+.MyListingseye1, .MyListingseye2, .MyListingseye3, .MyListingseye4 {
+  color: #080808;
+  font-size: 18px;
+  grid-column: 2;
+  grid-row: 4;
+  justify-self: start;
+  align-self: center;
+}
+
+.MyListingseye1-text, .MyListingseye2-text, .MyListingseye3-text, .MyListingseye4-text {
+  color: #080808;
+  font-size: 14px;
+  grid-column: 2;
+  grid-row: 4;
+  justify-self: start;
+  margin-left: 30px;
+  align-self: center;
+}
+
+.MyListingsheart1, .MyListingsheart2, .MyListingsheart3, .MyListingsheart4 {
+  color: #0f0f0f;
+  font-size: 18px;
+  grid-column: 2;
+  grid-row: 4;
+  justify-self: start;
+  margin-left: 70px;
+  align-self: center;
+}
+
+.MyListingsheart1-text, .MyListingsheart2-text, .MyListingsheart3-text, .MyListingsheart4-text {
+  color: #0a0a0a;
+  font-size: 14px;
+  grid-column: 2;
+  grid-row: 4;
+  justify-self: start;
+  margin-left: 100px;
+  align-self: center;
+}
+
+.MyListingscaret1, .MyListingscaret2, .MyListingscaret3, .MyListingscaret4 {
+  color: #0a0a0a;
+  font-size: 30px;
+  cursor: pointer;
+  grid-column: 3;
+  grid-row: 1 / span 4;
+  justify-self: end;
+  align-self: center;
+  transition: transform 0.2s;
+}
+
+.MyListingscaret1:hover, .MyListingscaret2:hover, .MyListingscaret3:hover, .MyListingscaret4:hover {
+  transform: translateX(5px);
+  color: #F2681C;
+}
+
+/* Add Button */
+.MyListingsbtnAdd {
+  width: fit-content;
+  padding: 12px 30px;
+  background: #F2681C;
+  color: #eceaea;
+  border: #F2681C;
+  border-radius: 30px;
+  font-weight: 550;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 0 auto 30px auto;
+  align-self: center;
+}
+
+.MyListingsbtnAdd:hover {
+  background: #1e3647;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(5, 2, 197, 0.3);
+}
+
+/* --- Responsive Design --- */
+
+/* Tablets and small laptops */
+@media (max-width: 1024px) {
+  
+  .MyListingsmainContent {
+    padding: 15px 20px;
+  }
+  
+  .MyListingsalt1, .MyListingsalt2, .MyListingsalt3, .MyListingsalt4 {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .MyListingscard1, .MyListingscard2, .MyListingscard3, .MyListingscard4 {
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+    padding: 15px;
+  }
+}
+
+/* Tablets and large phones */
+@media (max-width: 768px) {
+  .MyListingscontainer {
+    flex-direction: column;
+    padding-bottom: 70px; /* Space for bottom navigation */
+  }
+  
+  .MyListingsmainContent {
+    padding: 15px;
+    flex: 1;
+  }
+  
+  .MyListingspageTitle h1 {
+    font-size: 1.3rem;
+  }
+  
+  .MyListingsalt1, .MyListingsalt2, .MyListingsalt3, .MyListingsalt4 {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .MyListingscard1, .MyListingscard2, .MyListingscard3, .MyListingscard4 {
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
+    padding: 12px;
+  }
+  
+  .MyListingsname1, .MyListingsname2, .MyListingsname3, .MyListingsname4 {
+    font-size: 0.95rem;
+  }
+  
+  .MyListingsveh1, .MyListingsveh2, .MyListingsveh3, .MyListingsveh4 {
+    font-size: 0.8rem;
+  }
+  
+  .MyListingsprice1, .MyListingsprice2, .MyListingsprice3, .MyListingsprice4 {
+    font-size: 0.9rem;
+  }
+  
+  .MyListingseye1, .MyListingseye2, .MyListingseye3, .MyListingseye4,
+  .MyListingsheart1, .MyListingsheart2, .MyListingsheart3, .MyListingsheart4 {
+    font-size: 16px;
+  }
+  
+  .MyListingseye1-text, .MyListingseye2-text, .MyListingseye3-text, .MyListingseye4-text,
+  .MyListingsheart1-text, .MyListingsheart2-text, .MyListingsheart3-text, .MyListingsheart4-text {
+    font-size: 12px;
+  }
+  
+  .MyListingseye1-text, .MyListingseye2-text, .MyListingseye3-text, .MyListingseye4-text {
+    margin-left: 25px;
+  }
+  
+  .MyListingsheart1, .MyListingsheart2, .MyListingsheart3, .MyListingsheart4 {
+    margin-left: 55px;
+  }
+  
+  .MyListingsheart1-text, .MyListingsheart2-text, .MyListingsheart3-text, .MyListingsheart4-text {
+    margin-left: 80px;
+  }
+  
+  .MyListingscaret1, .MyListingscaret2, .MyListingscaret3, .MyListingscaret4 {
+    font-size: 24px;
+  }
+  
+  .MyListingsbtnAdd {
+    font-size: 16px;
+    padding: 10px 25px;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .MyListingscontainer {
+    padding-bottom: 60px;
+  }
+  
+  .MyListingssidebar {
+    padding: 8px 12px;
+    position: sticky;
+    top: 0;
+  }
+  
+  .MyListingslogo {
+    width: 90px;
+    height: 35px;
+    margin-bottom: 8px;
+  }
+  
+  .MyListingsnavMenu {
+    gap: 2px;
+    margin-top: 8px;
+    padding-top: 8px;
+    justify-content: space-between;
+  }
+  
+  .MyListingsnavItem {
+    padding: 6px 4px;
+    font-size: 0.75rem;
+    flex: 1;
+    min-width: 40px;
+    text-align: center;
+  }
+  
+  .MyListingsnavItem span {
+    font-size: 0.65rem;
+  }
+  
+  .MyListingslogout {
+    display: none;
+  }
+  
+  .MyListingsmainContent {
+    padding: 10px;
+  }
+  
+  .MyListingstopHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .MyListingspageTitle h1 {
+    font-size: 1.1rem;
+  }
+  
+  .MyListingsprofilePic {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .MyListingstab-btn {
+    font-size: 13px;
+    padding: 8px 0;
+  }
+  
+  .MyListingsalt1, .MyListingsalt2, .MyListingsalt3, .MyListingsalt4 {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .MyListingscard1, .MyListingscard2, .MyListingscard3, .MyListingscard4 {
+    grid-template-columns: 50px 1fr auto;
+    gap: 5px;
+    padding: 10px;
+  }
+  
+  .MyListingsname1, .MyListingsname2, .MyListingsname3, .MyListingsname4 {
+    font-size: 0.85rem;
+  }
+  
+  .MyListingsveh1, .MyListingsveh2, .MyListingsveh3, .MyListingsveh4 {
+    font-size: 0.7rem;
+  }
+  
+  .MyListingsprice1, .MyListingsprice2, .MyListingsprice3, .MyListingsprice4 {
+    font-size: 0.8rem;
+  }
+  
+  .MyListingseye1, .MyListingseye2, .MyListingseye3, .MyListingseye4,
+  .MyListingsheart1, .MyListingsheart2, .MyListingsheart3, .MyListingsheart4 {
+    font-size: 14px;
+  }
+  
+  .MyListingseye1-text, .MyListingseye2-text, .MyListingseye3-text, .MyListingseye4-text,
+  .MyListingsheart1-text, .MyListingsheart2-text, .MyListingsheart3-text, .MyListingsheart4-text {
+    font-size: 11px;
+  }
+  
+  .MyListingseye1-text, .MyListingseye2-text, .MyListingseye3-text, .MyListingseye4-text {
+    margin-left: 20px;
+  }
+  
+  .MyListingsheart1, .MyListingsheart2, .MyListingsheart3, .MyListingsheart4 {
+    margin-left: 45px;
+  }
+  
+  .MyListingsheart1-text, .MyListingsheart2-text, .MyListingsheart3-text, .MyListingsheart4-text {
+    margin-left: 65px;
+  }
+  
+  .MyListingscaret1, .MyListingscaret2, .MyListingscaret3, .MyListingscaret4 {
+    font-size: 20px;
+  }
+  
+  .MyListingsbtnAdd {
+    font-size: 14px;
+    padding: 8px 20px;
+    max-width: 100%;
+  }
+
+  /* Bottom Navigation Bar for Mobile */
+  .MyListingsmobile-bottom-nav {
+    display: flex !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #162b3a;
+    padding: 8px 10px;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #1e3647;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+  }
+
+  .MyListingsmobile-bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 8px;
+    color: #a0b8c8;
+    font-size: 0.6rem;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    background: transparent;
+    gap: 2px;
+    min-width: 50px;
+  }
+
+  .MyListingsmobile-bottom-nav .nav-item .icon {
+    font-size: 1.2rem;
+  }
+
+  .MyListingsmobile-bottom-nav .nav-item.active {
+    color: #e67e22;
+  }
+
+  .MyListingsmobile-bottom-nav .nav-item.logout-item {
+    color: #e67e22;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .container {
+    padding-bottom: 55px;
+  }
+  
+  .sidebar {
+    padding: 5px 8px;
+  }
+  
+  .logo {
+    width: 70px;
+    height: 28px;
+    margin-bottom: 5px;
+  }
+  
+  .navMenu {
+    gap: 1px;
+    margin-top: 5px;
+    padding-top: 5px;
+  }
+  
+  .navItem {
+    padding: 4px 3px;
+    font-size: 0.6rem;
+    min-width: 30px;
+  }
+  
+  .navItem span {
+    font-size: 0.55rem;
+  }
+  
+  .alt1, .alt2, .alt3, .alt4 {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .card1, .card2, .card3, .card4 {
+    grid-template-columns: 40px 1fr auto;
+    padding: 8px;
+    gap: 4px;
+  }
+  
+  .name1, .name2, .name3, .name4 {
+    font-size: 0.75rem;
+  }
+  
+  .veh1, .veh2, .veh3, .veh4 {
+    font-size: 0.65rem;
+  }
+  
+  .price1, .price2, .price3, .price4 {
+    font-size: 0.7rem;
+  }
+  
+  .eye1, .eye2, .eye3, .eye4,
+  .heart1, .heart2, .heart3, .heart4 {
+    font-size: 12px;
+  }
+  
+  .eye1-text, .eye2-text, .eye3-text, .eye4-text,
+  .heart1-text, .heart2-text, .heart3-text, .heart4-text {
+    font-size: 10px;
+  }
+  
+  .eye1-text, .eye2-text, .eye3-text, .eye4-text {
+    margin-left: 16px;
+  }
+  
+  .heart1, .heart2, .heart3, .heart4 {
+    margin-left: 38px;
+  }
+  
+  .heart1-text, .heart2-text, .heart3-text, .heart4-text {
+    margin-left: 55px;
+  }
+  
+  .caret1, .caret2, .caret3, .caret4 {
+    font-size: 18px;
+  }
+}
+
+/* Show mobile bottom nav only on small screens */
+.mobile-bottom-nav {
+  display: none;
+}

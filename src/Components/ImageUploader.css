@@ -1,0 +1,198 @@
+.image-uploader {
+  width: 100%;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+/* Header */
+
+.upload-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.upload-header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.upload-header p {
+  margin: 5px 0 0;
+  color: #777;
+}
+
+.upload-header span {
+  color: #777;
+  font-size: 14px;
+}
+
+
+/* Add Photos button */
+
+.add-photos-button {
+  width: 40%;
+  height: 40px;
+  /* display: flex; */
+  /* padding: 15px; */
+  border: none;
+  border-radius: 30px;
+  background-color: #F2681C;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.add-photos-button:hover {
+  background-color: #1e3647;
+}
+
+.add-photos-button:disabled {
+  cursor: not-allowed;
+  /* opacity: 0.5; */
+}
+
+.camera-icon {
+  margin-right: 8px;
+}
+
+
+/* Image grid */
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+
+/* Individual image */
+
+.image-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-color: #eee;
+}
+
+.image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* Main image */
+
+.image-card.main-image {
+  border: 3px solid #222;
+}
+
+
+/* Main image badge */
+
+.main-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  background-color: white;
+  color: #222;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+
+/* Delete button */
+
+.delete-button {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+
+  width: 30px;
+  height: 30px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: white;
+  color: #333;
+
+  font-size: 20px;
+  line-height: 20px;
+
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #eee;
+}
+
+
+/* Set as Main */
+
+.set-main-button {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+
+  padding: 7px;
+
+  border: none;
+  border-radius: 6px;
+
+  background-color: white;
+  color: #222;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.set-main-button:hover {
+  background-color: #eee;
+}
+
+
+/* Instructions */
+
+.upload-info {
+  margin-top: 15px;
+  color: #777;
+  font-size: 13px;
+}
+
+.imagesTopic{
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* ===================================================================Mobile */
+
+@media (max-width: 600px) {
+
+  .image-uploader {
+    padding: 15px;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}

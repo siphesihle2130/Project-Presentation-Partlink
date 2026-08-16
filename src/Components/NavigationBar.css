@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 100;
+  width: 240px;
+  height: 100vh;
+  background-color: #162b3a;
+  color: #a0b8c8;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  z-index: 1000;
+}
+
+.logo2 {
+  margin-left: 20px;
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 0;
+}
+
+.navMenu {
+  flex: 1;
+}
+
+.navItem {
+  padding: 12px 25px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  transition: 0.3s;
+}
+
+.navItem:hover,
+.navItemActive {
+  background-color: #1e3647;
+  color: white;
+  border-right: 3px solid #e67e22;
+}
+
+.signouticon {
+  margin-left: 20px;
+  font-size: 2.2rem;
+  color: #e67e22;
+  cursor: pointer;
+}
+
+.logout {
+  padding: 20px 25px;
+
+  border-top: 1px solid #1e3647;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #e67e22;
+
+  margin-top: auto;
+
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.logout:hover {
+  background-color: #1e3647;
+}
