@@ -1,0 +1,338 @@
+/* CartPage.css */
+ 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ 
+.CartContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+ 
+/* --- Main Content --- */
+.CartMainContent {
+  flex: 1;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+ 
+.CartTopHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+ 
+.CartPageTitle {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+ 
+.CartBackBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  color: #0a0a0a;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 38px;
+  margin-top: 4px;
+}
+ 
+.CartBackBtn:hover {
+  background: #f0f0f0;
+  border-color: #bbb;
+}
+ 
+.CartPageTitle h1 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #222;
+}
+ 
+.CartHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+ 
+.CartProfilePic {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ddd;
+}
+ 
+/* --- Layout --- */
+.CartLayout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+ 
+.CartCard {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+ 
+.CartSectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #143b67;
+  margin-bottom: 20px;
+  text-align: left;
+}
+ 
+/* --- Cart Item Row --- */
+.CartItemRow {
+  display: grid;
+  grid-template-columns: 80px 1fr auto auto auto;
+  gap: 15px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+ 
+.CartItemRow:last-child {
+  border-bottom: none;
+}
+ 
+.CartItemImage {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 6px;
+  border: 1px solid #eee;
+}
+ 
+.CartItemInfo {
+  text-align: left;
+}
+ 
+.CartItemName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+ 
+.CartItemVehicle {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 3px;
+}
+ 
+.CartItemUnitPrice {
+  font-size: 0.85rem;
+  color: #999;
+  margin-top: 3px;
+}
+ 
+/* --- Quantity Stepper --- */
+.CartQuantityStepper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #d1d9e6;
+  border-radius: 8px;
+  padding: 6px 12px;
+  background: #f8fafc;
+}
+ 
+.CartQuantityStepper button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: #F2681C;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+}
+ 
+.CartQuantityStepper button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+ 
+.CartQuantityValue {
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 18px;
+  text-align: center;
+}
+ 
+.CartItemLineTotal {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgb(3, 0, 165);
+  min-width: 90px;
+  text-align: right;
+}
+ 
+.CartRemoveBtn {
+  font-size: 18px;
+  color: #e74c3c;
+  cursor: pointer;
+  transition: 0.3s;
+}
+ 
+.CartRemoveBtn:hover {
+  color: #c0392b;
+  transform: scale(1.1);
+}
+ 
+/* --- Totals --- */
+.CartTotalsRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #555;
+}
+ 
+.CartTotalsRow.CartGrandTotal {
+  border-top: 1px solid #eee;
+  margin-top: 10px;
+  padding-top: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #143b67;
+}
+ 
+.CartSummarySidebar {
+  position: sticky;
+  top: 20px;
+}
+ 
+.CartBtnCheckout {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px 24px;
+  background: #F2681C;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
+}
+ 
+.CartBtnCheckout:hover {
+  background: #1e3647;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 82, 242, 0.3);
+}
+ 
+/* --- Empty State --- */
+.CartEmptyState {
+  background: white;
+  border-radius: 12px;
+  padding: 60px 30px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+ 
+.CartEmptyIcon {
+  font-size: 48px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+ 
+.CartEmptyState h2 {
+  font-size: 1.3rem;
+  color: #222;
+  margin-bottom: 8px;
+}
+ 
+.CartEmptyState p {
+  color: #777;
+  margin-bottom: 25px;
+}
+ 
+.CartBtnBrowse {
+  padding: 12px 30px;
+  background: #F2681C;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+ 
+.CartBtnBrowse:hover {
+  background: #1e3647;
+}
+ 
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .CartMainContent {
+    padding: 15px 20px;
+  }
+ 
+  .CartLayout {
+    grid-template-columns: 1fr;
+  }
+ 
+  .CartSummarySidebar {
+    position: static;
+  }
+}
+ 
+@media (max-width: 768px) {
+  .CartCard {
+    padding: 20px;
+  }
+ 
+  .CartPageTitle h1 {
+    font-size: 1.3rem;
+  }
+ 
+  .CartItemRow {
+    grid-template-columns: 60px 1fr;
+    row-gap: 10px;
+  }
+ 
+  .CartItemImage {
+    width: 60px;
+    height: 60px;
+  }
+ 
+  .CartQuantityStepper,
+  .CartItemLineTotal,
+  .CartRemoveBtn {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+ 
+@media (max-width: 480px) {
+  .CartMainContent {
+    padding: 10px;
+  }
+ 
+  .CartCard {
+    padding: 15px;
+  }
+}

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from "./Context/CartContext";
 import MyListingPage from "./Pages/MyListingPage";
 import MyListingSoldPage from "./Pages/MyListingSoldPage";
 import EditListingPage from "./Pages/EditListingPage";
@@ -15,9 +16,11 @@ import ResetPasswordPage from "./Pages/ResetPasswordPage"
 import Profile from "./Pages/Profile"
 import CarPartListing from "./Pages/CarPartListing"
 import CheckoutPage from "./Pages/CheckoutPage"
+import CartPage from "./Pages/CartPage"
 
 function App(){
     return (
+      <CartProvider>
       <BrowserRouter>
       <Routes>
         <Route path="/my-listing" element={<MyListingPage />} />
@@ -36,8 +39,10 @@ function App(){
         <Route path="/profile" element={<Profile />} />
         <Route path="/carpart-listing" element={<CarPartListing />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </BrowserRouter>
+    </CartProvider>
     );
 
   } 

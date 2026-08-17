@@ -1,10 +1,12 @@
 import "./NavigationBar.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaShoppingCart } from "react-icons/fa";
+import { useCart } from "../Context/CartContext";
 
 function NavigationBar() {
     const navigate = useNavigate();
     const location = useLocation();
+    const { cartCount } = useCart();
 
     return (
         <div className="navContainer">
@@ -59,6 +61,21 @@ function NavigationBar() {
                         onClick={() => navigate("/requests")}
                     >
                         <span>Requests</span>
+                    </div>
+
+                    <div
+                        className={`navItem navItemCart ${
+                            location.pathname === "/cart" ? "navItemActive" : ""
+                        }`}
+                        onClick={() => navigate("/cart")}
+                    >
+                        <span className="navCartIconWrapper">
+                            <FaShoppingCart />
+                            {cartCount > 0 && (
+                                <span className="navCartBadge">{cartCount}</span>
+                            )}
+                        </span>
+                        <span>Cart</span>
                     </div>
 
                     <div
