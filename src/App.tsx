@@ -14,6 +14,7 @@ import RegisterPage from "./Pages/RegisterPage"
 import ResetPasswordPage from "./Pages/ResetPasswordPage"
 import Profile from "./Pages/Profile"
 import CarPartListing from "./Pages/CarPartListing"
+import CheckoutPage from "./Pages/CheckoutPage"
 
 function App(){
     return (
@@ -34,6 +35,7 @@ function App(){
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/carpart-listing" element={<CarPartListing />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </BrowserRouter>
     );
