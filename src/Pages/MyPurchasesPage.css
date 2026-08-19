@@ -1,0 +1,297 @@
+.myPurchasesPage {
+  min-height: 100vh;
+  background-color: #162b3a;
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ================= HEADER ================= */
+
+.myPurchasesHeader {
+  height: 75px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #111f2b;
+  border-bottom: 1px solid #294255;
+}
+
+.myPurchasesBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.myPurchasesLogoIcon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.myPurchasesLogoName {
+  width: 110px;
+  height: auto;
+  object-fit: contain;
+}
+
+.myPurchasesBackButton {
+  padding: 9px 20px;
+  border: 1px solid #d16a10;
+  border-radius: 22px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.myPurchasesBackButton:hover {
+  background-color: #d16a10;
+}
+
+/* ================= MAIN ================= */
+
+.myPurchasesMain {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 45px 25px;
+}
+
+/* ================= HEADING ================= */
+
+.myPurchasesHeading {
+  margin-bottom: 30px;
+}
+
+.myPurchasesSmallTitle {
+  margin: 0 0 5px;
+  color: #d16a10;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.myPurchasesTitle {
+  margin: 0;
+  font-size: 34px;
+}
+
+.myPurchasesSubtitle {
+  color: #aebdca;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+/* ================= TABS ================= */
+
+.myPurchasesTabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #314b5d;
+  padding-bottom: 12px;
+}
+
+.myPurchasesTab,
+.myPurchasesActiveTab {
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.myPurchasesActiveTab {
+  border: none;
+  background-color: #d16a10;
+  color: #ffffff;
+}
+
+.myPurchasesTab {
+  border: 1px solid #425a6b;
+  background: transparent;
+  color: #b7c4ce;
+}
+
+.myPurchasesTab:hover {
+  border-color: #d16a10;
+  color: #ffffff;
+}
+
+/* ================= PURCHASE LIST ================= */
+
+.myPurchasesList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ================= PURCHASE CARD ================= */
+
+.myPurchasesCard {
+  display: flex;
+  gap: 25px;
+  padding: 22px;
+  background-color: #20394c;
+  border: 1px solid #2d4a5d;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.myPurchasesCard:hover {
+  border-color: #d16a10;
+  transform: translateY(-2px);
+}
+
+/* ================= IMAGE ================= */
+
+.myPurchasesImage {
+  width: 145px;
+  min-width: 145px;
+  height: 145px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #29465b;
+  border-radius: 12px;
+
+  overflow: hidden;
+}
+
+/* This controls the actual uploaded image */
+.myPurchasesImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+}
+
+/* ================= INFORMATION ================= */
+
+.myPurchasesInformation {
+  flex: 1;
+}
+
+.myPurchasesTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.myPurchasesOrderNumber {
+  color: #8fa2b0;
+  font-size: 13px;
+}
+
+.myPurchasesDeliveredStatus,
+.myPurchasesProgressStatus {
+  padding: 5px 13px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.myPurchasesDeliveredStatus {
+  background-color: #254f42;
+  color: #74d5a9;
+}
+
+.myPurchasesProgressStatus {
+  background-color: #54421e;
+  color: #f4bd61;
+}
+
+.myPurchasesPartName {
+  margin: 15px 0 8px;
+  font-size: 21px;
+}
+
+.myPurchasesSeller,
+.myPurchasesDate {
+  margin: 5px 0;
+  color: #aebdca;
+  font-size: 14px;
+}
+
+/* ================= BOTTOM ROW ================= */
+
+.myPurchasesBottomRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.myPurchasesPrice {
+  color: #f08a2c;
+  font-size: 20px;
+}
+
+.myPurchasesDetailsButton {
+  padding: 9px 18px;
+  border: 1px solid #d16a10;
+  border-radius: 20px;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.myPurchasesDetailsButton:hover {
+  background-color: #d16a10;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 650px) {
+
+  .myPurchasesHeader {
+    padding: 0 20px;
+  }
+
+  .myPurchasesLogoName {
+    width: 90px;
+  }
+
+  .myPurchasesMain {
+    padding: 30px 15px;
+  }
+
+  .myPurchasesTitle {
+    font-size: 28px;
+  }
+
+  .myPurchasesCard {
+    flex-direction: column;
+  }
+
+  .myPurchasesImage {
+    width: 100%;
+    min-width: 100%;
+    height: 180px;
+  }
+
+  .myPurchasesTopRow,
+  .myPurchasesBottomRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .myPurchasesDetailsButton {
+    width: 100%;
+  }
+
+  .myPurchasesTabs {
+    overflow-x: auto;
+  }
+
+  .myPurchasesTab,
+  .myPurchasesActiveTab {
+    white-space: nowrap;
+  }
+}

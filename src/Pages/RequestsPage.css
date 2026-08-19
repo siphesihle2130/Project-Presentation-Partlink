@@ -1,0 +1,373 @@
+.requestsPage {
+  min-height: 100vh;
+  background-color: #162b3a;
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ================= HEADER ================= */
+
+.requestsHeader {
+  height: 75px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #111f2b;
+  border-bottom: 1px solid #294255;
+}
+
+.requestsBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.requestsLogoIcon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.requestsLogoName {
+  width: 110px;
+  height: auto;
+  object-fit: contain;
+}
+
+.requestsBackButton {
+  padding: 9px 20px;
+  border: 1px solid #d16a10;
+  border-radius: 22px;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.requestsBackButton:hover {
+  background-color: #d16a10;
+}
+
+/* ================= MAIN ================= */
+
+.requestsMain {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 45px 25px;
+}
+
+/* ================= HEADING ================= */
+
+.requestsHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.requestsSmallTitle {
+  margin: 0 0 5px;
+  color: #d16a10;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.requestsTitle {
+  margin: 0;
+  font-size: 34px;
+}
+
+.requestsSubtitle {
+  margin-top: 10px;
+  color: #aebdca;
+}
+
+/* ================= CREATE BUTTON ================= */
+
+.requestsCreateButton {
+  padding: 13px 25px;
+  border: none;
+  border-radius: 25px;
+  background-color: #d16a10;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.requestsCreateButton:hover {
+  background-color: #f08a2c;
+}
+
+/* ================= SUMMARY ================= */
+
+.requestsSummary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 35px;
+}
+
+.requestsSummaryCard {
+  padding: 25px;
+  background-color: #20394c;
+  border-radius: 14px;
+  border: 1px solid #2d4a5d;
+}
+
+.requestsSummaryNumber {
+  display: block;
+  color: #f08a2c;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.requestsSummaryLabel {
+  display: block;
+  margin-top: 5px;
+  color: #b7c4ce;
+  font-size: 14px;
+}
+
+/* ================= CONTENT ================= */
+
+.requestsContent {
+  margin-top: 40px;
+}
+
+.requestsSectionTitle {
+  font-size: 21px;
+  margin-bottom: 18px;
+}
+
+.requestsCards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ================= REQUEST CARD ================= */
+
+.requestsCard {
+  padding: 25px;
+  background-color: #20394c;
+  border: 1px solid #2d4a5d;
+  border-radius: 14px;
+  transition: 0.3s;
+
+  /*
+    Grid layout allows the image to sit
+    beside the request information.
+  */
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  column-gap: 25px;
+}
+
+.requestsCard:hover {
+  border-color: #d16a10;
+  transform: translateY(-2px);
+}
+
+/* ================= REQUEST IMAGE ================= */
+
+.requestsCardImage {
+  width: 150px;
+  height: 150px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #29465b;
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  grid-row: span 4;
+}
+
+.requestsCardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+}
+
+/* ================= CARD TOP ================= */
+
+.requestsCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.requestsCardCategory {
+  color: #aebdca;
+  font-size: 13px;
+}
+
+.requestsActiveStatus,
+.requestsCompletedStatus {
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.requestsActiveStatus {
+  background-color: #254f42;
+  color: #74d5a9;
+}
+
+.requestsCompletedStatus {
+  background-color: #3e3e42;
+  color: #c5c5c5;
+}
+
+/* ================= CARD TITLE ================= */
+
+.requestsCardTitle {
+  margin: 15px 0 8px;
+  font-size: 20px;
+}
+
+/* ================= DESCRIPTION ================= */
+
+.requestsCardDescription {
+  margin: 0;
+  color: #aebdca;
+  line-height: 1.6;
+}
+
+/* ================= CARD BOTTOM ================= */
+
+.requestsCardBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 22px;
+  padding-top: 17px;
+
+  border-top: 1px solid #334e60;
+}
+
+.requestsCardDate {
+  color: #899eae;
+  font-size: 13px;
+}
+
+.requestsViewButton {
+  border: none;
+  background: none;
+  color: #f08a2c;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.requestsViewButton:hover {
+  color: #ffad62;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 800px) {
+
+  .requestsCard {
+    grid-template-columns: 120px 1fr;
+    column-gap: 20px;
+  }
+
+  .requestsCardImage {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+  .requestsHeading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .requestsCreateButton {
+    width: 100%;
+  }
+
+  .requestsSummary {
+    grid-template-columns: 1fr;
+  }
+
+  .requestsCard {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .requestsCardImage {
+    width: 100%;
+    height: 180px;
+  }
+
+  .requestsCardTop {
+    width: 100%;
+  }
+
+  .requestsCardBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .requestsViewButton {
+    align-self: flex-end;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 450px) {
+
+  .requestsHeader {
+    padding: 0 20px;
+  }
+
+  .requestsLogoName {
+    width: 90px;
+  }
+
+  .requestsMain {
+    padding: 30px 15px;
+  }
+
+  .requestsTitle {
+    font-size: 28px;
+  }
+
+  .requestsCard {
+    padding: 18px;
+  }
+
+  .requestsCardTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .requestsCardImage {
+    height: 160px;
+  }
+
+  .requestsViewButton {
+    align-self: flex-start;
+  }
+}
