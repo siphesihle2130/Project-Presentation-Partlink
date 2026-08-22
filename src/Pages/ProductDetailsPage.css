@@ -1,0 +1,344 @@
+/* ProductDetailsPage.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ProductDetailsContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ProductDetailsMainContent {
+  flex: 1;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.ProductDetailsTopHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.ProductDetailsPageTitle {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.ProductDetailsBackBtn {
+  font-size: 32px;
+  color: #0a0a0a;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ProductDetailsBackBtn:hover {
+  color: #F2681C;
+}
+
+.ProductDetailsPageTitle h1 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #222;
+}
+
+.ProductDetailsHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ProductDetailsProfilePic {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ddd;
+}
+
+/* --- Card --- */
+.ProductDetailsCard {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.ProductDetailsLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* --- Image --- */
+.ProductDetailsImageWrapper {
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  min-height: 320px;
+}
+
+.ProductDetailsImage {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+}
+
+/* --- Info --- */
+.ProductDetailsInfo {
+  text-align: left;
+}
+
+.ProductDetailsCategoryBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #eef2ff;
+  color: #2e52f2;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.ProductDetailsName {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #143b67;
+  margin-bottom: 6px;
+}
+
+.ProductDetailsVehicle {
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.ProductDetailsPrice {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: rgb(3, 0, 165);
+  margin-bottom: 20px;
+}
+
+/* --- Meta --- */
+.ProductDetailsMeta {
+  display: flex;
+  gap: 30px;
+  padding: 15px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+}
+
+.ProductDetailsMetaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ProductDetailsMetaLabel {
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.ProductDetailsMetaValue {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* --- Description --- */
+.ProductDetailsDescriptionBlock {
+  margin-bottom: 25px;
+}
+
+.ProductDetailsDescriptionBlock h3 {
+  font-size: 1rem;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.ProductDetailsDescriptionBlock p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* --- Quantity --- */
+.ProductDetailsQuantityRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 220px;
+  margin-bottom: 25px;
+}
+
+.ProductDetailsQuantityLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+
+.ProductDetailsQuantityStepper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid #d1d9e6;
+  border-radius: 8px;
+  padding: 6px 14px;
+  background: #f8fafc;
+}
+
+.ProductDetailsQuantityStepper button {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: #F2681C;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.ProductDetailsQuantityStepper button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.ProductDetailsQuantityValue {
+  font-size: 15px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* --- Actions --- */
+.ProductDetailsActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ProductDetailsBtnAddToCart {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #f5f5f5;
+  color: #143b67;
+  border: 2px solid #143b67;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.ProductDetailsBtnAddToCart:hover {
+  background: #143b67;
+  color: white;
+}
+
+.ProductDetailsBtnBuyNow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #F2681C;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.ProductDetailsBtnBuyNow:hover {
+  background: #1e3647;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 82, 242, 0.3);
+}
+
+.ProductDetailsAddedMessage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  color: #27ae60;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+  .ProductDetailsMainContent {
+    padding: 15px 20px;
+  }
+
+  .ProductDetailsLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ProductDetailsCard {
+    padding: 20px;
+  }
+
+  .ProductDetailsPageTitle h1 {
+    font-size: 1.3rem;
+  }
+
+  .ProductDetailsName {
+    font-size: 1.3rem;
+  }
+
+  .ProductDetailsPrice {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ProductDetailsMainContent {
+    padding: 10px;
+  }
+
+  .ProductDetailsCard {
+    padding: 15px;
+  }
+
+  .ProductDetailsActions {
+    flex-direction: column;
+  }
+
+  .ProductDetailsBtnAddToCart,
+  .ProductDetailsBtnBuyNow {
+    justify-content: center;
+    width: 100%;
+  }
+}
