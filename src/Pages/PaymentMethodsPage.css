@@ -1,0 +1,440 @@
+/* PaymentMethodsPage.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.PaymentMethodsContainer {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Main Content --- */
+.PaymentMethodsMainContent {
+  flex: 1;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.PaymentMethodsTopHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.PaymentMethodsPageTitle {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.PaymentMethodsBackBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  color: #0a0a0a;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 38px;
+  margin-top: 4px;
+}
+
+.PaymentMethodsBackBtn:hover {
+  background: #f0f0f0;
+  border-color: #bbb;
+}
+
+.PaymentMethodsPageTitle h1 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #222;
+}
+
+.PaymentMethodsHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.PaymentMethodsProfilePic {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ddd;
+}
+
+/* --- Card List --- */
+.PaymentMethodsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.PaymentMethodsCard {
+  background: white;
+  border-radius: 12px;
+  padding: 22px 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: grid;
+  grid-template-columns: 50px 1fr auto;
+  align-items: center;
+  gap: 18px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.PaymentMethodsCard.PaymentMethodsDefaultCard {
+  border-color: #F2681C;
+}
+
+.PaymentMethodsCardIcon {
+  font-size: 30px;
+  color: #143b67;
+  justify-self: center;
+}
+
+.PaymentMethodsCardInfo {
+  text-align: left;
+}
+
+.PaymentMethodsCardBrandRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.PaymentMethodsCardBrand {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.PaymentMethodsDefaultBadge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #F2681C;
+  background: #fff3ec;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.PaymentMethodsCardNumber {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+.PaymentMethodsCardExpiry {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 2px;
+}
+
+.PaymentMethodsCardActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.PaymentMethodsSetDefaultBtn {
+  background: none;
+  border: 1px solid #d1d9e6;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #444;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.PaymentMethodsSetDefaultBtn:hover {
+  border-color: #F2681C;
+  color: #F2681C;
+}
+
+.PaymentMethodsDeleteIcon {
+  font-size: 17px;
+  color: #e74c3c;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.PaymentMethodsDeleteIcon:hover {
+  color: #c0392b;
+  transform: scale(1.1);
+}
+
+/* --- Empty State --- */
+.PaymentMethodsEmptyState {
+  background: white;
+  border-radius: 12px;
+  padding: 60px 30px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+}
+
+.PaymentMethodsEmptyIcon {
+  font-size: 44px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.PaymentMethodsEmptyState h2 {
+  font-size: 1.2rem;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.PaymentMethodsEmptyState p {
+  color: #777;
+}
+
+/* --- Add Card Button --- */
+.PaymentMethodsBtnAdd {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  background: #F2681C;
+  color: #e9e9e9;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.PaymentMethodsBtnAdd:hover {
+  background: #1e3647;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(5, 2, 197, 0.3);
+}
+
+/* --- Add Card Form (Modal) --- */
+.PaymentMethodsModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: PaymentMethodsFadeIn 0.3s;
+}
+
+.PaymentMethodsModal {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 460px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: PaymentMethodsSlideUp 0.3s;
+}
+
+.PaymentMethodsModal h2 {
+  margin-bottom: 20px;
+  color: #222;
+  text-align: left;
+}
+
+.PaymentMethodsFormFields {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.PaymentMethodsFormRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.PaymentMethodsFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.PaymentMethodsFormGroup.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.PaymentMethodsFormGroup label {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+
+.PaymentMethodsFormGroup input {
+  padding: 10px 14px;
+  border: 1px solid #d1d9e6;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  transition: 0.3s;
+  background: #f8fafc;
+  font-family: inherit;
+}
+
+.PaymentMethodsFormGroup input:focus {
+  outline: none;
+  border-color: #2e52f2;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(46, 82, 242, 0.1);
+}
+
+.PaymentMethodsFormGroup input:hover {
+  border-color: #999;
+}
+
+.PaymentMethodsFieldError {
+  font-size: 12px;
+  color: #e74c3c;
+  text-align: left;
+}
+
+.PaymentMethodsModalActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.PaymentMethodsBtnCancel {
+  padding: 10px 24px;
+  background: #f5f5f5;
+  color: #555;
+  border: 2px solid #F2681C;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.PaymentMethodsBtnCancel:hover {
+  background: #F2681C;
+  color: white;
+}
+
+.PaymentMethodsBtnSave {
+  padding: 10px 24px;
+  background: #F2681C;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.PaymentMethodsBtnSave:hover {
+  background: #1e3647;
+}
+
+/* --- Delete Confirm Modal --- */
+.PaymentMethodsDeleteModal p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.PaymentMethodsBtnDeleteConfirm {
+  padding: 10px 24px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.PaymentMethodsBtnDeleteConfirm:hover {
+  background: #c0392b;
+}
+
+@keyframes PaymentMethodsFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes PaymentMethodsSlideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .PaymentMethodsMainContent {
+    padding: 15px 20px;
+  }
+
+  .PaymentMethodsPageTitle h1 {
+    font-size: 1.3rem;
+  }
+
+  .PaymentMethodsCard {
+    grid-template-columns: 40px 1fr;
+    row-gap: 10px;
+  }
+
+  .PaymentMethodsCardActions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+
+  .PaymentMethodsFormRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .PaymentMethodsMainContent {
+    padding: 10px;
+  }
+
+  .PaymentMethodsCard {
+    padding: 16px;
+  }
+
+  .PaymentMethodsModal {
+    padding: 20px;
+    margin: 20px;
+  }
+}
