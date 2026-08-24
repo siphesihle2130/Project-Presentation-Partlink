@@ -1,0 +1,195 @@
+/* AboutUsPage.css */
+:root {
+  --navy: #1a2a3a;
+  --orange: #e85d26;
+  --fog: #f4f6f8;
+  --white: #ffffff;
+  --neutral: #e8eaed;
+  --text-dark: #1a2a3a;
+  --text-light: #6b7a8a;
+}
+
+.about-us-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: var(--fog);
+  min-height: 100vh;
+}
+
+.about-hero {
+  background: var(--navy);
+  color: var(--white);
+  padding: 60px 40px;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  border-bottom: 4px solid var(--orange);
+}
+
+.about-hero h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+  font-family: 'Liberation Sans', Arial, sans-serif;
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.about-content {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.about-section {
+  margin-bottom: 50px;
+}
+
+.about-section h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: var(--navy);
+  margin-bottom: 20px;
+  border-bottom: 3px solid var(--orange);
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.about-section p {
+  font-family: 'Liberation Sans', Arial, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-dark);
+  max-width: 800px;
+}
+
+.mission-statement {
+  font-size: 1.4rem !important;
+  font-weight: 600;
+  color: var(--orange);
+  padding-left: 20px;
+  border-left: 4px solid var(--orange);
+}
+
+.positioning-text {
+  background: var(--fog);
+  padding: 24px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  border-left: 4px solid var(--orange);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin: 30px 0;
+}
+
+.value-card {
+  background: var(--white);
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--neutral);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border-color: var(--orange);
+}
+
+.value-card h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+.value-card p {
+  font-family: 'Liberation Sans', Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  background: var(--navy);
+  padding: 40px;
+  border-radius: 8px;
+  margin-top: 30px;
+}
+
+.stat-item {
+  text-align: center;
+  color: var(--white);
+}
+
+.stat-number {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  display: block;
+  color: var(--orange);
+}
+
+.stat-label {
+  font-family: 'Liberation Sans', Arial, sans-serif;
+  font-size: 0.95rem;
+  opacity: 0.8;
+  margin-top: 4px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 1.8rem;
+  }
+  
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .about-content {
+    padding: 20px;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero h1 {
+    font-size: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .mission-statement {
+    font-size: 1.1rem !important;
+  }
+}
