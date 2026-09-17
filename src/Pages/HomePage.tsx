@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 // import { UseCart } from "../Components/UseCart";
 import NavigationBar from "../Components/NavigationBar";
-import { FaSearch, FaPhone, FaMailBulk, FaMapPin, FaCog } from "react-icons/fa";
-import { FaShoppingBag, FaStore, FaHeart, FaCreditCard, FaQuestionCircle, FaShoppingBasket } from "react-icons/fa";
+import { FaSearch, FaCog } from "react-icons/fa";
+// import { FaShoppingBag, FaPhone, FaMailBulk, FaMapPin, FaStore, FaHeart, FaCreditCard, FaQuestionCircle, FaShoppingBasket } from "react-icons/fa";
 
 
 
