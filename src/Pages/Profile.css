@@ -75,7 +75,7 @@
   max-width: 98%;
   padding: 70px;
   /* background: #162b3a; */
-  background-image: url(cover.jpg);
+  background-image: url("/cover.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   filter: grayscale(50%) brightness(70%);
