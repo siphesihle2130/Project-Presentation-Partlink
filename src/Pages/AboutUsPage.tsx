@@ -12,7 +12,8 @@ const AboutUsPage: React.FC = () => {
         </p>
       </div>
 
-      <div className="about-content"
+      <div className="about-content">
+        
         <section className="about-section">
           <h2>What is Partlink</h2>
           <p>

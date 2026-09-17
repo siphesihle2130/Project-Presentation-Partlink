@@ -1,7 +1,7 @@
 .RegisterContainer {
     display: flex;
     min-height: 100vh;
-    background-color: #162b3a;
+    background-color: #00102d;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-items: center;
     /* justify-content: center; */
@@ -12,7 +12,7 @@
 .Register-card {
     width: 600px;
     padding: 40px 50px;
-    background: #162b3a;
+    background: #00102d;
     border-radius: 80px 0px 80px 0px;
     box-sizing: border-box;
     /* margin-left: 50px; */

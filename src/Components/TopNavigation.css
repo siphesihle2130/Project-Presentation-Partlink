@@ -1,0 +1,1002 @@
+/* =========================================================
+   AUTOMARKET WEBSITE TopNavigation
+========================================================= */
+
+:root {
+  --primary: #a67b5b;
+  --black: #222222;
+  --text: #333333;
+  --muted: #777777;
+  --border: #e8e8e8;
+  --background: #ffffff;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+  width: 100%;
+  background: var(--background);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  position: relative;
+  z-index: 1000;
+}
+
+/* =========================================================
+   MAIN TopNavigation
+========================================================= */
+
+.TopNavigation {
+  width: 100%;
+  max-width: 1500px;
+  min-height: 82px;
+
+  display: flex;
+  align-items: center;
+
+  margin: 0 auto;
+  padding: 10px 4%;
+
+  gap: 24px;
+
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.TopNavigation-logo {
+  width: 220px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  flex-shrink: 0;
+
+  text-decoration: none;
+  overflow: visible;
+}
+
+.TopNavigation-logo-image {
+  width: 220px;
+  height: 70px;
+
+  display: block;
+
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* =========================================================
+   ADDRESS
+========================================================= */
+
+.TopNavigation-address {
+  min-width: 155px;
+  max-width: 190px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 7px 8px;
+
+  border-radius: 6px;
+
+  color: var(--black);
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.TopNavigation-address:hover {
+  background: rgba(166, 123, 91, 0.08);
+  color: var(--primary);
+}
+
+.TopNavigation-address-icon {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  color: var(--primary);
+}
+
+.TopNavigation-address-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.TopNavigation-address-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.TopNavigation-address-content small {
+  color: var(--muted);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  line-height: 1.2;
+}
+
+.TopNavigation-address-content strong {
+  margin-top: 2px;
+
+  color: var(--black);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  line-height: 1.3;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.TopNavigation-search {
+  flex: 1;
+
+  max-width: 600px;
+  min-width: 220px;
+
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+
+  background: #ffffff;
+
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.TopNavigation-search:focus-within {
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 3px rgba(166, 123, 91, 0.10);
+}
+
+/* =========================================================
+   SEARCH ICON
+========================================================= */
+
+.search-icon {
+  width: 19px;
+  height: 19px;
+
+  margin-left: 14px;
+
+  flex-shrink: 0;
+
+  color: #999999;
+}
+
+/* =========================================================
+   SEARCH INPUT
+========================================================= */
+
+.TopNavigation-search input {
+  flex: 1;
+
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  padding: 0 12px;
+
+  background: transparent;
+
+  color: var(--black);
+
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.TopNavigation-search input::placeholder {
+  color: #999999;
+}
+
+/* =========================================================
+   SEARCH BUTTON
+========================================================= */
+
+.TopNavigation-search button {
+  height: 100%;
+
+  min-width: 82px;
+
+  padding: 0 18px;
+
+  border: none;
+
+  background: var(--primary);
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    filter 0.2s ease;
+}
+
+.TopNavigation-search button:hover {
+  filter: brightness(0.94);
+}
+
+/* =========================================================
+   RIGHT NAVIGATION
+========================================================= */
+
+.TopNavigation-actions {
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   NAV ACTION
+========================================================= */
+
+.nav-action {
+  position: relative;
+
+  min-width: 58px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  text-decoration: none;
+
+  color: var(--black);
+
+  transition:
+    color 0.2s ease;
+}
+
+.nav-action:hover {
+  color: var(--primary);
+}
+
+/* =========================================================
+   ACTION ICON
+========================================================= */
+
+.action-icon {
+  width: 21px;
+  height: 21px;
+
+  stroke-width: 1.7;
+}
+
+.nav-action-icon-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   ACTION LABEL
+========================================================= */
+
+.action-label {
+  font-size: 12px;
+  font-weight: 500;
+
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   CART
+========================================================= */
+
+.nav-cart-action {
+  position: relative;
+}
+
+/* =========================================================
+   CART BADGE
+========================================================= */
+
+.cart-count {
+  position: absolute;
+
+  top: -8px;
+  right: -9px;
+
+  min-width: 17px;
+  height: 17px;
+
+  padding: 0 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--primary);
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.nav-profile-wrapper {
+  position: relative;
+}
+
+.nav-profile {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 5px 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--black);
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  transition:
+    color 0.2s ease;
+}
+
+.nav-profile:hover {
+  color: var(--primary);
+}
+
+/* =========================================================
+   PROFILE INITIALS
+========================================================= */
+
+.profile-initials {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--primary);
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.nav-profile:hover .profile-initials {
+  filter: brightness(0.94);
+}
+
+/* =========================================================
+   PROFILE USER INFO
+========================================================= */
+
+.profile-user-info {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 65px;
+  max-width: 110px;
+
+  text-align: left;
+}
+
+.profile-user-info strong {
+  color: var(--black);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-user-info small {
+  margin-top: 2px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   PROFILE CHEVRON
+========================================================= */
+
+.profile-chevron {
+  width: 13px;
+  height: 13px;
+
+  flex-shrink: 0;
+
+  transition:
+    transform 0.2s ease;
+}
+
+.profile-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* =========================================================
+   PROFILE DROPDOWN
+========================================================= */
+
+.profile-dropdown {
+  position: absolute;
+
+  top: calc(100% + 10px);
+  right: 0;
+
+  width: 240px;
+
+  padding: 6px 0;
+
+  background: #ffffff;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.10);
+
+  overflow: hidden;
+
+  animation: dropdownIn 0.15s ease;
+}
+
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   PROFILE DROPDOWN HEADER
+========================================================= */
+
+.profile-dropdown-header {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 13px 16px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-dropdown-avatar {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--primary);
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.profile-dropdown-header div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-dropdown-header strong {
+  color: var(--black);
+
+  font-size: 13px;
+  font-weight: 700;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-dropdown-header span {
+  margin-top: 3px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   DROPDOWN ITEM
+========================================================= */
+
+.profile-dropdown-item {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px 16px;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--text);
+
+  text-decoration: none;
+
+  text-align: left;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.profile-dropdown-item svg {
+  width: 16px;
+  height: 16px;
+
+  flex-shrink: 0;
+}
+
+.profile-dropdown-item:hover {
+  background: rgba(166, 123, 91, 0.08);
+  color: var(--primary);
+}
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.profile-dropdown-item.logout {
+  color: #777777;
+
+  border-top: 1px solid var(--border);
+
+  margin-top: 5px;
+}
+
+.profile-dropdown-item.logout:hover {
+  background: rgba(166, 123, 91, 0.08);
+  color: var(--primary);
+}
+
+/* =========================================================
+   SECOND NAVIGATION
+========================================================= */
+
+.nav-links-row {
+  width: 100%;
+  max-width: 1500px;
+
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 42px;
+
+  margin: 0 auto;
+
+  padding: 0 4%;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid var(--border);
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   SECOND NAV LINKS
+========================================================= */
+
+.nav-links-row a {
+  position: relative;
+
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 0 2px;
+
+  color: var(--text);
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease;
+}
+
+.nav-links-row a:hover {
+  color: var(--primary);
+}
+
+/* =========================================================
+   ACTIVE NAV LINK
+========================================================= */
+
+.nav-links-row a.active {
+  color: var(--primary);
+
+  font-weight: 700;
+}
+
+.nav-links-row a.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: 0;
+
+  height: 2px;
+
+  background: var(--primary);
+
+  border-radius: 2px 2px 0 0;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+  .TopNavigation {
+    padding: 10px 3%;
+    gap: 16px;
+  }
+
+  .TopNavigation-logo {
+    width: 190px;
+    height: 62px;
+  }
+
+  .TopNavigation-logo-image {
+    width: 190px;
+    height: 62px;
+  }
+
+  .TopNavigation-address {
+    min-width: 130px;
+    max-width: 155px;
+  }
+
+  .TopNavigation-search {
+    max-width: 420px;
+  }
+
+  .TopNavigation-actions {
+    gap: 14px;
+  }
+
+  .nav-links-row {
+    gap: 30px;
+    padding: 0 3%;
+  }
+}
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+  .TopNavigation {
+    gap: 12px;
+  }
+
+  .TopNavigation-logo {
+    width: 165px;
+    height: 56px;
+  }
+
+  .TopNavigation-logo-image {
+    width: 165px;
+    height: 56px;
+  }
+
+  .TopNavigation-address {
+    min-width: auto;
+    max-width: 125px;
+  }
+
+  .TopNavigation-address-content strong {
+    max-width: 90px;
+  }
+
+  .TopNavigation-search {
+    max-width: none;
+  }
+
+  .TopNavigation-actions {
+    gap: 10px;
+  }
+
+  .profile-user-info {
+    display: none;
+  }
+
+  .nav-links-row {
+    justify-content: flex-start;
+
+    overflow-x: auto;
+
+    gap: 25px;
+
+    padding: 0 20px;
+
+    scrollbar-width: none;
+  }
+
+  .nav-links-row::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+  .TopNavigation {
+    min-height: auto;
+
+    flex-wrap: wrap;
+
+    padding: 10px 16px;
+
+    gap: 10px;
+  }
+
+  .TopNavigation-logo {
+    width: 145px;
+    height: 50px;
+  }
+
+  .TopNavigation-logo-image {
+    width: 145px;
+    height: 50px;
+  }
+
+  .TopNavigation-address {
+    margin-left: auto;
+
+    padding: 5px;
+
+    min-width: auto;
+  }
+
+  .TopNavigation-address-content {
+    display: none;
+  }
+
+  .TopNavigation-address-icon {
+    width: 30px;
+    height: 30px;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+  }
+
+  .TopNavigation-actions {
+    margin-left: 0;
+
+    gap: 9px;
+  }
+
+  .nav-action {
+    min-width: 40px;
+  }
+
+  .action-label {
+    font-size: 10px;
+  }
+
+  .action-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .TopNavigation-search {
+    order: 3;
+
+    flex-basis: 100%;
+
+    max-width: none;
+
+    height: 42px;
+  }
+
+  .TopNavigation-search input {
+    font-size: 13px;
+  }
+
+  .TopNavigation-search button {
+    min-width: 62px;
+
+    padding: 0 12px;
+
+    font-size: 12px;
+  }
+
+  .nav-links-row {
+    height: 44px;
+
+    gap: 24px;
+  }
+
+  .nav-links-row a {
+    height: 44px;
+
+    font-size: 12px;
+  }
+
+  .profile-dropdown {
+    right: -5px;
+
+    width: 225px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 400px) {
+  .TopNavigation {
+    padding: 9px 12px;
+  }
+
+  .TopNavigation-logo {
+    width: 125px;
+    height: 44px;
+  }
+
+  .TopNavigation-logo-image {
+    width: 125px;
+    height: 44px;
+  }
+
+  .TopNavigation-actions {
+    gap: 6px;
+  }
+
+  .nav-action {
+    min-width: 32px;
+  }
+
+  .action-label {
+    display: none;
+  }
+
+  .action-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .profile-initials {
+    width: 29px;
+    height: 29px;
+
+    font-size: 11px;
+  }
+
+  .profile-chevron {
+    display: none;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.TopNavigation button:focus-visible,
+.nav-links-row a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}

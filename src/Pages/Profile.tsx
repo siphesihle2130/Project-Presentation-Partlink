@@ -54,6 +54,7 @@ function Profile() {
                     <div className="profileInfoCard1">
 
                         <div className="profileGrid">
+                            <div className="row1">
                             <button className="card" onClick={() => navigate("/my-listing")}>
                                 <FaStore className="iconss" />
                                 <p>My Listings</p>
@@ -68,21 +69,25 @@ function Profile() {
                                 <FaShoppingBasket className="iconss" />
                                 <p>My Requests</p>
                             </button>
+                            </div>
 
-                            <button className="card" onClick={() => navigate("/saved")}>
-                                <FaHeart className="iconss" />
-                                <p>Saved items</p>
-                            </button>
+                            <div className="row2">
+                                <button className="card" onClick={() => navigate("/saved")}>
+                                    <FaHeart className="iconss" />
+                                    <p>Saved items</p>
+                                </button>
 
-                            <button className="card" onClick={() => navigate("/payment-methods")}>
-                                <FaCreditCard className="iconss" />
-                                <p>Payment methods</p>
-                            </button>
+                                <button className="card" onClick={() => navigate("/payment-methods")}>
+                                    <FaCreditCard className="iconss" />
+                                    <p>Payment methods</p>
+                                </button>
 
-                            <button className="card" onClick={() => navigate("/help")}>
-                                <FaQuestionCircle className="iconss" />
-                                <p>Help & Support</p>
-                            </button>
+                                <button className="card" onClick={() => navigate("/help")}>
+                                    <FaQuestionCircle className="iconss" />
+                                    <p>Help & Support</p>
+                                </button>
+
+                            </div>
                         </div>
                     </div>
                 </div>

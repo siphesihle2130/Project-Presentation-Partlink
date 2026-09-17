@@ -10,7 +10,7 @@ import ActiveRequestDetailsPage from "./Pages/ActiveRequestDetailsPage"
 import MyCompletedRequestPage from "./Pages/MyCompletedRequestPage" 
 import CompletedRequestDetailsPage from "./Pages/CompletedRequestDetailsPage" 
 import CreateRequest from "./Pages/CreateRequest" 
-import HomePage from "./Pages/HomePage" 
+import LandingPage from "./Pages/LandingPage" 
 import LoginPage from "./Pages/LoginPage" 
 import RegisterPage from "./Pages/RegisterPage" 
 import ResetPasswordPage from "./Pages/ResetPasswordPage" 
@@ -24,12 +24,16 @@ import HelpSupportPage from "./Pages/HelpSupportPage"
 import SavedItemsDetailsPage from "./Pages/SavedItemsDetailsPage"
 import RequestsPage from "./Pages/RequestsPage"
 import MyPurchasesPage from "./Pages/MyPurchasesPage"
+import CategoriesPage from "./Pages/CategoriesPage"
+import HomePage from "./Pages/HomePage"
  
 function App(){ 
     return ( 
       <CartProvider> 
       <BrowserRouter> 
-      <Routes> 
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<HomePage />} /> 
         <Route path="/my-listing" element={<MyListingPage />} /> 
         <Route path="/my-sold-listing" element={<MyListingSoldPage />} /> 
         <Route path="/edit-listing" element={<EditListingPage />} /> 
@@ -39,7 +43,7 @@ function App(){
         <Route path="/completed-requests" element={<MyCompletedRequestPage />} /> 
         <Route path="/completed-request-details" element={<CompletedRequestDetailsPage />} /> 
         <Route path="/create-request" element={<CreateRequest />} /> 
-        <Route path="/home" element={<HomePage />} /> 
+        <Route path="/categories" element={<CategoriesPage />} /> 
         <Route path="/login" element={<LoginPage />} /> 
         <Route path="/register" element={<RegisterPage />} /> 
         <Route path="/reset-password" element={<ResetPasswordPage />} /> 

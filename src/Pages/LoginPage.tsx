@@ -52,7 +52,7 @@ function LoginPage() {
             onClick={handleForgotPassword}
             onKeyPress={(e) => { if (e.key === 'Enter') handleForgotPassword(); }}
           >
-            Forgot password</p>
+            Forgot password?</p>
           <button type="submit" className="LoginsubmitButton" onClick={() => navigate("/categories")}>
             Sign in
           </button>
