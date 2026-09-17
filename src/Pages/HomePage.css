@@ -6,6 +6,7 @@
 
 .homeContainer {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background-color: #c5ced4;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
