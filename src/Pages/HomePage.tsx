@@ -1,9 +1,8 @@
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 // import { UseCart } from "../Components/UseCart";
 import NavigationBar from "../Components/NavigationBar";
-import { FaSearch, FaCog, FaCaretRight,FaAngleDoubleRight } from "react-icons/fa";
+import { FaAngleDoubleRight } from "react-icons/fa";
 import Footer from "../Components/Footer";
 // import { FaShoppingBag, FaPhone, FaMailBulk, FaMapPin, FaStore, FaHeart, FaCreditCard, FaQuestionCircle, FaShoppingBasket } from "react-icons/fa";
 
@@ -11,13 +10,6 @@ import Footer from "../Components/Footer";
 
 function HomePage() {
     const navigate = useNavigate();
-
-    const [query, setQuery] = useState("");
-    const handleSearch = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log("Searching for:", query);
-        // navigate(`/shop?q=${encodeURIComponent(query)}`);
-    };
     return (
 
         <div className="homeContainer">

@@ -1,14 +1,7 @@
 import "./NavigationBar.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
-    FaSignOutAlt,
     FaShoppingCart,
-    FaHome,
-    FaInfoCircle,
-    FaThLarge,
-    FaDollarSign,
-    FaHandHoldingHeart,
-    FaUser,
     FaSearch,
     FaCog,
     FaHeart
@@ -16,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { useCart } from "../Context/CartContext";
 import { useState } from "react";
-import { MdLocationOn, MdLocationPin } from 'react-icons/md';
+import { MdLocationPin } from 'react-icons/md';
 
 function NavigationBar() {
     const navigate = useNavigate();
