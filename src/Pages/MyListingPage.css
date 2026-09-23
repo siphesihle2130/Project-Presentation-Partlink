@@ -371,18 +371,6 @@
     justify-content: space-between;
   }
   
-  .MyListingsnavItem {
-    padding: 6px 4px;
-    font-size: 0.75rem;
-    flex: 1;
-    min-width: 40px;
-    text-align: center;
-  }
-  
-  .MyListingsnavItem span {
-    font-size: 0.65rem;
-  }
-  
   .MyListingslogout {
     display: none;
   }
@@ -516,10 +504,6 @@
     padding-bottom: 55px;
   }
   
-  .sidebar {
-    padding: 5px 8px;
-  }
-  
   .logo {
     width: 70px;
     height: 28px;
@@ -530,16 +514,6 @@
     gap: 1px;
     margin-top: 5px;
     padding-top: 5px;
-  }
-  
-  .navItem {
-    padding: 4px 3px;
-    font-size: 0.6rem;
-    min-width: 30px;
-  }
-  
-  .navItem span {
-    font-size: 0.55rem;
   }
   
   .alt1, .alt2, .alt3, .alt4 {

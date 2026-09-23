@@ -1,40 +1,89 @@
 import "./RegisterPage.css";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabaseClient";
 
 function RegisterPage() {
     const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        city: '',
-        province: '',
-        gender: '',
-        email: '',
-        mobile: '',
-        username: '',
-        confirmPassword: ''
+        firstName: "",
+        lastName: "",
+        city: "", 
+        province: "",
+        gender: "",
+        email: "",
+        mobile: "",
+        username: "",
+        password: "",
+        confirmPassword: ""
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    ) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
+
+        setFormData((prev) => ({
             ...prev,
             [name]: value
         }));
     };
 
-    const handleSubmit = (e: React.SubmitEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Handle registration logic here
-        console.log('Registration data:', formData);
-        // Navigate to login or dashboard
-        navigate("/login");
+
+        setError("");
+
+        // Check that both passwords match
+        if (formData.password !== formData.confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const { data, error: signUpError } = await supabase.auth.signUp({
+                email: formData.email,
+                password: formData.password,
+                options: {
+                    data: {
+                        first_name: formData.firstName,
+                        last_name: formData.lastName,
+                        city: formData.city,
+                        province: formData.province,
+                        gender: formData.gender,
+                        mobile: formData.mobile,
+                        username: formData.username
+                    }
+                }
+            });
+
+            if (signUpError) {
+                setError(signUpError.message);
+                return;
+            }
+
+            if (data.user) {
+                alert(
+                    "Account created successfully! Please check your email if email confirmation is required."
+                );
+
+                navigate("/login");
+            }
+        } catch (err) {
+            console.error(err);
+            setError("Something went wrong while creating your account.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleSignIn = () => {
-        // TODO: replace with actual navigation (e.g. react-router's navigate('/login'))
-        console.log('Navigate to sign-in');
         navigate("/login");
     };
 
@@ -44,6 +93,7 @@ function RegisterPage() {
                 <h1>Create an Account</h1>
 
                 <form onSubmit={handleSubmit}>
+
                     {/* Row 1: First Name & Last Name */}
                     <div className="RegisterformRow">
                         <div className="Registerform-group">
@@ -53,7 +103,6 @@ function RegisterPage() {
                                 name="firstName"
                                 value={formData.firstName}
                                 onChange={handleChange}
-                                // placeholder="Enter first name"
                                 required
                             />
                         </div>
@@ -65,13 +114,12 @@ function RegisterPage() {
                                 name="lastName"
                                 value={formData.lastName}
                                 onChange={handleChange}
-                                // placeholder="Enter last name"
                                 required
                             />
                         </div>
                     </div>
 
-                    {/* Row 2: City & Province (Dropdown) */}
+                    {/* Row 2: City & Province */}
                     <div className="RegisterformRow">
                         <div className="Registerform-group">
                             <label>City</label>
@@ -80,7 +128,6 @@ function RegisterPage() {
                                 name="city"
                                 value={formData.city}
                                 onChange={handleChange}
-                                // placeholder="Enter city"
                                 required
                             />
                         </div>
@@ -107,7 +154,7 @@ function RegisterPage() {
                         </div>
                     </div>
 
-                    {/* Row 3: Email & Password */}
+                    {/* Row 3: Gender & Mobile */}
                     <div className="RegisterformRow">
                         <div className="Registerform-group">
                             <label>Gender</label>
@@ -121,25 +168,37 @@ function RegisterPage() {
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Non-binary">Non-binary</option>
-                                <option value="Prefer not to say">Prefer not to say</option>
+                                <option value="Prefer not to say">
+                                    Prefer not to say
+                                </option>
                             </select>
                         </div>
 
                         <div className="Registerform-group">
                             <label>Mobile Number</label>
                             <input
-                                type="mobile"
+                                type="tel"
                                 name="mobile"
                                 value={formData.mobile}
                                 onChange={handleChange}
-                                // placeholder="Enter Mobile Number"
                                 required
                             />
                         </div>
                     </div>
 
-                    {/* Row 4: Username & Confirm Password */}
+                    {/* Row 4: Email & Username */}
                     <div className="RegisterformRow">
+                        <div className="Registerform-group">
+                            <label>Email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
                         <div className="Registerform-group">
                             <label>Username</label>
                             <input
@@ -147,9 +206,23 @@ function RegisterPage() {
                                 name="username"
                                 value={formData.username}
                                 onChange={handleChange}
-                                // placeholder="Choose username"
                                 required
                             />
+                        </div>
+                    </div>
+
+                    {/* Row 5: Password & Confirm Password */}
+                    <div className="RegisterformRow">
+                        <div className="Registerform-group">
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                                minLength={6}
+                            /> 
                         </div>
 
                         <div className="Registerform-group">
@@ -159,34 +232,56 @@ function RegisterPage() {
                                 name="confirmPassword"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
-                                // placeholder="Confirm password"
                                 required
+                                minLength={6}
                             />
                         </div>
                     </div>
 
-                    {/* Row 5: Gender (Full Width) */}
-                    {/* <div className="RegisterformRow"> */}
+                    {/* Terms & Conditions */}
                     <div className="checkboxes">
                         <label>
-                            <input type="checkbox" name="option1" required/>
-                            <span className="label-text">Creating ayour account and accepting terms & conditions</span>                            </label>
-
+                            <input
+                                type="checkbox"
+                                name="option1"
+                                required
+                            />
+                            <span className="label-text">
+                                Creating your account and accepting terms & conditions
+                            </span>
+                        </label>
                     </div>
-                    {/* </div> */}
 
-                    <button type="submit" className="RegisterButton">
-                        Create Account
+                    {/* Error message */}
+                    {error && (
+                        <p style={{ color: "red", marginTop: "10px" }}>
+                            {error}
+                        </p>
+                    )}
+
+                    <button
+                        type="submit"
+                        className="RegisterButton"
+                        disabled={loading}
+                    >
+                        {loading ? "Creating Account..." : "Create Account"}
                     </button>
 
-                    <p className="signin-link">Already have an account? <span
-                        role="button"
-                        tabIndex={0}
-                        onClick={handleSignIn}
-                        onKeyPress={(e) => { if (e.key === 'Enter') handleSignIn(); }}
-                    >
-                        Sign in
-                    </span></p>
+                    <p className="signin-link">
+                        Already have an account?{" "}
+                        <span
+                            role="button"
+                            tabIndex={0}
+                            onClick={handleSignIn}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    handleSignIn();
+                                }
+                            }}
+                        >
+                            Sign in
+                        </span>
+                    </p>
                 </form>
             </div>
 
@@ -197,14 +292,14 @@ function RegisterPage() {
             {/* Logo Card */}
             <div className="Registerlogo-card">
                 <div className="Registerlogo1-card"></div>
-                <div className="Registerlogo2-card">
-                    <img src="/logo-icon.png" alt="PartLink Logo" className="Registerlogoicon" />
-                </div>
-                {/* </div> */}
-                {/* <img src="/logo-icon.png" alt="PartLink Logo" className="Registerlogoicon" /> */}
 
-                {/* <h1 className="welcome-text">Welcome Back</h1> */}
-                {/* <p className="welcome-subtext">Join our community today</p> */}
+                <div className="Registerlogo2-card">
+                    <img
+                        src="/logo-icon.png"
+                        alt="PartLink Logo"
+                        className="Registerlogoicon"
+                    />
+                </div>
             </div>
         </div>
     );

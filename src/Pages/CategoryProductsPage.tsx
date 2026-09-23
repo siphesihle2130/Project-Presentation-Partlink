@@ -31,7 +31,7 @@ function CategoryProductsPage() {
 
   return (
     <div className="CategoryProductsContainer">
-      {/* Sidebar */}
+
       <NavigationBar />
 
       {/* Main Content */}

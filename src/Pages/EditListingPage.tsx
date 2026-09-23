@@ -68,7 +68,6 @@ function EditListingPage() {
   return (
     <div className="container">
 
-      {/* Sidebar */}
       <NavigationBar />
       
 

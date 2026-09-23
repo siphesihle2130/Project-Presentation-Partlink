@@ -29,7 +29,7 @@ function CategoriesPage() {
 
   return (
     <div className="CategoriesContainer">
-      {/* Sidebar */}
+
       <NavigationBar />
 
       {/* Main Content */}

@@ -68,7 +68,6 @@ function ActiveRequestDetailsPage() {
   return (
     <div className="ActiveRequestDetailscontainer">
 
-      {/* Sidebar */}
       <NavigationBar />
 
       {/* Main Content */}

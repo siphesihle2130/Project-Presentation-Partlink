@@ -67,7 +67,6 @@ function SoldListDetailsPage() {
   return (
     <div className="soldDetailscontainer">
 
-      {/* Sidebar */}
       <NavigationBar />
 
       {/* Main Content */}

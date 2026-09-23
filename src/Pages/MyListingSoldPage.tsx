@@ -19,7 +19,6 @@ function MyListingSoldPage() {
   return (
     <div className="MyListingSoldcontainer">
 
-      {/* Sidebar */}
       <NavigationBar />
 
       {/* Main Content */}

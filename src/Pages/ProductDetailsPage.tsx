@@ -60,7 +60,7 @@ function ProductDetailsPage() {
 
   return (
     <div className="ProductDetailsContainer">
-      {/* Sidebar */}
+
       <NavigationBar />
 
       {/* Main Content */}

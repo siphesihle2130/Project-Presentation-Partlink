@@ -1,6 +1,7 @@
 .homeContainer{
   min-height: auto;
   width: 100%;
+  display: flex;
 }
 
 .homeSection1 {

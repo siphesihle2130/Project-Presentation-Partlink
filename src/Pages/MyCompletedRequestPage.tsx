@@ -19,7 +19,6 @@ function MyCompletedRequestPage() {
   return (
     <div className="MyCompletedRequestcontainer">
 
-      {/* Sidebar */}
       <NavigationBar />
 
       {/* Main Content */}

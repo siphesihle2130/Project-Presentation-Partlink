@@ -271,27 +271,12 @@
 
 /* Tablets and small laptops */
 @media (max-width: 1024px) {
-  .sidebar {
-    width: 80px;
-    padding: 15px 0;
-  }
   
   .logo {
     width: 50px;
     height: 50px;
     margin: 0 auto 20px auto;
     padding: 0;
-  }
-  
-  .navItem span,
-  .logout span {
-    display: none;
-  }
-  
-  .navItem {
-    justify-content: center;
-    padding: 15px;
-    font-size: 1.5rem;
   }
   
   .logout {
@@ -323,18 +308,6 @@
     padding-bottom: 70px; /* Space for bottom navigation */
   }
   
-  .sidebar {
-    width: 100%;
-    min-height: auto;
-    height: auto;
-    flex-direction: column;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: #162b3a;
-  }
-  
   .logo {
     width: 120px;
     height: 40px;
@@ -355,29 +328,6 @@
     margin-top: 10px;
     border-top: 1px solid #1e3647;
     padding-top: 10px;
-  }
-  
-  .navItem {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    border-right: none;
-    flex: 1;
-    justify-content: center;
-    min-width: 60px;
-  }
-  
-  .navItem span {
-    display: inline;
-    font-size: 0.8rem;
-  }
-  
-  .navItemActive {
-    border-right: none;
-    border-bottom: 3px solid #e67e22;
-  }
-  
-  .logout {
-    display: none; /* Hide logout in mobile nav, we'll show it at bottom */
   }
   
   .mainContent {
@@ -452,12 +402,6 @@
     padding-bottom: 60px;
   }
   
-  .sidebar {
-    padding: 8px 12px;
-    position: sticky;
-    top: 0;
-  }
-  
   .logo {
     width: 90px;
     height: 35px;
@@ -469,18 +413,6 @@
     margin-top: 8px;
     padding-top: 8px;
     justify-content: space-between;
-  }
-  
-  .navItem {
-    padding: 6px 4px;
-    font-size: 0.75rem;
-    flex: 1;
-    min-width: 40px;
-    text-align: center;
-  }
-  
-  .navItem span {
-    font-size: 0.65rem;
   }
   
   .logout {
@@ -616,10 +548,6 @@
     padding-bottom: 55px;
   }
   
-  .sidebar {
-    padding: 5px 8px;
-  }
-  
   .logo {
     width: 70px;
     height: 28px;
@@ -630,16 +558,6 @@
     gap: 1px;
     margin-top: 5px;
     padding-top: 5px;
-  }
-  
-  .navItem {
-    padding: 4px 3px;
-    font-size: 0.6rem;
-    min-width: 30px;
-  }
-  
-  .navItem span {
-    font-size: 0.55rem;
   }
   
   .alt1, .alt2, .alt3, .alt4 {

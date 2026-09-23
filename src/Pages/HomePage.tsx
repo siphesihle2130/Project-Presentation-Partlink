@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 // import { UseCart } from "../Components/UseCart";
 import NavigationBar from "../Components/NavigationBar";
-import { FaSearch, FaCog } from "react-icons/fa";
+import { FaSearch, FaCog, FaCaretRight,FaAngleDoubleRight } from "react-icons/fa";
+import Footer from "../Components/Footer";
 // import { FaShoppingBag, FaPhone, FaMailBulk, FaMapPin, FaStore, FaHeart, FaCreditCard, FaQuestionCircle, FaShoppingBasket } from "react-icons/fa";
 
 
@@ -21,95 +22,108 @@ function HomePage() {
 
         <div className="homeContainer">
             <NavigationBar />
+            <section className="homeMainCard">
+                <div className="homeSectionsContainer1">
 
-            <div className="homeMainCard">
-                {/* Header */}
-                <header className="homeTopHeader">
-                    <div className="homePageTitle">
-                        {/* <h1>My Profile</h1> */}
-                        <form className="search-bar" onSubmit={handleSearch}>
-                            <FaSearch className="search-icon" />
-                            <input
-                                type="text"
-                                placeholder="Search for car parts..."
-                                value={query}
-                                onChange={(e) => setQuery(e.target.value)}
-                            />
-                            <button type="submit">Search</button>
-                        </form>
-                    </div>
-                    <div className="homeHeaderActions">
-                        <FaCog className="homesettings" onClick={() => navigate("/settings")} />
-
-                        <img src="Profile.png" alt="Profile" className="profileProfilePic" onClick={() => navigate("/profile")} />
-                    </div>
-                </header>
-
-
-                <div className="homeContents">
-
-                    {/* ================================================= */}
-                    <div className="homeTopCard">
-
-                    </div>
-
-                    {/* <div className="homeInfoCard">
-                        <img src="Profile.png" alt="Profile" className="homeProfilePicture" />
-                        <h1 className="homeName">Inacio Miguel</h1>
-                        <div className="info">
-                            <FaMapPin className="addressIcon" />
-                            <p className="homeAddress">Hout Bay, Cape Town</p>
-                            <FaGenderless className="genderIcon" />
-                            <p className="homeGender">Male</p>
-                            <FaPhone className="numberIcon" />
-                            <p className="homeNumber">+27 738 828 828</p>
-                            <FaMailBulk className="emailIcon" />
-                            <p className="homeEmail">inaciomiguel@gmail.com</p>
-                        </div>
-
-                    </div> */}
-
-                    {/* <div className="homeInfoCard1">
-
-                        <div className="homeGrid">
-                            <div className="row1">
-                            <button className="card" onClick={() => navigate("/my-listing")}>
-                                <FaStore className="iconss" />
-                                <p>My Listings</p>
-                            </button>
-
-                            <button className="card" onClick={() => navigate("/my-purchases")}>
-                                <FaShoppingBag className="iconss" />
-                                <p>My Purchases</p>
-                            </button>
-
-                            <button className="card" onClick={() => navigate("/active-requests")}>
-                                <FaShoppingBasket className="iconss" />
-                                <p>My Requests</p>
-                            </button>
-                            </div>
-
-                            <div className="row2">
-                                <button className="card" onClick={() => navigate("/saved")}>
-                                    <FaHeart className="iconss" />
-                                    <p>Saved items</p>
-                                </button>
-
-                                <button className="card" onClick={() => navigate("/payment-methods")}>
-                                    <FaCreditCard className="iconss" />
-                                    <p>Payment methods</p>
-                                </button>
-
-                                <button className="card" onClick={() => navigate("/help")}>
-                                    <FaQuestionCircle className="iconss" />
-                                    <p>Help & Support</p>
-                                </button>
-
+                    <div className="homeMini1">
+                        <div className="homeMini1Contents">
+                            <h1>Buy. <span>Sell.</span> Connect.</h1>
+                            <h2>Welcome to PartLink</h2>
+                            <p>The trusted community marketplace for carparts.</p>
+                            {/* <p>Buy and sell items, discover great deals, and connect with your campus community.</p> */}
+                            <div className="homeMini1Contentsbuttons">
+                                <button className="homeMini1ContentsPrimary" onClick={() => navigate("/shop")}>Show Marketplace</button>
+                                <button className="homeMini1ContentsSecondary" onClick={() => navigate("/list-product")}>Sell an Item</button>
                             </div>
                         </div>
-                    </div> */}
+
+                        <img src="/home5.png" alt="home picture" />
+                    </div>
+
+                    <div className="homeSectionMiniContainer">
+                        <div className="homeMini2">
+                            <div className="homeMini2TextContainer">
+                                <h2>Categories</h2>
+                                <p>View popular categories</p>
+                            </div>
+                            <img src="/home3.png" alt="home picture" />
+                        </div>
+
+                        <div className="homeMini3">
+                            <div className="homeMini2TextContainer">
+                                <h2>Trending</h2>
+                                <p>View trending products</p>
+                            </div>
+                            <img src="/Wheel-decal-cap.png" alt="home picture" />
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <div className="homeSectionsContainer1">
+                    <div className="homeMini4">
+                        <div className="homeMini2TextContainer">
+                                <h2>Great Deals</h2>
+                                {/* <p>View popular categories</p> */}
+                            </div>
+                            <img src="/home4.png" alt="home picture" />
+                    </div>
+
+                    <div className="homeMini5">
+                        <div className="homeMini2TextContainer">
+                                <h2>Discounts</h2>
+                                {/* <p>View popular categories</p> */}
+                            </div>
+                            <img src="/home2.png" alt="home picture" />
+                    </div>
+
+                    <div className="homeMini6">
+                        <div className="homeMini2TextContainer">
+                                <h2>Popular brands</h2>
+                                {/* <p>View popular categories</p> */}
+                            </div>
+                            <img src="/Audi-Logo.png" alt="home picture" />
+                    </div>
+                </div>
+            </section>
+
+            <section className="bestSellingSection">
+                <div className="bestSellingheader">
+                    <h2>Best Selling</h2>
+                    <button className="view-allButton">View all <FaAngleDoubleRight /></button>
+                </div>
+
+                <div className="bestSellingConatainers">
+                    <div className="bestSellingMini1">
+                        <h1 className="bestSellingMini1Title">Best Selling</h1>
+                         <p>Selling fast — grab yours before they're gone.</p>
+                        <img src="/home1.png" alt="home picture" />
+                            {/* <p>Engines</p> */}
+                    </div>
+
+                    {/* <div className="bestSellingMiniContainer"> */}
+                        <div className="bestSellingMini">
+                            <img src="/side-mirror.png" alt="home picture" />
+                            <p>Side Mirror</p>
+                        </div>
+
+                        <div className="bestSellingMini">
+                            <img src="/headlights.png" alt="home picture" />
+                            <p>BMW Headlights</p>
+                        </div>
+
+                        <div className="bestSellingMini">
+                            <img src="/alternator.png" alt="home picture" />
+                            <p>Alternator</p>
+                        </div>
+
+                        <div className="bestSellingMini">
+                            <img src="/home3.png" alt="home picture" />
+                            <p>Engines</p>
+                        </div>
+                    {/* </div> */}
+                </div>
+            </section>
+            <Footer />
         </div>
     );
 }

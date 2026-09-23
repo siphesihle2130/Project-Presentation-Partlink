@@ -19,7 +19,6 @@ function MyActiveRequestPage() {
   return (
     <div className="MyActiveRequestscontainer">
 
-      {/* Sidebar */}
       <NavigationBar />
 
       {/* Main Content */}

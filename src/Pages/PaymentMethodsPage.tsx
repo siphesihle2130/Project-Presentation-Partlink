@@ -143,7 +143,7 @@ function PaymentMethodsPage() {
 
   return (
     <div className="PaymentMethodsContainer">
-      {/* Sidebar */}
+
       <NavigationBar />
 
       {/* Main Content */}

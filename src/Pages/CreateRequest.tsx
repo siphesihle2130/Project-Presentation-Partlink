@@ -66,7 +66,6 @@ function CreateRequest() {
   return (
     <div className="CreateRequestcontainer">
 
-      {/* Sidebar */}
       <NavigationBar />
 
       {/* Main Content */}

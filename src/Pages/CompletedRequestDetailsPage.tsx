@@ -52,7 +52,6 @@ function CompletedRequestDetailsPage() {
   return (
     <div className="CompletedRequestDetailscontainer">
 
-      {/* Sidebar */}
       <NavigationBar />
 
       {/* Main Content */}

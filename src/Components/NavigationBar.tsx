@@ -8,25 +8,73 @@ import {
     FaThLarge,
     FaDollarSign,
     FaHandHoldingHeart,
-    FaUser
+    FaUser,
+    FaSearch,
+    FaCog,
+    FaHeart
 
 } from "react-icons/fa";
 import { useCart } from "../Context/CartContext";
+import { useState } from "react";
+import { MdLocationOn, MdLocationPin } from 'react-icons/md';
 
 function NavigationBar() {
     const navigate = useNavigate();
     const location = useLocation();
     const { cartCount } = useCart();
 
+    const [query, setQuery] = useState("");
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log("Searching for:", query);
+        // navigate(`/shop?q=${encodeURIComponent(query)}`);
+    };
+
     return (
         <div className="navContainer">
             <aside className="sidebar">
-                <img
-                    src="/logo2.png"
-                    alt="UniTrade Logo"
-                    className="logo2"
-                />
+                <div className="navImageContainer">
+                    <img src="/logo2.png" alt="UniTrade Logo" className="logo2" />
 
+                    <div className="navLocationcontainer">
+                        <MdLocationPin className="navLocation" />
+                        <p>Dalton Road, Belhar 23, Bellville</p>
+                    </div>
+
+
+                    <form className="search-bar" onSubmit={handleSearch}>
+                        <FaSearch className="search-icon" />
+                        <input
+                            type="text"
+                            placeholder="Search for car parts..."
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                        />
+                        <button type="submit">Search</button>
+                    </form>
+
+                </div>
+
+                <div>
+                    <header className="navTopHeader">
+                    {/* <div className="homePageTitle">
+                    </div> */}
+                    <div className="navHeaderActions">
+                        <div className="navIcons">
+                            <FaShoppingCart className="navCart" onClick={() => navigate("/cart")} />
+                            <FaHeart className="navCart" onClick={() => navigate("/saved")} />
+                            <FaCog className="navSettings" onClick={() => navigate("/settings")} />
+                        </div>
+
+                        <img src="Profile.png" alt="Profile" className="profileProfilePic" onClick={() => navigate("/profile")} />
+                    </div>
+                </header>
+                </div>
+            </aside>
+
+
+
+            <div className="secondNav">
                 <nav className="navMenu">
 
                     <div
@@ -35,20 +83,13 @@ function NavigationBar() {
                         onClick={() => navigate("/home")}
                     >
                         <span className="navCartIconWrapper">
-                            <FaHome />
+                            {/* <FaHome /> */}
                             {cartCount > 0 && (
                                 <span className="navCartBadge">{cartCount}</span>
                             )}
                         </span>
                         <span>Home</span>
                     </div>
-                    {/* <div
-                        className={`navItem ${location.pathname === "/home" ? "navItemActive" : ""
-                            }`}
-                        onClick={() => navigate("/home")}
-                    >
-                        <span>Home</span>
-                    </div> */}
 
                     <div
                         className={`navItem navItemCart ${location.pathname === "/about" ? "navItemActive" : ""
@@ -56,21 +97,13 @@ function NavigationBar() {
                         onClick={() => navigate("/about")}
                     >
                         <span className="navCartIconWrapper">
-                            <FaInfoCircle />
+                            {/* <FaInfoCircle /> */}
                             {cartCount > 0 && (
                                 <span className="navCartBadge">{cartCount}</span>
                             )}
                         </span>
                         <span>About Us</span>
                     </div>
-
-                    {/* <div
-                        className={`navItem ${location.pathname === "/about" ? "navItemActive" : ""
-                            }`}
-                        onClick={() => navigate("/about")}
-                    >
-                        <span>About Us</span>
-                    </div> */}
 
                     <div
                         className={`navItem navItemCart ${location.pathname === "/categories" ? "navItemActive" : ""
@@ -78,21 +111,13 @@ function NavigationBar() {
                         onClick={() => navigate("/categories")}
                     >
                         <span className="navCartIconWrapper">
-                            <FaThLarge />
+                            {/* <FaThLarge /> */}
                             {cartCount > 0 && (
                                 <span className="navCartBadge">{cartCount}</span>
                             )}
                         </span>
                         <span>Categories</span>
                     </div>
-
-                    {/* <div
-                        className={`navItem ${location.pathname === "/categories" ? "navItemActive" : ""
-                            }`}
-                        onClick={() => navigate("/categories")}
-                    >
-                        <span>Categories</span>
-                    </div> */}
 
                     <div
                         className={`navItem navItemCart ${location.pathname === "/carpart-listing" ? "navItemActive" : ""
@@ -100,21 +125,13 @@ function NavigationBar() {
                         onClick={() => navigate("/carpart-listing")}
                     >
                         <span className="navCartIconWrapper">
-                            <FaDollarSign />
+                            {/* <FaDollarSign /> */}
                             {cartCount > 0 && (
                                 <span className="navCartBadge">{cartCount}</span>
                             )}
                         </span>
                         <span>Sell</span>
                     </div>
-
-                    {/* <div
-                        className={`navItem ${location.pathname === "/carpart-listing" ? "navItemActive" : ""
-                            }`}
-                        onClick={() => navigate("/carpart-listing")}
-                    >
-                        <span>Sell</span>
-                    </div> */}
 
                     <div
                         className={`navItem navItemCart ${location.pathname === "/requests" ? "navItemActive" : ""
@@ -122,71 +139,15 @@ function NavigationBar() {
                         onClick={() => navigate("/request")}
                     >
                         <span className="navCartIconWrapper">
-                            <FaHandHoldingHeart />
+                            {/* <FaHandHoldingHeart /> */}
                             {cartCount > 0 && (
                                 <span className="navCartBadge">{cartCount}</span>
                             )}
                         </span>
                         <span>Requests</span>
                     </div>
-
-                    {/* <div
-                    
-                        className={`navItem ${location.pathname === "/request" ? "navItemActive" : ""
-                            }`}
-                        onClick={() => navigate("/requests")}
-                    >
-                        <span>Requests</span>
-                    </div> */}
-
-                    <div
-                        className={`navItem navItemCart ${location.pathname === "/cart" ? "navItemActive" : ""
-                            }`}
-                        onClick={() => navigate("/cart")}
-                    >
-                        <span className="navCartIconWrapper">
-                            <FaShoppingCart />
-                            {cartCount > 0 && (
-                                <span className="navCartBadge">{cartCount}</span>
-                            )}
-                        </span>
-                        <span>Cart</span>
-                    </div>
-
-                    <div
-                        className={`navItem navItemCart ${location.pathname === "/profile" ? "navItemActive" : ""
-                            }`}
-                        onClick={() => navigate("/profile")}
-                    >
-                        <span className="navCartIconWrapper">
-                            <FaUser />
-                            {cartCount > 0 && (
-                                <span className="navCartBadge">{cartCount}</span>
-                            )}
-                        </span>
-                        <span>Profile</span>
-                    </div>
-
-                    {/* <div
-                    <
-                        className={`navItem ${["/profile", "/my-listing", "/create-request", "/my-sold-listing", "/sold-list-details", "/edit-listing", "/active-requests", "/active-requests-details", "/completed-requests", "/completed-request-details"].includes(location.pathname)
-                                ? "navItemActive"
-                                : ""
-                            }`}
-                        onClick={() => navigate("/profile")}
-                    >
-                        <span>Profile</span>
-                    </div> */}
                 </nav>
-
-                <div
-                    className="logout"
-                    onClick={() => navigate("/logout")}
-                >
-                    <FaSignOutAlt className="signouticon" />
-                    <span>Log out</span>
-                </div>
-            </aside>
+            </div>
         </div>
     );
 }

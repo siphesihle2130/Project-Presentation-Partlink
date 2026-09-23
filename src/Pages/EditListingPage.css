@@ -13,51 +13,19 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* --- Sidebar --- */
-.sidebar {
-  width: 240px;
-  background-color: #162b3a;
-  color: #a0b8c8;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0;
-  flex-shrink: 0;
-  min-height: 100vh;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-}
-
-.logo2 {
+/* .logo2 {
  margin-left: 20px;
   margin-top: 0px;
   width: 200px;
   height: 100px;
-  /* padding-bottom: 76px; */
+  padding-bottom: 76px;
   margin-bottom: 0px;
   object-fit: contain;
-}
+} */
 
 .navMenu {
   flex: 1;
   overflow-y: auto;
-}
-
-.navItem {
-  padding: 12px 25px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transition: 0.3s;
-}
-
-.navItem:hover, 
-.navItemActive {
-  background-color: #1e3647;
-  color: white;
-  border-right: 3px solid #e67e22;
 }
 
 .signouticon {
@@ -470,28 +438,6 @@
 
 /* --- Responsive --- */
 @media (max-width: 1024px) {
-  .sidebar {
-    width: 80px;
-    padding: 15px 0;
-  }
-  
-  .logo2 {
-    width: 50px;
-    height: 50px;
-    margin: 0 auto 20px auto;
-    padding: 0;
-  }
-  
-  .navItem span,
-  .logout span {
-    display: none;
-  }
-  
-  .navItem {
-    justify-content: center;
-    padding: 15px;
-    font-size: 1.5rem;
-  }
   
   .logout {
     justify-content: center;
@@ -509,26 +455,6 @@
     flex-direction: column;
   }
   
-  .sidebar {
-    width: 100%;
-    min-height: auto;
-    height: auto;
-    flex-direction: row;
-    padding: 10px 20px;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    flex-wrap: wrap;
-  }
-  
-  .logo2 {
-    width: 120px;
-    height: 40px;
-    margin: 0;
-    padding: 0;
-  }
-  
   .navMenu {
     display: flex;
     flex: 1;
@@ -538,21 +464,6 @@
     flex-wrap: wrap;
   }
   
-  .navItem {
-    padding: 8px 12px;
-    font-size: 1rem;
-    border-right: none;
-  }
-  
-  .navItem span {
-    display: inline;
-    font-size: 0.85rem;
-  }
-  
-  .navItemActive {
-    border-right: none;
-    border-bottom: 3px solid #e67e22;
-  }
   
   .logout {
     padding: 8px 12px;

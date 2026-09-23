@@ -19,7 +19,6 @@ function MyListingPage() {
   return (
     <div className="MyListingscontainer">
 
-      {/* Sidebar */}
       <NavigationBar />
 
       {/* Main Content */}

@@ -143,7 +143,7 @@ function CheckoutPage() {
 
   return (
     <div className="CheckoutContainer">
-      {/* Sidebar */}
+
       <NavigationBar />
 
       {/* Main Content */}

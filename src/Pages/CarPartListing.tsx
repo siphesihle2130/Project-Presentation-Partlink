@@ -68,7 +68,6 @@ function CarPartListing() {
   return (
     <div className="CarPartListingContainer">
 
-      {/* Sidebar */}
                 <NavigationBar />
 
       {/* Main Content */}

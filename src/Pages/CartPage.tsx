@@ -19,7 +19,7 @@ function CartPage() {
 
   return (
     <div className="CartContainer">
-      {/* Sidebar */}
+
       <NavigationBar />
 
       {/* Main Content */}
@@ -95,7 +95,6 @@ function CartPage() {
               ))}
             </div>
 
-            {/* Totals Sidebar */}
             <div className="CartSummarySidebar">
               <div className="CartCard">
                 <h2 className="CartSectionTitle">Order Total</h2>
