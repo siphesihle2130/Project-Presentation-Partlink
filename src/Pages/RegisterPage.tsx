@@ -11,10 +11,10 @@ function RegisterPage() {
         lastName: "",
         city: "", 
         province: "",
-        gender: "",
+        // gender: "",
         email: "",
         mobile: "",
-        username: "",
+        // username: "",
         password: "",
         confirmPassword: ""
     });
@@ -56,9 +56,9 @@ function RegisterPage() {
                         last_name: formData.lastName,
                         city: formData.city,
                         province: formData.province,
-                        gender: formData.gender,
+                        // gender: formData.gender,
                         mobile: formData.mobile,
-                        username: formData.username
+                        // username: formData.username
                     }
                 }
             });
@@ -156,7 +156,7 @@ function RegisterPage() {
 
                     {/* Row 3: Gender & Mobile */}
                     <div className="RegisterformRow">
-                        <div className="Registerform-group">
+                        {/* <div className="Registerform-group">
                             <label>Gender</label>
                             <select
                                 name="gender"
@@ -172,7 +172,7 @@ function RegisterPage() {
                                     Prefer not to say
                                 </option>
                             </select>
-                        </div>
+                        </div> */}
 
                         <div className="Registerform-group">
                             <label>Mobile Number</label>
@@ -184,27 +184,13 @@ function RegisterPage() {
                                 required
                             />
                         </div>
-                    </div>
 
-                    {/* Row 4: Email & Username */}
-                    <div className="RegisterformRow">
                         <div className="Registerform-group">
                             <label>Email</label>
                             <input
                                 type="email"
                                 name="email"
                                 value={formData.email}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-
-                        <div className="Registerform-group">
-                            <label>Username</label>
-                            <input
-                                type="text"
-                                name="username"
-                                value={formData.username}
                                 onChange={handleChange}
                                 required
                             />
@@ -221,7 +207,7 @@ function RegisterPage() {
                                 value={formData.password}
                                 onChange={handleChange}
                                 required
-                                minLength={6}
+                                minLength={6} 
                             /> 
                         </div>
 
