@@ -86,9 +86,9 @@ function HomePage() {
 
                 <div className="bestSellingConatainers">
                     <div className="bestSellingMini1">
-                        <h1 className="bestSellingMini1Title">Best Selling</h1>
+                        <h1 className="bestSellingMini1Title">Hot collection </h1>
                          <p>Selling fast — grab yours before they're gone.</p>
-                        <img src="/home1.png" alt="home picture" />
+                        {/* <img src="/home1.png" alt="home picture" /> */}
                             {/* <p>Engines</p> */}
                     </div>
 
@@ -115,6 +115,55 @@ function HomePage() {
                     {/* </div> */}
                 </div>
             </section>
+
+            <section className="homeCategorySection">
+                <div className="homeCategoryheader">
+                    <h2>Top Categories</h2>
+                    <button className="homeCategoryview-allButton">View all <FaAngleDoubleRight /></button>
+                </div>
+
+                <div className="homeCategoryCardsCollection">
+                    <div className="homeCategoryCardss">
+                        <img src="/engine.png" alt="Engines" className="homeCategoryImages" onClick={() => navigate("/shop/books")} />
+                        <h1 className="homeCategoryCardsText">Engines</h1>
+                    </div>
+                    <div className="homeCategoryCardss">
+                        <img src="/door.png" alt="Body" className="homeCategoryImages" onClick={() => navigate("/shop/clothes")} />
+                        <h1 className="homeCategoryCardsText">Body</h1>
+                    </div>
+                    <div className="homeCategoryCardss">
+                        <img src="/battery.png" alt="Electronics" className="homeCategoryImages" onClick={() => navigate("/shop/electronics")} />
+                        <h1 className="homeCategoryCardsText">Electronics</h1>
+                    </div>
+                    <div className="homeCategoryCardss">
+                        <img src="/interior.jpg" alt="Interior" className="homeCategoryImages" onClick={() => navigate("/shop/bedding")} />
+                        <h1 className="homeCategoryCardsText">Interior</h1>
+                    </div>
+                    <div className="homeCategoryCardss">
+                        <img src="/home6.jpg" alt="Exhausts" className="homeCategoryImages" onClick={() => navigate("/shop/kitchen")} />
+                        <h1 className="homeCategoryCardsText">Exhausts</h1>
+                    </div>
+                    <div className="homeCategoryCardss">
+                        <img src="/Transmission-Fluid.jpg" alt="Fluids" className="homeCategoryImages" onClick={() => navigate("/shop/games")} />
+                        <h1 className="homeCategoryCardsText">Fluids</h1>
+                    </div>
+                    <div className="homeCategoryCardss">
+                        <img src="/suspension.jpg" alt="Suspensions" className="homeCategoryImages" onClick={() => navigate("")} />
+                        <h1 className="homeCategoryCardsText">Suspensions</h1>
+                    </div>
+                </div>
+            </section>
+
+            <section className="homePromotion">
+                <div className="homePromocard1">
+
+                </div>
+
+                <div className="homePromocard2">
+                    
+                </div>
+            </section>
+ 
             <Footer />
         </div>
     );

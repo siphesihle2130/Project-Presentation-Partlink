@@ -99,6 +99,20 @@ function NavigationBar() {
                     </div>
 
                     <div
+                        className={`navItem navItemCart ${location.pathname === "/products" ? "navItemActive" : ""
+                            }`}
+                        onClick={() => navigate("/products")}
+                    >
+                        <span className="navCartIconWrapper">
+                            {/* <FaInfoCircle /> */}
+                            {cartCount > 0 && (
+                                <span className="navCartBadge">{cartCount}</span>
+                            )}
+                        </span>
+                        <span>Products</span>
+                    </div>
+
+                    <div
                         className={`navItem navItemCart ${location.pathname === "/categories" ? "navItemActive" : ""
                             }`}
                         onClick={() => navigate("/categories")}

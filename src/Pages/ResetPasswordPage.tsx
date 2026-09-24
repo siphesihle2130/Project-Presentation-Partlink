@@ -16,6 +16,7 @@ function ResetPasswordPage() {
         {/* <img src="/logo-name.png" alt="PartLink Logo" className="Loginlogo" /> */}
         <h1 className="Resetwelcome-text">Welcome Back</h1>
       </div>
+
       <div className="Reset-card">
         <h1>Reset Password</h1>
 
@@ -37,10 +38,10 @@ function ResetPasswordPage() {
 
           <div className="ResetButtons" onClick={() => navigate("/login")}>
             <button type="submit" className="ResetsubmitButton">
-                Submit
+              Submit
             </button>
             <button type="submit" className="ResetCancelButton" onClick={() => navigate("/home")}>
-                Cancel
+              Cancel
             </button>
           </div>
 
