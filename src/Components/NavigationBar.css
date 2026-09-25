@@ -13,17 +13,15 @@
 .sidebar {
   position: fixed;
   top: 0;
-  /* left: 100; */
   width: 100%;
   height: 10vh;
-  background-color: #00102d;
+  background-color: #1a2a3a;
   color: #a0b8c8;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
   z-index: 1000;
-
 }
 
 .secondNav {
@@ -64,7 +62,7 @@
 .navLocation {
   font-size: 30px;
   flex-shrink: 0;
-  color: #f3f4f6;
+  color: #e85d26;
 }
 
 .navLocationcontainer p {
@@ -73,7 +71,6 @@
   width: 130px;
   margin: 0;
   color: #ffffff;
-
 }
 
 .search-bar {
@@ -91,8 +88,8 @@
 }
 
 .search-bar:focus-within {
-  border-color: #9d7338;
-  box-shadow: 0 4px 20px rgba(157, 115, 56, 0.15);
+  border-color: #e85d26;
+  box-shadow: 0 4px 20px rgba(232, 93, 38, 0.15);
 }
 
 .search-bar input {
@@ -101,7 +98,7 @@
   outline: none;
   font-size: 15px;
   background: transparent;
-  color: #1a1a2e;
+  color: #1a2a3a;
   padding: 10px 0;
   font-family: inherit;
 }
@@ -111,7 +108,7 @@
 }
 
 .search-bar button {
-  background: #00102d;
+  background: #e85d26;
   color: #ffffff;
   border: none;
   padding: 5px 20px;
@@ -125,7 +122,7 @@
 }
 
 .search-bar button:hover {
-  background: #2a2a4e;
+  background: #d24f1a;
 }
 
 .search-bar button:active {
@@ -135,13 +132,10 @@
 .navTopHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  /* border-bottom: 1px solid #162b3a91; */
-  margin-bottom: 25px;
-  flex-wrap: wrap;
   align-items: flex-start;
   padding-bottom: 10px;
   margin-bottom: 50px;
+  flex-wrap: wrap;
 }
 
 .navHeaderActions {
@@ -163,12 +157,34 @@
   font-size: 20px;
 }
 
+.navCart,
+.navSettings {
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.navCart:hover,
+.navSettings:hover {
+  color: #e85d26;
+}
+
+.profileProfilePic {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #fff;
+  flex-shrink: 0;
+}
+
 .navMenu {
   flex: 1;
   display: flex;
   font-size: 15px;
   justify-content: center;
-  color: #00102d;
+  color: #1a2a3a;
 }
 
 .navItem {
@@ -182,40 +198,15 @@
 
 .navItem:hover {
   color: black;
-  border-bottom: 2px solid #1e3647;
+  border-bottom: 2px solid #1a2a3a;
 }
 
 .navItemActive {
-  /* background-color: #1e3647; */
-  color: #e67e22;
+  color: #e85d26;
   font-weight: bold;
-  border-bottom: 2px solid #e67e22;
+  border-bottom: 2px solid #e85d26;
   transition: 0.3s;
 }
-
-/* .signouticon {
-  margin-left: 20px;
-  font-size: 2.2rem;
-  color: #1e3647;
-  cursor: pointer;
-} */
-
-/* .logout {
-  padding: 20px 25px;
-  border-top: 1px solid #00102d;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #e67e22;
-  margin-top: auto;
-  font-size: 1rem;
-  font-weight: bold;
-} */
-
-/* .logout:hover {
-  background-color: #00102d;
-} */
 
 /* --- Cart badge --- */
 .navCartIconWrapper {
@@ -230,7 +221,7 @@
   position: absolute;
   top: -8px;
   right: -10px;
-  background-color: #e67e22;
+  background-color: #e85d26;
   color: white;
   font-size: 0.65rem;
   font-weight: 700;
@@ -249,10 +240,9 @@
   .sidebar {
     position: fixed;
     top: 0;
-    /* left: 100; */
     width: 240px;
     height: 100vh;
-    background-color: #162b3a;
+    background-color: #1a2a3a;
     color: #a0b8c8;
     display: flex;
     flex-direction: column;
