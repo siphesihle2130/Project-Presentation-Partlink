@@ -155,12 +155,15 @@ function HomePage() {
             </section>
 
             <section className="homePromotion">
-                <div className="homePromocard1">
+                <h2>Big Deals</h2>
+                <div className="homePromotionCardsContainer">
+                    <div className="homePromocard1">
 
-                </div>
+                    </div>
 
-                <div className="homePromocard2">
-                    
+                    <div className="homePromocard2">
+                        
+                    </div>
                 </div>
             </section>
  
