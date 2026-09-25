@@ -35,7 +35,7 @@ function HomePage() {
                     <div className="homeSectionMiniContainer">
                         <div className="homeMini2">
                             <div className="homeMini2TextContainer">
-                                <h2>Categories</h2>
+                                <h2>Categoriess</h2>
                                 <p>View popular categories</p>
                             </div>
                             <img src="/home3.png" alt="home picture" />
