@@ -1,4 +1,5 @@
 import "./NavigationBar.css";
+import { useAuth } from "../Context/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
     FaShoppingCart,
