@@ -23,6 +23,7 @@ import AboutUsPage from "./Pages/AboutUsPage"
 import HelpSupportPage from "./Pages/HelpSupportPage"
 import SavedItemsDetailsPage from "./Pages/SavedItemsDetailsPage"
 import RequestsPage from "./Pages/RequestsPage"
+import WishlistPage from "./Pages/WishlistPage"
 import MyPurchasesPage from "./Pages/MyPurchasesPage"
 import CategoriesPage from "./Pages/CategoriesPage"
 import HomePage from "./Pages/HomePage"
@@ -56,6 +57,7 @@ function App(){
          <Route path="/help-support" element={<HelpSupportPage />} /> 
         <Route path="/saved-items-details" element={<SavedItemsDetailsPage />} />
         <Route path="/requests" element={<RequestsPage />} />
+        <Route path="/saved" element={<WishlistPage />} />
         <Route path="/my-purchases" element={<MyPurchasesPage />} />
       </Routes> 
     </BrowserRouter> 
