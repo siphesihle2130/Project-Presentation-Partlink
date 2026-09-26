@@ -22,6 +22,7 @@ import ContactUsPage from "./Pages/ContactUsPage"
 import AboutUsPage from "./Pages/AboutUsPage"
 import HelpSupportPage from "./Pages/HelpSupportPage"
 import SavedItemsDetailsPage from "./Pages/SavedItemsDetailsPage"
+import SettingsPage from "./Pages/SettingsPage"
 import RequestsPage from "./Pages/RequestsPage"
 import MyPurchasesPage from "./Pages/MyPurchasesPage"
 import CategoriesPage from "./Pages/CategoriesPage"
@@ -55,6 +56,7 @@ function App(){
         <Route path="/about-us" element={<AboutUsPage />} /> 
          <Route path="/help-support" element={<HelpSupportPage />} /> 
         <Route path="/saved-items-details" element={<SavedItemsDetailsPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
         <Route path="/requests" element={<RequestsPage />} />
         <Route path="/my-purchases" element={<MyPurchasesPage />} />
       </Routes> 
