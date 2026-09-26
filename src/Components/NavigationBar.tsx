@@ -4,7 +4,8 @@ import {
     FaShoppingCart,
     FaSearch,
     FaCog,
-    FaHeart
+    FaHeart,
+    FaBell
 
 } from "react-icons/fa";
 import { useCart } from "../Context/CartContext";
@@ -91,6 +92,8 @@ function NavigationBar() {
                         <button type="submit">Search</button>
                     </form>
 
+                    <button className="navContactButton">Contact</button>
+
                 </div>
 
                 <div>
@@ -99,6 +102,7 @@ function NavigationBar() {
                         <div className="navIcons">
                             <FaShoppingCart className="navCart" onClick={() => navigate("/cart")} />
                             <FaHeart className="navCart" onClick={() => navigate("/saved")} />
+                            <FaBell className="navSettings" onClick={() => navigate("/settings")} />
                             <FaCog className="navSettings" onClick={() => navigate("/settings")} />
                         </div>
 
