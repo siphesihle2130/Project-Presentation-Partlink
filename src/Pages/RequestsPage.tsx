@@ -339,7 +339,7 @@ function RequestsPage() {
               <div className="requestsCardBottom">
 
                 <span className="requestsCardDate">
-                  Posted: 8 Aug 2026
+                  Posted: 9 Aug 2026
                 </span>
 
                 <button
