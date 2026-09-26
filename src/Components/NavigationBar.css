@@ -15,7 +15,7 @@
   top: 0;
   width: 100%;
   height: 10vh;
-  background-color: #1a2a3a;
+  background-color: #00102d;
   color: #a0b8c8;
   display: flex;
   flex-direction: row;
@@ -41,7 +41,7 @@
 .navImageContainer {
   display: flex;
   flex-direction: row;
-  gap: 100px;
+  gap: 80px;
 }
 
 .logo2 {
@@ -62,7 +62,7 @@
 .navLocation {
   font-size: 30px;
   flex-shrink: 0;
-  color: #e85d26;
+  color: #ffffff;
 }
 
 .navLocationcontainer p {
@@ -87,10 +87,10 @@
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.search-bar:focus-within {
+/* .search-bar:focus-within {
   border-color: #e85d26;
   box-shadow: 0 4px 20px rgba(232, 93, 38, 0.15);
-}
+} */
 
 .search-bar input {
   flex: 1;
@@ -99,16 +99,17 @@
   font-size: 15px;
   background: transparent;
   color: #1a2a3a;
-  padding: 10px 0;
+  padding: 10px 15px;
   font-family: inherit;
 }
 
 .search-bar input::placeholder {
   color: #aaa;
+  margin-left: 10px;
 }
 
 .search-bar button {
-  background: #e85d26;
+  background: #00102d;
   color: #ffffff;
   border: none;
   padding: 5px 20px;
@@ -128,6 +129,22 @@
 .search-bar button:active {
   transform: scale(0.97);
 }
+
+.navContactButton{
+  background-color: #d24f1a;
+  border: none;
+  height: 6vh;
+  min-width: 15vh;
+  padding: 5px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.navContactButton:hover{
+  background-color: #e67e22;
+}
+
+/* =============================================================== */
 
 .navTopHeader {
   display: flex;
