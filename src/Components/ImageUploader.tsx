@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import "./ImageUploader.css";
 
 type UploadedImage = {
@@ -7,88 +7,62 @@ type UploadedImage = {
   preview: string;
 };
 
-function ImageUploader() {
+type ImageUploaderProps = {
+  /** Called with the currently-selected main image File (or null) */
+  onUpload?: (file: File | null) => void;
+};
+
+function ImageUploader({ onUpload }: ImageUploaderProps) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [images, setImages] = useState<UploadedImage[]>([]);
-  const [mainImage, setMainImage] = useState<string       | null>(null);
+  const [mainImageId, setMainImageId] = useState<string | null>(null);
 
-  // Open the device's file picker
-  const handleAddPhotos = () => {
-    fileInputRef.current?.click();
-  };
+  const mainImage = images.find((img) => img.id === mainImageId) || null;
 
-  // Handle selected images
+  // Notify parent with the actual File object whenever main image changes
+  useEffect(() => {
+    if (onUpload) {
+      onUpload(mainImage ? mainImage.file : null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mainImageId, images.length]);
+
+  const handleAddPhotos = () => fileInputRef.current?.click();
+
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = event.target.files;
-
-    if (!selectedFiles) {
-      return;
-    }
+    if (!selectedFiles) return;
 
     const files = Array.from(selectedFiles);
-
     const newImages = files.map((file) => ({
       id: crypto.randomUUID(),
-      file: file,
+      file,
       preview: URL.createObjectURL(file),
     }));
 
-    setImages((previousImages) => {
-      const updatedImages = [...previousImages, ...newImages];
-
-      // Make the first image the main image
-      if (previousImages.length === 0 && newImages.length > 0) {
-        setMainImage(newImages[0].id);
-      }
-
-      return updatedImages;
-    });
-
-    // Allows the user to select the same file again later
+    setImages((prev) => [...prev, ...newImages]);
+    if (!mainImageId && newImages.length > 0) setMainImageId(newImages[0].id);
     event.target.value = "";
   };
 
-  // Delete an image
   const handleDelete = (id: string) => {
-    const imageToDelete = images.find((image) => image.id === id);
+    const img = images.find((i) => i.id === id);
+    if (img) URL.revokeObjectURL(img.preview);
 
-    if (imageToDelete) {
-      URL.revokeObjectURL(imageToDelete.preview);
-    }
-
-    const updatedImages = images.filter((image) => image.id !== id);
-
-    setImages(updatedImages);
-
-    // If the deleted image was the main image
-    if (mainImage === id) {
-      if (updatedImages.length > 0) {
-        setMainImage(updatedImages[0].id);
-      } else {
-        setMainImage(null);
-      }
+    const updated = images.filter((i) => i.id !== id);
+    setImages(updated);
+    if (mainImageId === id) {
+      setMainImageId(updated.length > 0 ? updated[0].id : null);
     }
   };
 
-  // Set an image as the main image
-  const handleSetMain = (id: string) => {
-    setMainImage(id);
-  };
+  const handleSetMain = (id: string) => setMainImageId(id);
 
   return (
-    <div className="image-uploader">
+    <div className="image-uploader-dark">
+      <h2 className="upload-title">Upload Images</h2>
 
-      <div className="upload-header">
-        <div>
-          {/* <h2 className="imagesTopic">Upload Images</h2> */}
-          {/* <p>Add photos of the item you're selling</p> */}
-        </div>
-
-        <span>{images.length}/4</span>
-      </div>
-
-      {/* Hidden file input */}
       <input
         ref={fileInputRef}
         type="file"
@@ -98,73 +72,49 @@ function ImageUploader() {
         style={{ display: "none" }}
       />
 
-      {/* Image previews */}
-      {images.length > 0 && (
-        <div className="image-grid">
+      <div className="main-preview">
+        {mainImage ? (
+          <img src={mainImage.preview} alt="Main preview" />
+        ) : (
+          <div className="empty-main-preview">No image selected</div>
+        )}
+      </div>
 
-          {images.map((image) => (
-            <div
-              className={`image-card ${
-                mainImage === image.id ? "main-image" : ""
-              }`}
-              key={image.id}
+      <div className="thumbnail-row">
+        {images.map((image) => (
+          <div
+            className={`thumbnail-card ${
+              mainImageId === image.id ? "active-thumbnail" : ""
+            }`}
+            key={image.id}
+            onClick={() => handleSetMain(image.id)}
+          >
+            <img src={image.preview} alt="Product preview" />
+            <button
+              type="button"
+              className="delete-badge"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDelete(image.id);
+              }}
+              aria-label="Delete image"
             >
+              ×
+            </button>
+          </div>
+        ))}
 
-              {/* Image */}
-              <img
-                src={image.preview}
-                alt="Product preview"
-              />
+        <button
+          type="button"
+          className="add-image-button"
+          onClick={handleAddPhotos}
+          disabled={images.length >= 4}
+        >
+          +
+        </button>
+      </div>
 
-              {/* Main image badge */}
-              {mainImage === image.id && (
-                <span className="main-badge">
-                  Main Image
-                </span>
-              )}
-
-              {/* Delete button */}
-              <button
-                type="button"
-                className="delete-button"
-                onClick={() => handleDelete(image.id)}
-                aria-label="Delete image"
-              >
-                ×
-              </button>
-
-              {/* Set as main button */}
-              {mainImage !== image.id && (
-                <button
-                  type="button"
-                  className="set-main-button"
-                  onClick={() => handleSetMain(image.id)}
-                >
-                  Set as Main
-                </button>
-              )}
-
-            </div>
-          ))}
-
-        </div>
-      )}
-      {/* ============================================== */}
-      {/* Add photos button */}
-      <button
-        type="button"
-        className="add-photos-button"
-        onClick={handleAddPhotos}
-        disabled={images.length >= 4}
-      >
-        Add Images
-      </button>
-
-      {/* Instructions */}
-      <p className="upload-info">
-        You can upload up to 4 photos.
-      </p>
-
+      <p className="upload-limit-info">You can upload up to 4 photos.</p>
     </div>
   );
 }
