@@ -6,7 +6,6 @@ import Footer from "../Components/Footer";
 import {
     FaBell,
     FaMoon,
-    FaTrash,
     FaCheckCircle,
     FaExclamationTriangle
 } from "react-icons/fa";
