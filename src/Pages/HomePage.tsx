@@ -60,7 +60,7 @@ function HomePage() {
                     <div className="homeSectionMiniContainer">
                         <div className="homeMini2" onClick={() => goToSection("CategorySection")}>
                             <div className="homeMini2TextContainer">
-                                <h2>Categoriess</h2>
+                                <h2>Categories</h2>
                                 <p>View popular categories</p>
                             </div>
                             <img src="/home3.png" alt="home picture" />
