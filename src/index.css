@@ -92,6 +92,22 @@
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 }
 
+/* Text-size preference — overrides the base root font-size.
+   Only affects text that doesn't set its own explicit font-size
+   (most component/page CSS in this project hardcodes px sizes,
+   so this scales inherited/default text, not everything). */
+html.text-small {
+  font-size: 15px;
+}
+
+html.text-default {
+  font-size: 18px;
+}
+
+html.text-large {
+  font-size: 21px;
+}
+
 /* #root {
   width: 1126px;
   max-width: 100%;

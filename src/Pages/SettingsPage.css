@@ -20,7 +20,7 @@
 }
 
 .settingsPageHeader h1 {
-  font-size: 32px;
+  font-size: 1.778rem;
   font-weight: 700;
   color: var(--text-h);
   opacity: 1;
@@ -31,7 +31,7 @@
 }
 
 .settingsPageHeader p {
-  font-size: 14px;
+  font-size: 0.778rem;
   color: var(--text);
   margin: 0;
   text-align: center;
@@ -61,7 +61,7 @@
 }
 
 .settingsSidebarHeader h1 {
-  font-size: 22px;
+  font-size: 1.222rem;
   font-weight: 700;
   letter-spacing: normal;
   color: var(--text-h);
@@ -70,7 +70,7 @@
 }
 
 .settingsSidebarHeader p {
-  font-size: 13px;
+  font-size: 0.722rem;
   color: var(--text);
   margin: 0 0 20px 0;
   text-align: left;
@@ -91,7 +91,7 @@
   text-align: left;
   padding: 10px 12px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 0.778rem;
   font-weight: 600;
   color: var(--text);
   cursor: pointer;
@@ -151,7 +151,7 @@
 }
 
 .settingsCardHeader h2 {
-  font-size: 17px;
+  font-size: 0.944rem;
   font-weight: 700;
   letter-spacing: normal;
   color: var(--text-h);
@@ -160,7 +160,7 @@
 }
 
 .settingsCardHeader p {
-  font-size: 13px;
+  font-size: 0.722rem;
   color: var(--text);
   margin: 0;
   text-align: left;
@@ -176,7 +176,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 17px;
+  font-size: 0.944rem;
 }
 
 .settingsIconBadgeDanger {
@@ -212,13 +212,13 @@
 
 .settingsToggleText strong {
   color: var(--text-h);
-  font-size: 14px;
+  font-size: 0.778rem;
   text-align: left;
 }
 
 .settingsToggleText p {
   color: var(--text);
-  font-size: 12.5px;
+  font-size: 0.694rem;
   margin: 3px 0 0 0;
   text-align: left;
 }
@@ -229,7 +229,7 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0 12px;
-  font-size: 13px;
+  font-size: 0.722rem;
   color: var(--text-h);
   background: var(--bg-input);
   cursor: pointer;
@@ -295,7 +295,7 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 0.722rem;
   white-space: nowrap;
 }
 
@@ -320,7 +320,7 @@
 
 .settingsDangerExplainer > p {
   color: #6B2A0F;
-  font-size: 14px;
+  font-size: 0.778rem;
   margin: 0 0 14px 0;
   text-align: left;
 }
@@ -336,7 +336,7 @@
 
 .settingsDangerExplainer li {
   color: #6B2A0F;
-  font-size: 13.5px;
+  font-size: 0.75rem;
   line-height: 1.5;
   text-align: left;
 }
@@ -349,7 +349,7 @@
   background: var(--bg-card);
   border-radius: 8px;
   padding: 12px 14px;
-  font-size: 13px;
+  font-size: 0.722rem;
   color: var(--text) !important;
   margin: 0 !important;
   text-align: left;
@@ -376,7 +376,7 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 0.722rem;
 }
 
 .settingsDeleteButton:hover {
@@ -403,7 +403,7 @@
 
 .settingsDeleteConfirmInline p {
   color: #a13407;
-  font-size: 14px;
+  font-size: 0.778rem;
   margin: 0 0 12px 0;
   text-align: left;
 }
@@ -415,7 +415,7 @@
   border-radius: 10px;
   background: var(--bg-input);
   padding: 0 14px;
-  font-size: 14px;
+  font-size: 0.778rem;
   outline: none;
   box-sizing: border-box;
   transition: 0.2s;
@@ -477,19 +477,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 1.222rem;
   margin: 0 auto 18px;
 }
 
 .settingsModal h3 {
   color: var(--text-h);
-  font-size: 19px;
+  font-size: 1.056rem;
   margin: 0 0 10px 0;
 }
 
 .settingsModal p {
   color: var(--text);
-  font-size: 14px;
+  font-size: 0.778rem;
   line-height: 1.5;
   margin: 0 0 24px 0;
 }
@@ -541,7 +541,7 @@
   border-radius: 20px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 0.722rem;
 }
 
 .settingsDiscardButton:hover {
@@ -556,7 +556,7 @@
   border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 0.722rem;
   transition: 0.2s;
 }
 
@@ -569,7 +569,7 @@
   align-items: center;
   gap: 8px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.778rem;
 }
 
 /* ---------- Responsive ---------- */

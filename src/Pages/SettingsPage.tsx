@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import NavigationBar from "../Components/NavigationBar";
 import Footer from "../Components/Footer";
 import { useTheme } from "../Context/ThemeContext";
+import { useLanguage, type Language } from "../Context/LanguageContext";
+import { useTextSize, type TextSize } from "../Context/TextSizeContext";
+import { useCompactLayout } from "../Context/CompactLayoutContext";
 import {
     FaBell,
     FaMoon,
@@ -19,7 +22,16 @@ function SettingsPage() {
     const [promoNotifs, setPromoNotifs] = useState(true);
 
     const { darkMode, setDarkMode } = useTheme();
-    const [compactLayout, setCompactLayout] = useState(false);
+
+    // Language, text size and compact layout are "staged": the page keeps its own
+    // draft copy, and only pushes it into the real app-wide setting on Save.
+    const { language: savedLanguage, setLanguage, t } = useLanguage();
+    const { textSize: savedTextSize, setTextSize } = useTextSize();
+    const { compactLayout: savedCompactLayout, setCompactLayout } = useCompactLayout();
+
+    const [draftLanguage, setDraftLanguage] = useState<Language>(savedLanguage);
+    const [draftTextSize, setDraftTextSize] = useState<TextSize>(savedTextSize);
+    const [draftCompactLayout, setDraftCompactLayout] = useState<boolean>(savedCompactLayout);
 
     const [dirty, setDirty] = useState(false);
     const [saved, setSaved] = useState(false);
@@ -35,12 +47,21 @@ function SettingsPage() {
     };
 
     const handleSave = () => {
+        // Only now do the staged changes actually take effect app-wide.
+        setLanguage(draftLanguage);
+        setTextSize(draftTextSize);
+        setCompactLayout(draftCompactLayout);
+
         setDirty(false);
         setSaved(true);
         setTimeout(() => setSaved(false), 3000);
     };
 
     const handleDiscard = () => {
+        // Throw away the drafts and fall back to whatever was last actually saved.
+        setDraftLanguage(savedLanguage);
+        setDraftTextSize(savedTextSize);
+        setDraftCompactLayout(savedCompactLayout);
         setDirty(false);
     };
 
@@ -57,8 +78,8 @@ function SettingsPage() {
             <NavigationBar />
 
             <div className="settingsPageHeader">
-    <h1>Settings</h1>
-    <p>Manage your profile and preferences</p>
+    <h1>{t("settingsTitle")}</h1>
+    <p>{t("settingsSubtitle")}</p>
 </div>
 
 <div className="settingsLayout">
@@ -69,8 +90,8 @@ function SettingsPage() {
                         <div className="settingsCardHeader">
                             <span className="settingsIconBadge"><FaBell /></span>
                             <div>
-                                <h2>Notifications</h2>
-                                <p>Choose how we contact you</p>
+                                <h2>{t("notifications")}</h2>
+                                <p>{t("notificationsSub")}</p>
                             </div>
                         </div>
 
@@ -125,21 +146,21 @@ function SettingsPage() {
                         <div className="settingsCardHeader">
                             <span className="settingsIconBadge"><FaMoon /></span>
                             <div>
-                                <h2>Appearance</h2>
-                                <p>Customize how Partlink looks for you</p>
+                                <h2>{t("appearance")}</h2>
+                                <p>{t("appearanceSub")}</p>
                             </div>
                         </div>
 
                         <div className="settingsToggleRow">
                             <div className="settingsToggleText">
-                                <strong>Dark mode</strong>
-                                <p>Easier on the eyes at night</p>
+                                <strong>{t("darkMode")}</strong>
+                                <p>{t("darkModeSub")}</p>
                             </div>
                             <label className="settingsSwitch">
                                 <input
                                     type="checkbox"
                                     checked={darkMode}
-                                    onChange={() => markDirty(setDarkMode)(!darkMode)}
+                                    onChange={() => setDarkMode(!darkMode)}
                                 />
                                 <span className="settingsSlider"></span>
                             </label>
@@ -147,38 +168,45 @@ function SettingsPage() {
 
                         <div className="settingsRowBetween">
                             <div className="settingsToggleText">
-                                <strong>Language</strong>
-                                <p>Choose your preferred language</p>
+                                <strong>{t("language")}</strong>
+                                <p>{t("languageSub")}</p>
                             </div>
-                            <select className="settingsSelect" defaultValue="English">
-                                <option>English</option>
-                                <option>Afrikaans</option>
-                                <option>isiXhosa</option>
+                            <select
+                                className="settingsSelect"
+                                value={draftLanguage}
+                                onChange={(e) => markDirty(setDraftLanguage)(e.target.value as Language)}
+                            >
+                                <option value="English">English</option>
+                                <option value="Afrikaans">Afrikaans</option>
                             </select>
                         </div>
 
                         <div className="settingsRowBetween">
                             <div className="settingsToggleText">
-                                <strong>Text size</strong>
-                                <p>Adjust text size across the app</p>
+                                <strong>{t("textSize")}</strong>
+                                <p>{t("textSizeSub")}</p>
                             </div>
-                            <select className="settingsSelect" defaultValue="Default">
-                                <option>Small</option>
-                                <option>Default</option>
-                                <option>Large</option>
+                            <select
+                                className="settingsSelect"
+                                value={draftTextSize}
+                                onChange={(e) => markDirty(setDraftTextSize)(e.target.value as TextSize)}
+                            >
+                                <option value="Small">Small</option>
+                                <option value="Default">Default</option>
+                                <option value="Large">Large</option>
                             </select>
                         </div>
 
                         <div className="settingsToggleRow">
                             <div className="settingsToggleText">
-                                <strong>Compact layout</strong>
-                                <p>Show more listings per row on Products</p>
+                                <strong>{t("compactLayout")}</strong>
+                                <p>{t("compactLayoutSub")}</p>
                             </div>
                             <label className="settingsSwitch">
                                 <input
                                     type="checkbox"
-                                    checked={compactLayout}
-                                    onChange={() => markDirty(setCompactLayout)(!compactLayout)}
+                                    checked={draftCompactLayout}
+                                    onChange={() => markDirty(setDraftCompactLayout)(!draftCompactLayout)}
                                 />
                                 <span className="settingsSlider"></span>
                             </label>
@@ -305,16 +333,16 @@ function SettingsPage() {
             {(dirty || saved) && (
                 <div className={`settingsStickyBar ${saved ? "settingsStickyBarSaved" : ""}`}>
                     {saved ? (
-                        <span className="settingsSavedMsg"><FaCheckCircle /> Changes saved</span>
+                        <span className="settingsSavedMsg"><FaCheckCircle /> {t("changesSaved")}</span>
                     ) : (
                         <>
-                            <span>You have unsaved changes</span>
+                            <span>{t("unsavedChanges")}</span>
                             <div className="settingsStickyBarActions">
                                 <button type="button" className="settingsDiscardButton" onClick={handleDiscard}>
-                                    Discard
+                                    {t("discard")}
                                 </button>
                                 <button type="button" className="settingsSaveButton" onClick={handleSave}>
-                                    Save changes
+                                    {t("saveChanges")}
                                 </button>
                             </div>
                         </>

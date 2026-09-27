@@ -9,6 +9,7 @@ import {
 
 } from "react-icons/fa";
 import { useCart } from "../Context/CartContext";
+import { useLanguage } from "../Context/LanguageContext";
 import { useState, useEffect } from "react";
 import { MdLocationPin } from 'react-icons/md';
 
@@ -16,6 +17,7 @@ function NavigationBar() {
     const navigate = useNavigate();
     const location = useLocation();
     const { cartCount } = useCart();
+    const { t } = useLanguage();
 
     const [query, setQuery] = useState("");
 
@@ -96,15 +98,15 @@ function NavigationBar() {
                         <FaSearch className="search-icon" />
                         <input
                             type="text"
-                            placeholder="Search for car parts..."
+                            placeholder={t("navSearchPlaceholder")}
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                         />
-                        <button type="submit">Search</button>
+                        <button type="submit">{t("navSearch")}</button>
                     </form>
 
                     <button className="navContactButton" onClick={handleContactClick}>
-                        Contact
+                        {t("navContact")}
                     </button>
 
                 </div>
@@ -145,7 +147,7 @@ function NavigationBar() {
                                 <span className="navCartBadge">{cartCount}</span>
                             )}
                         </span>
-                        <span>Home</span>
+                        <span>{t("navHome")}</span>
                     </div>
 
                     <div
@@ -158,7 +160,7 @@ function NavigationBar() {
                                 <span className="navCartBadge">{cartCount}</span>
                             )}
                         </span>
-                        <span>About Us</span>
+                        <span>{t("navAboutUs")}</span>
                     </div>
 
                     <div
@@ -171,7 +173,7 @@ function NavigationBar() {
                                 <span className="navCartBadge">{cartCount}</span>
                             )}
                         </span>
-                        <span>Products</span>
+                        <span>{t("navProducts")}</span>
                     </div>
 
                     <div
@@ -184,7 +186,7 @@ function NavigationBar() {
                                 <span className="navCartBadge">{cartCount}</span>
                             )}
                         </span>
-                        <span>Categories</span>
+                        <span>{t("navCategories")}</span>
                     </div>
 
                     <div
@@ -197,7 +199,7 @@ function NavigationBar() {
                                 <span className="navCartBadge">{cartCount}</span>
                             )}
                         </span>
-                        <span>Sell</span>
+                        <span>{t("navSell")}</span>
                     </div>
 
                     <div
@@ -210,7 +212,7 @@ function NavigationBar() {
                                 <span className="navCartBadge">{cartCount}</span>
                             )}
                         </span>
-                        <span>Requests</span>
+                        <span>{t("navRequests")}</span>
                     </div>
                 </nav>
             </div>
