@@ -2,6 +2,7 @@ import "./RegisterPage.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
+import { addNotification } from "../utils/notifications";
 
 function RegisterPage() {
     const navigate = useNavigate();
@@ -72,6 +73,13 @@ if (data.user) {
     const fullLocation = `${formData.city}, ${formData.province}`;
     window.localStorage.setItem("partlink_location", fullLocation);
     window.dispatchEvent(new Event("partlink-location-updated"));
+
+    // First notification a new user ever receives
+    addNotification({
+        type: "system",
+        title: "Welcome to Partlink!",
+        description: `Hi ${formData.firstName}, your account has been created. Start browsing parts or list your first item.`,
+    });
 
     alert(
         "Account created successfully! Please check your email if email confirmation is required."

@@ -115,7 +115,7 @@ function NavigationBar() {
                         <div className="navIcons">
                             <FaShoppingCart className="navCart" onClick={() => navigate("/cart")} />
                             <FaHeart className="navCart" onClick={() => navigate("/saved")} />
-                            <FaBell className="navSettings" onClick={() => navigate("/settings")} />
+                           <FaBell className="navSettings" onClick={() => navigate("/notifications")} />
                             <FaCog className="navSettings" onClick={() => navigate("/settings")} />
                         </div>
 

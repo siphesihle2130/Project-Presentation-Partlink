@@ -27,6 +27,7 @@ import RequestsPage from "./Pages/RequestsPage"
 import MyPurchasesPage from "./Pages/MyPurchasesPage"
 import CategoriesPage from "./Pages/CategoriesPage"
 import HomePage from "./Pages/HomePage"
+import NotificationsPage from "./Pages/NotificationsPage"
  
 function App(){ 
     return ( 
@@ -59,6 +60,7 @@ function App(){
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/requests" element={<RequestsPage />} />
         <Route path="/my-purchases" element={<MyPurchasesPage />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
       </Routes> 
     </BrowserRouter> 
     </CartProvider> 
