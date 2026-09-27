@@ -69,6 +69,17 @@ function NavigationBar() {
         // navigate(`/shop?q=${encodeURIComponent(query)}`);
     };
 
+    const handleContactClick = () => {
+        if (location.pathname !== "/home") {
+            navigate("/home", { state: { scrollTo: "contactSection" } });
+        } else {
+            document.getElementById("contactSection")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    };
+
     return (
         <div className="navContainer">
             <aside className="sidebar">
@@ -92,7 +103,9 @@ function NavigationBar() {
                         <button type="submit">Search</button>
                     </form>
 
-                    <button className="navContactButton">Contact</button>
+                    <button className="navContactButton" onClick={handleContactClick}>
+                        Contact
+                    </button>
 
                 </div>
 
