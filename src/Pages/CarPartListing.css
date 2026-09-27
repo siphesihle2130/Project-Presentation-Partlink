@@ -1,424 +1,617 @@
-/* EditListingPage.css */
-
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-.CarPartListingContainer {
-  display: flex;
+.CarPartListingContainer{
+ display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  background-color: #f4f6f9;
+  background-color: #c5ced4;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-.CarPartListingMainContent {
-  margin-left: 0px;
-  width: calc(100% - 240px);
+.listing-main-content {
+   margin-top: 100px;
   min-height: 100vh;
-  padding: 20px 40px;
-  box-sizing: border-box;
-}
-
-.CarPartListingTopHeader {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  flex-wrap: wrap;
-  gap: 15px;
+  /* width: calc(100% - 240px); */
+  padding: 20px;
 }
 
-.CarPartListingPageTitle {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.CarPartListingBackBtn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  /* padding: 8px 16px; */
-  /* background: transparent; */
-  /* border: 1px solid #ddd; */
-  border-radius: 6px;
-  color: #0a0a0a;
+.listing-icon-btn {
   cursor: pointer;
-  transition: 0.3s;
-  font-size: 38px;
-  margin-top: 4px;
 }
 
-.CarPartListingBackBtn:hover {
-  background: #f0f0f0;
-  border-color: #bbb;
-}
+/* .listing-notification{
+  width: 18px;
+  height: 18px;
+  color: #1a2639;
+  cursor: pointer;
+} */
 
-.CarPartListingPageTitle h1 {
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: #222;
-}
+/* .listing-settings{
+  width: 24x;
+  height: 24px;
+  color: #1a2639;
+  cursor: pointer;
+} */
 
-.CarPartListingHeaderActions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.CarPartListingProfilePic {
-  width: 35px;
-  height: 35px;
+/* .listing-profile {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
-  border: 2px solid #ddd;
-}
-
-
-.CarPartListingEditForm {
-  width: 100%;
-  background: white;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  box-sizing: border-box;
-}
-
-/* --- Edit Form2 --- */
-.CarPartListingEditForm2 {
-  background: white;
-  border-radius: 12px;
-  margin-top: 20px;
-  padding: 30px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  flex: 1;
-}
-
-.CarPartListingEditForm3 {
-  width: 100%;
-  background: white;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  padding: 30px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  box-sizing: border-box;
-}
-
-.CarPartListingGeneral-information {
-  font-size: 25px;
-  font-weight: 600;
-  text-align: left;
-  color: #143b67;
-  /* background-color: #143b67; */
-  border-radius: 30px;
-  width: fit-content;
-  /* padding: 12px 30px; */
-  margin-bottom: 20px;
-  margin-bottom: 40px;
-}
-
-.CarPartListingFormFields {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.CarPartListingFormRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.CarPartListingFormGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.CarPartListingFormGroup.fullWidth {
-  grid-column: 1 / -1;
-}
-
-.CarPartListingFormGroup label {
-  text-align: left;
-  font-size: 14px;
-  font-weight: 600;
-  color: #444;
-}
-
-.CarPartListingFormGroup input,
-.CarPartListingFormGroup select,
-.CarPartListingFormGroup textarea {
-  padding: 10px 14px;
-  border: 1px solid #d1d9e6;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #333;
-  transition: 0.3s;
-  background: #f8fafc;
-  font-family: inherit;
-}
-
-.CarPartListingFormGroup input:focus,
-.CarPartListingFormGroup select:focus,
-.CarPartListingFormGroup textarea:focus {
-  outline: none;
-  border-color: #2e52f2;
-  background: white;
-  box-shadow: 0 0 0 3px rgba(46, 82, 242, 0.1);
-}
-
-.CarPartListingFormGroup input:hover,
-.CarPartListingFormGroup select:hover,
-.CarPartListingFormGroup textarea:hover {
-  border-color: #999;
-}
-
-.CarPartListingFormGroup textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-/* --- Action Buttons --- */
-.CarPartListingActionButtons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  /* margin-top: 30px; */
-  /* padding-top: 20px; */
-  /* border-top: 1px solid #eee; */
-  flex-wrap: wrap;
-  gap: 15px;
-
-}
-
-.CarPartListingPrice-stock{
-  font-size: 25px;
-  font-weight: 600;
-  text-align: left;
-  color: #143b67;
-  /* background-color: #143b67; */
-  border-radius: 30px;
-  width: fit-content;
-  /* padding: 12px 30px; */
-  margin-bottom: 20px;
-  margin-bottom: 40px;
-}
-
-.CarPartListingLeftActions {
-  display: flex;
-  gap: 10px;
-}
-
-.CarPartListingRightActions {
-  display: flex;
-  gap: 10px;
-}
-
-/* .CarPartListingBtnDelete:hover {
-  background: #fdd;
-  border-color: #e74c3c;
 } */
 
-.CarPartListingBtnCancel {
+/* .listing-scrollable-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 30px 30px 30px;
+} */
+
+.listing-main-content h1{
+  margin: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #00102d;
+}
+
+.listing-main-content p{
+  margin: 10px;
+  font-size: 15px;
+  /* font-weight: bold; */
+  color: #c0c8d8;
+}
+
+.listing-action-bar {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 50px;
-  background: #f5f5f5;
-  color: #555;
-  border: 2px solid #F2681C;
-  border-radius: 8px;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.listing-btn-draft {
+  background: #1a2a45;
+  border: none;
+  color: #ffffff;
   font-weight: 600;
+  border-radius: 20px;
+  padding: 10px 24px;
   cursor: pointer;
-  transition: 0.3s;
+  
+}
+
+.listing-btn-draft1 {
+  background: transparent;
+  border: 2px solid #d24f1a;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 10px 24px;
+  cursor: pointer;
+  
+}
+
+.listing-btn-list {
+  background: #d24f1a;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 10px 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.listing-btn-draft:hover {
+  background-color: #d24f1a;
+  color: #00102d;
+  /* opacity: 0.9; */
+}
+
+.listing-btn-list:hover {
+  background-color: #1a2639;
+  /* opacity: 0.9; */
+}
+
+
+.listing-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 20px;
+}
+
+.listing-form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.listing-card {
+  background: #1a2a45;
+  border-radius: 12px;
+  padding: 20px;
+  color: #e0e6ed;
+}
+
+.listing-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.listing-form-group {
+  margin-bottom: 15px;
+  width: 50%;
+}
+
+.productListingRow{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  width: 100%;
+}
+
+.listing-form-group label {
+  display: block;
+  font-size: 13px;
+  color: #c0c8d8;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.listing-form-input, .listing-form-select {
+  width: 100%;
+  background: #253653;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 15px;
+  color: #fff;
   font-size: 14px;
+  outline: none;
 }
 
-.CarPartListingBtnCancel:hover {
-  background: #F2681C;
+.listing-form-input:focus, .listing-form-select:focus {
+  box-shadow: 0 0 0 2px #d24f1a;
 }
 
-.CarPartListingBtnSubmit {
+.listing-form-select option {
+  background: #1a2a45;
+}
+
+.listing-radio-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.listing-radio-label {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 40px;
-  background: #F2681C;
-  color: rgb(241, 238, 238);
+  gap: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.listing-radio-label input[type="radio"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #d24f1a;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.listing-radio-label input[type="radio"]:checked::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #d24f1a;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.listing-price-stock-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* Upload Image Card */
+.listing-upload-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 450px;
+  background: #97999c;
+}
+
+/* second box */
+.listing-main-image-preview {
+  flex: 1;
+  background: #101f33;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  min-height: 220px;
+  position: relative;
+}
+
+/* CSS-only Rubik's Cube visualization for the placeholder */
+.listing-rubiks-cube-placeholder {
+  width: 120px;
+  height: 120px;
+  background: #222;
+  position: relative;
+  transform: rotateX(-20deg) rotateY(30deg);
+  transform-style: preserve-3d;
+}
+.listing-rubiks-cube-placeholder .face {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: #111;
+  border: 2px solid #333;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 2px;
+}
+
+.listing-add-image-btn {
+  width: 50px;
+  height: 50px;
+  background: #253653;
   border: none;
   border-radius: 8px;
-  font-weight: 600;
+  color: #fff;
+  font-size: 24px;
   cursor: pointer;
-  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.listing-add-image-btn:hover {
+  background: #d24f1a;
+}
+
+.listing-card-upload-card{
+  background: #1a2a45; /* Dark Navy */
+  border-radius: 12px;
+  padding: 20px;
+  color: #e0e6ed;
+  height: 456px;
+}
+
+/* Media Query for small screens */
+@media (max-width: 1024px) {
+  .listing-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+   /* ===========================================Progress Bar ============================== */
+.listing-progress-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.listing-progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+.listing-progress-step.clickable {
+  cursor: pointer;
+}
+
+.listing-step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #253653;
+  color: #8899aa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
   font-size: 14px;
-  opacity: 0px;
+  border: 2px solid #253653;
+  transition: all 0.25s ease;
+  z-index: 2;
+  position: relative;
 }
 
-.CarPartListingBtnSubmit:hover:not(.disabled) {
-  background: #1e3647;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(46, 82, 242, 0.3);
+.listing-progress-step.active .listing-step-circle {
+  background: #d24f1a;
+  color: #fff;
+  border-color: #d24f1a;
+  box-shadow: 0 0 0 4px rgba(210, 79, 26, 0.25);
+  transform: scale(1.08);
 }
 
-.CarPartListingBtnSubmit.disabled {
-  /* opacity: 0.6; */
+.listing-progress-step.completed .listing-step-circle {
+  background: #2ecc71;
+  color: #fff;
+  border-color: #2ecc71;
+}
+
+.listing-progress-step.completed.clickable:hover .listing-step-circle {
+  background: #27ae60;
+  transform: scale(1.08);
+}
+
+.listing-step-label {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #8899aa;
+  text-align: center;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.listing-progress-step.active .listing-step-label {
+  color: #fff;
+}
+
+.listing-progress-step.completed .listing-step-label {
+  color: #2ecc71;
+}
+
+.listing-step-line {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: #253653;
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.listing-step-line.filled {
+  background: #2ecc71;
+}
+
+/* ── Step content ── */
+.listing-step-content {
+  animation: fadeSlide 0.25s ease;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Bottom nav buttons ── */
+.listing-step-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #253653;
+}
+
+.listing-step-nav button:disabled,
+.listing-action-bar button:disabled {
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
-.CarPartListingCreate-listing {
-  font-size: 25px;
-  font-weight: 600;
-  color: #143b67;
-  /* background-color: #143b67; */
-  border-radius: 30px;
-  width: fit-content;
-  /* padding: 12px 30px; */
-  margin-bottom: 40px;
+/* ── Error states ── */
+.listing-form-input.input-error,
+.listing-form-select.input-error {
+  box-shadow: 0 0 0 2px #e74c3c;
 }
 
-/* ----------------------------------------------------- Animations -------------------------------- */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.listing-step-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(231, 76, 60, 0.12);
+  color: #e74c3c;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-top: 15px;
+  border: 1px solid rgba(231, 76, 60, 0.3);
 }
 
-@keyframes slideUp {
+/* ── Step 4 status messages ── */
+.listing-image-confirm,
+.listing-image-pending {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  margin-top: 15px;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+.listing-image-confirm {
+  background: rgba(46, 204, 113, 0.12);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.listing-image-pending {
+  background: rgba(210, 79, 26, 0.12);
+  color: #d24f1a;
+  border: 1px solid rgba(210, 79, 26, 0.3);
+}
+
+/* ── Highlight the uploader when step 4 is active ── */
+.listing-card-upload-card.highlight {
+  /* box-shadow: 0 0 0 2px #d24f1a; */
+  transition: box-shadow 0.25s ease;
+}
+
+/* ── Checkmark pop animation ── */
+@keyframes popIn {
+  0%   { transform: scale(0); }
+  70%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.listing-progress-step.completed .listing-step-circle svg {
+  animation: popIn 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════
+   Progress Bar / Stepper
+   ═══════════════════════════════════════════ */
+.listing-progress-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.listing-progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+.listing-progress-step.clickable {
+  cursor: pointer;
+}
+
+/* The numbered circle */
+.listing-step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #253653;
+  color: #8899aa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  border: 2px solid #253653;
+  transition: all 0.25s ease;
+  z-index: 2;
+  position: relative;
+}
+
+/* Active step (current) */
+.listing-progress-step.active .listing-step-circle {
+  background: #d24f1a;
+  color: #fff;
+  border-color: #d24f1a;
+  box-shadow: 0 0 0 4px rgba(210, 79, 26, 0.25);
+  transform: scale(1.08);
+}
+
+/* Completed step (green + clickable) */
+.listing-progress-step.completed .listing-step-circle {
+  background: #2ecc71;
+  color: #fff;
+  border-color: #2ecc71;
+}
+
+.listing-progress-step.completed:hover .listing-step-circle {
+  background: #27ae60;
+  transform: scale(1.08);
+}
+
+/* Label under the circle */
+.listing-step-label {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #8899aa;
+  text-align: center;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.listing-progress-step.active .listing-step-label {
+  color: #fff;
+}
+
+.listing-progress-step.completed .listing-step-label {
+  color: #2ecc71;
+}
+
+/* The connecting line */
+.listing-step-line {
+  position: absolute;
+  top: 18px;              /* half the circle height */
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: #253653;
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.listing-step-line.filled {
+  background: #2ecc71;
+}
+
+/* ── Step content transition ── */
+.listing-step-content {
+  animation: fadeSlide 0.25s ease;
+}
+
+@keyframes fadeSlide {
   from {
-    transform: translateY(30px);
     opacity: 0;
+    transform: translateX(8px);
   }
   to {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateX(0);
   }
 }
 
-/* ------------------------------------------------ Responsive -------------------------------- */
-@media (max-width: 1024px) {
-  
-  .logout {
-    justify-content: center;
-    padding: 15px;
-    font-size: 1.5rem;
-  }
-  
-  .mainContent {
-    padding: 15px 20px;
-  }
+/* ── Bottom nav buttons ── */
+.listing-step-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #253653;
 }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-  
-  .navMenu {
-    display: flex;
-    flex: 1;
-    overflow-y: visible;
-    justify-content: flex-end;
-    gap: 5px;
-    flex-wrap: wrap;
-  }
-  
-  .logout {
-    padding: 8px 12px;
-    border-top: none;
-    margin-top: 0;
-    font-size: 0.85rem;
-  }
-  
-  .logout span {
-    display: inline;
-  }
-  
-  .mainContent {
-    padding: 15px;
-  }
-  
-  .editForm {
-    padding: 20px;
-  }
-  
-  .imageSection {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .imageStats {
-    justify-content: center;
-  }
-  
-  .formRow {
-    grid-template-columns: 1fr;
-  }
-  
-  .actionButtons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .leftActions,
-  .rightActions {
-    justify-content: center;
-  }
-  
-  .pageTitle h1 {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .mainContent {
-    padding: 10px;
-  }
-  
-  .editForm {
-    padding: 15px;
-  }
-  
-  .imagePreview {
-    width: 150px;
-    height: 150px;
-  }
-  
-  .pageTitle {
-    flex-wrap: wrap;
-  }
-  
-  .pageTitle h1 {
-    font-size: 1.1rem;
-  }
-  
-  .backBtn {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-  
-  .btnSave,
-  .btnCancel,
-  .btnDelete {
-    font-size: 13px;
-    padding: 8px 16px;
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .rightActions {
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .modal {
-    padding: 20px;
-    margin: 20px;
-  }
+.listing-step-nav button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }

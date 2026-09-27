@@ -22,11 +22,13 @@ import ContactUsPage from "./Pages/ContactUsPage"
 import AboutUsPage from "./Pages/AboutUsPage"
 import HelpSupportPage from "./Pages/HelpSupportPage"
 import SavedItemsDetailsPage from "./Pages/SavedItemsDetailsPage"
+import SettingsPage from "./Pages/SettingsPage"
 import RequestsPage from "./Pages/RequestsPage"
 import WishlistPage from "./Pages/WishlistPage"
 import MyPurchasesPage from "./Pages/MyPurchasesPage"
 import CategoriesPage from "./Pages/CategoriesPage"
 import HomePage from "./Pages/HomePage"
+import NotificationsPage from "./Pages/NotificationsPage"
  
 function App(){ 
     return ( 
@@ -56,9 +58,11 @@ function App(){
         <Route path="/about-us" element={<AboutUsPage />} /> 
          <Route path="/help-support" element={<HelpSupportPage />} /> 
         <Route path="/saved-items-details" element={<SavedItemsDetailsPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
         <Route path="/requests" element={<RequestsPage />} />
         <Route path="/saved" element={<WishlistPage />} />
         <Route path="/my-purchases" element={<MyPurchasesPage />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
       </Routes> 
     </BrowserRouter> 
     </CartProvider> 
