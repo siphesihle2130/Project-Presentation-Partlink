@@ -47,7 +47,6 @@ function HomePage() {
                             <h1>Buy. <span>Sell.</span> Connect.</h1>
                             <h2>Welcome to PartLink</h2>
                             <p>The trusted community marketplace for carparts.</p>
-                            {/* <p>Buy and sell items, discover great deals, and connect with your campus community.</p> */}
                             <div className="homeMini1Contentsbuttons">
                                 <button className="homeMini1ContentsPrimary" onClick={() => navigate("/products")}>Start shopping</button>
                                 <button className="homeMini1ContentsSecondary" onClick={() => navigate("/carpart-listing")}>Sell an Item</button>
@@ -94,7 +93,6 @@ function HomePage() {
                     <div className="homeMini6" onClick={() => goToSection("brandsSection")}>
                         <div className="homeMini2TextContainer" onClick={() => goToSection("brandsSection")}>
                                 <h2>Popular brands</h2>
-                                {/* <p>View popular categories</p> */}
                             </div>
                             <img src="/Audi-Logo.png" alt="home picture" />
                     </div>
@@ -272,37 +270,29 @@ function HomePage() {
             <section id="brandsSection" className="homeBrandsSection">
                 <div className="homeBrandsheader">
                     <h2>Popular Brands</h2>
-                    {/* <button className="homeBrandsview-allButton">View all <FaAngleDoubleRight /></button> */}
                 </div>
 
                 <div className="homeBrandsCardsCollection">
                     <div className="homeBrandsCardss">
                         <img src="/toyota-logo.png" alt="toyota" className="homeBrandsImages" onClick={() => navigate("/shop/books")} />
-                        {/* <h1 className="homeBrandsCardsText">Engines</h1> */}
                     </div>
                     <div className="homeBrandsCardss">
                         <img src="/volkswagen-logo.png" alt="vw" className="homeBrandsImages" onClick={() => navigate("/shop/clothes")} />
-                        {/* <h1 className="homeBrandsCardsText">Body</h1> */}
                     </div>
                     <div className="homeBrandsCardss">
                         <img src="/suzuki-logo.png" alt="suzuki" className="homeBrandsImages" onClick={() => navigate("/shop/electronics")} />
-                        {/* <h1 className="homeBrandsCardsText">Electronics</h1> */}
                     </div>
                     <div className="homeBrandsCardss">
                         <img src="/renault-logo.png" alt="renult" className="homeBrandsImages" onClick={() => navigate("/shop/bedding")} />
-                        {/* <h1 className="homeBrandsCardsText">Interior</h1> */}
                     </div>
                     <div className="homeBrandsCardss">
                         <img src="/mercedes-logo.png" alt="mercedes" className="homeBrandsImages" onClick={() => navigate("/shop/kitchen")} />
-                        {/* <h1 className="homeBrandsCardsText">Exhausts</h1> */}
                     </div>
                     <div className="homeBrandsCardss">
                         <img src="/ford-logo.png" alt="bmw" className="homeBrandsImages" onClick={() => navigate("/shop/games")} />
-                        {/* <h1 className="homeBrandsCardsText">Fluids</h1> */}
                     </div>
                     <div className="homeBrandsCardss">
                         <img src="/Audi-Logo.png" alt="audi" className="homeBrandsImages" onClick={() => navigate("")} />
-                        {/* <h1 className="homeBrandsCardsText">Suspensions</h1> */}
                     </div>
                 </div>
             </section>
@@ -311,9 +301,8 @@ function HomePage() {
                 <div className="homeContactHeading">
                     <h1>Contact us</h1>
                     <p>We'll like to hear from you! Reach out to us for any question, feedback or support</p>
-                </div>
+                </div>\
 
-                {/* Content */}
                 <div className="homeContactContent">
                     <div className="homeContactCard">
                         <h3>CONTACT INFORMATION</h3>
@@ -374,10 +363,6 @@ function HomePage() {
                                 <FaLinkedinIn className="homeContactMediaIcon" />
                                 
                             </div>
-                            {/* <div>
-                                <strong>Phone</strong>
-                                <p>+27 21 489 1397</p>
-                            </div> */}
                         </div>
                     </div>
 
