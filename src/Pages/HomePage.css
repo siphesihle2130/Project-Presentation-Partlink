@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--bg);
+  background-color: #c5ced4;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -44,9 +44,6 @@ section[id] {
   border-radius: 10px;
   padding: 20px;
   display: flex;
-  /* flex-direction: row;
-  justify-content: center;
-  align-items: flex-start; */
 }
 
 .homeMini1Contents {
@@ -64,7 +61,7 @@ section[id] {
 }
 
 .homeMini1Contents span {
-  color: #e67e22;
+  color: #d24f1a;
 }
 
 .homeMini1Contents h2 {
@@ -133,7 +130,6 @@ section[id] {
 .homeMini2 {
   width: 70vh;
   height: 25vh;
-  /* background-color: #14b8a6; */
   background-image: radial-gradient(circle at left, #3f51b5);
   border-radius: 10px;
   display: flex;
@@ -149,10 +145,17 @@ section[id] {
   justify-content: center;
 }
 
+.homeMini2TextContainer h2{
+  color: #fff;
+}
+
+.homeMini2TextContainer p{
+  color: #b0bec5;
+}
+
 .homeMini3 {
   width: 70vh;
   height: 25vh;
-  /* background-color: #14b8a6; */
   background-image: radial-gradient(circle at left, #1b5e20);
   border-radius: 10px;
   display: flex;
@@ -173,7 +176,6 @@ section[id] {
 .homeMini4 {
   width: 74vh;
   height: 25vh;
-  /* background-color: #14b8a6; */
   background-image: radial-gradient(circle at left, #1565c0);
   border-radius: 10px;
   display: flex;
@@ -186,7 +188,6 @@ section[id] {
 .homeMini5 {
   width: 74vh;
   height: 25vh;
-  /* background-color: #14b8a6; */
   background-image: radial-gradient(circle at left, #4527a0);
   border-radius: 10px;
   display: flex;
@@ -199,7 +200,6 @@ section[id] {
 .homeMini6 {
   width: 74vh;
   height: 25vh;
-  /* background-color: #14b8a6; */
   background-image: radial-gradient(circle at left, #00695c);
   border-radius: 10px;
   display: flex;
@@ -209,13 +209,15 @@ section[id] {
   cursor: pointer;
 }
 
+:where(.homeMini2, .homeMini3, .homeMini4, .homeMini5, .homeMini6):hover {
+   border: 3px inset #00102d;
+}
+
 /* ===================================================== */
 .homeInfoCard1 {
   position: relative;
-
   width: 100%;
   max-width: 600px;
-  /* height: 100%; */
   height: 300px;
   padding: 30px;
   margin-left: 450px;
@@ -230,7 +232,6 @@ section[id] {
 
 .card {
   background-color: #162b3a;
-  /* margin-top: 20px; */
   margin: 0px 0px 20px 10px;
   width: 150px;
   height: 100px;
@@ -239,35 +240,10 @@ section[id] {
   cursor: pointer;
 }
 
-.homeGrid {
-  left: 10%;
-  display: flex;
-  flex-direction: column;
-  /* grid-template-columns: 1fr 1fr; */
-  gap: 5px;
-  margin-bottom: 5px;
-}
-
-.iconss {
-  font-size: x-large;
-}
-
-.row1 {
-  display: flex;
-  gap: 25px;
-}
-
-.row2 {
-  display: flex;
-  gap: 25px;
-}
-
 /* ==================================================================best selling=============================== */
 .bestSellingSection {
-  /* margin-top: 100px; */
   min-height: 70vh;
   width: 100%;
-  /* width: calc(100% - 240px); */
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -289,6 +265,12 @@ section[id] {
   border: none;
   background-color: transparent;
   color: #00102d;
+}
+
+.view-allButton:hover {
+  border: none;
+  background-color: transparent;
+  color: #e85d26;
 }
 
 .bestSellingConatainers {
@@ -319,8 +301,8 @@ section[id] {
   font-size: 40px;
   font-weight: 800;
   text-align: left;
-  margin: 2px 0 10px 10px;
-  color: #e67e22;
+  margin: 2px 0 20px 10px;
+  color: #fff;
 }
 
 .bestSellingMini1 p {
@@ -328,7 +310,7 @@ section[id] {
   font-weight: bold;
   text-align: left;
   margin: 2px 0 0 10px;
-  color: white;
+  color: #d4d4d4;
 }
 
 .bestSellingMini1 img {
@@ -494,8 +476,6 @@ section[id] {
   background-image: url("/background3.jpg");
   background-repeat: no-repeat;
   background-position: top;
-  /* background-color: #00102d; */
-  /* background-image: radial-gradient(circle at left, #00102d, #004d40, #00102d ); */
   border-radius: 20px;
   padding: 20px;
   display: flex;
@@ -507,11 +487,17 @@ section[id] {
 .homePromocard1 h1{
   font-size: 40px;
   font-weight: bold;
+  color: #f5f5f5;
+  margin-top: 20px;
+}
+
+.homePromocard1 p{
+  color: #c5ced4;
 }
 
 .homePromocard1 button{
   background-color: #d24f1a;
-  color: #c5ced4;
+  color: #f5f5f5;
   font-size: 15px;
   font-weight: bold;
   padding: 5px;
@@ -531,8 +517,6 @@ section[id] {
   min-height: 5vh;
   max-height: 40vh;
   background-image: radial-gradient(circle at left, #00102d, #283593, #00102d);
-  /* background-image: radial-gradient(circle at left, #4527a0); */
-  /* background-color: #1b5e20; */
   border-radius: 20px;
   display: flex;
   flex-direction: row;
@@ -544,18 +528,18 @@ section[id] {
   font-weight: bold;
   margin-top: 50px;
   margin-left: 5px;
+  color: #f5f5f5;
 }
 
 .homePromocard2 p{
-  /* font-size: 40px; */
-  /* font-weight: bold; */
   margin-top: 20px;
   margin-left: 5px;
+  color: #c5ced4;
 }
 
 .homePromocard2 button{
   background-color: #d24f1a;
-  color: #c5ced4;
+  color: #f5f5f5;
   font-size: 15px;
   font-weight: bold;
   padding: 5px;
@@ -625,7 +609,6 @@ section[id] {
 }
 
 .homeTrendingmainCard {
-  /* background-color: #00102d; */
   background-image: url("/background5.jpg");
   background-size: cover;
   min-height: 497px;
@@ -646,11 +629,13 @@ section[id] {
   font-size: 40px;
   font-weight: 800;
   font-family: 'Montserrat', sans-serif;
-  /* letter-spacing: 0.1rem; */
+  color: #f5f5f5;
+  margin-top: 20px;
 }
 
 .homeTrendingmainCard h2 {
-  color: #dedede;
+  font-size: 20px;
+  color: #c5ced4;
   font-weight: normal;
   font-family: 'Inter', sans-serif;
 }
@@ -658,13 +643,16 @@ section[id] {
 .homeTrendingmainCard button{
   background-color: #d24f1a;
   color: #fff;
-  font-size: large;
   font-weight: bold;
   height: 6vh;
   min-width: 20vh;
   padding: 5px;
   border: none;
   border-radius: 5px;
+}
+
+.homeTrendingmainCard button:hover{
+  background-color: #e67e22;
 }
 
 .homeTrendingCardsCollection {

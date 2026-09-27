@@ -7,12 +7,10 @@ import ScrollProgressButton from "../Components/ScrollProgressButton";
 import Footer from "../Components/Footer";
 // import { FaShoppingBag, FaPhone, FaMailBulk, FaMapPin, FaStore, FaHeart, FaCreditCard, FaQuestionCircle, FaShoppingBasket } from "react-icons/fa";
 import { useState } from "react";
-import { useLanguage } from "../Context/LanguageContext";
 
 
 function HomePage() {
     const navigate = useNavigate();
-    const { t } = useLanguage();
 
     const [form] = useState({
             fullName: "",
@@ -46,13 +44,13 @@ function HomePage() {
 
                     <div className="homeMini1">
                         <div className="homeMini1Contents">
-                            <h1>{t("homeHeroBuy")} <span>{t("homeHeroSell")}</span> {t("homeHeroConnect")}</h1>
-                            <h2>{t("homeWelcome")}</h2>
-                            <p>{t("homeHeroSubtitle")}</p>
+                            <h1>Buy. <span>Sell.</span> Connect.</h1>
+                            <h2>Welcome to PartLink</h2>
+                            <p>The trusted community marketplace for carparts.</p>
                             {/* <p>Buy and sell items, discover great deals, and connect with your campus community.</p> */}
                             <div className="homeMini1Contentsbuttons">
-                                <button className="homeMini1ContentsPrimary" onClick={() => navigate("/products")}>{t("homeStartShopping")}</button>
-                                <button className="homeMini1ContentsSecondary" onClick={() => navigate("/carpart-listing")}>{t("homeSellItem")}</button>
+                                <button className="homeMini1ContentsPrimary" onClick={() => navigate("/products")}>Start shopping</button>
+                                <button className="homeMini1ContentsSecondary" onClick={() => navigate("/carpart-listing")}>Sell an Item</button>
                             </div>
                         </div>
 
@@ -62,16 +60,16 @@ function HomePage() {
                     <div className="homeSectionMiniContainer">
                         <div className="homeMini2" onClick={() => goToSection("CategorySection")}>
                             <div className="homeMini2TextContainer">
-                                <h2>{t("homeMiniCategoriesTitle")}</h2>
-                                <p>{t("homeMiniCategoriesSub")}</p>
+                                <h2>Categoriess</h2>
+                                <p>View popular categories</p>
                             </div>
                             <img src="/home3.png" alt="home picture" />
                         </div>
 
                         <div className="homeMini3" onClick={() => goToSection("trendingSection")}>
                             <div className="homeMini2TextContainer">
-                                <h2>{t("homeMiniTrendingTitle")}</h2>
-                                <p>{t("homeMiniTrendingSub")}</p>
+                                <h2>Trending</h2>
+                                <p>View trending products</p>
                             </div>
                             <img src="/Wheel-decal-cap.png" alt="home picture" />
                         </div>
@@ -81,21 +79,21 @@ function HomePage() {
                 <div className="homeSectionsContainer1">
                     <div className="homeMini4" onClick={() => goToSection("promoSection")}>
                         <div className="homeMini2TextContainer">
-                                <h2>{t("homeMiniDealsTitle")}</h2>
+                                <h2>Great Deals</h2>
                             </div>
                             <img src="/home4.png" alt="home picture" />
                     </div>
 
-                    <div className="homeMini5">
-                        <div className="homeMini2TextContainer" onClick={() => goToSection("bestSelling")}>
-                                <h2>{t("homeMiniBestSellingTitle")}</h2>
+                    <div className="homeMini5" onClick={() => goToSection("bestSelling")}>
+                        <div className="homeMini2TextContainer" onClick={() => goToSection("brandsSection")}>
+                                <h2>Best Selling</h2>
                             </div>
                             <img src="/home2.png" alt="home picture" />
                     </div>
 
-                    <div className="homeMini6">
+                    <div className="homeMini6" onClick={() => goToSection("brandsSection")}>
                         <div className="homeMini2TextContainer" onClick={() => goToSection("brandsSection")}>
-                                <h2>{t("homeMiniBrandsTitle")}</h2>
+                                <h2>Popular brands</h2>
                                 {/* <p>View popular categories</p> */}
                             </div>
                             <img src="/Audi-Logo.png" alt="home picture" />
@@ -107,37 +105,33 @@ function HomePage() {
             
             <section id="bestSelling" className="bestSellingSection">
                 <div className="bestSellingheader">
-                    <h2>{t("bestSellingTitle")}</h2>
-                    <button className="view-allButton">{t("viewAll")} <FaAngleDoubleRight /></button>
+                    <h2>Best Selling</h2>
+                    <button className="view-allButton" onClick={() => navigate("/")}>View all <FaAngleDoubleRight /></button>
                 </div>
 
                 <div className="bestSellingConatainers">
                     <div className="bestSellingMini1">
-                        <h1 className="bestSellingMini1Title">{t("hotCollection")}</h1>
-                         <p>{t("hotCollectionSub")}</p>
-                        {/* <img src="/home1.png" alt="home picture" /> */}
-                            {/* <p>Engines</p> */}
+                        <h1 className="bestSellingMini1Title">Hot collection </h1>
+                         <p>Selling fast — grab yours before they're gone.</p>
                     </div>
-
-                    {/* <div className="bestSellingMiniContainer"> */}
                         <div className="bestSellingMini">
                             <img src="/side-mirror.png" alt="home picture" />
-                            <p>{t("prodSideMirror")}</p>
+                            <p>Side Mirror</p>
                         </div>
 
                         <div className="bestSellingMini">
                             <img src="/headlights.png" alt="home picture" />
-                            <p>{t("prodBmwHeadlights")}</p>
+                            <p>BMW Headlights</p>
                         </div>
 
                         <div className="bestSellingMini">
                             <img src="/alternator.png" alt="home picture" />
-                            <p>{t("prodAlternator")}</p>
+                            <p>Alternator</p>
                         </div>
 
                         <div className="bestSellingMini">
                             <img src="/home3.png" alt="home picture" />
-                            <p>{t("prodEngines")}</p>
+                            <p>Engines</p>
                         </div>
                     {/* </div> */}
                 </div>
@@ -145,56 +139,56 @@ function HomePage() {
 
             <section id="CategorySection" className="homeCategorySection">
                 <div className="homeCategoryheader">
-                    <h2>{t("topCategoriesTitle")}</h2>
-                    <button className="homeCategoryview-allButton">{t("viewAll")} <FaAngleDoubleRight /></button>
+                    <h2>Top Categories</h2>
+                    <button className="homeCategoryview-allButton">View all <FaAngleDoubleRight /></button>
                 </div>
 
                 <div className="homeCategoryCardsCollection">
                     <div className="homeCategoryCardss">
-                        <img src="/engine.png" alt="Engines" className="homeCategoryImages" onClick={() => navigate("/shop/books")} />
-                        <h1 className="homeCategoryCardsText">{t("homeCatEngines")}</h1>
+                        <img src="/engine.png" alt="Engines" className="homeCategoryImages" onClick={() => navigate(" ")} />
+                        <h1 className="homeCategoryCardsText">Engines</h1>
                     </div>
                     <div className="homeCategoryCardss">
-                        <img src="/door.png" alt="Body" className="homeCategoryImages" onClick={() => navigate("/shop/clothes")} />
-                        <h1 className="homeCategoryCardsText">{t("homeCatBody")}</h1>
+                        <img src="/door.png" alt="Body" className="homeCategoryImages" onClick={() => navigate(" ")} />
+                        <h1 className="homeCategoryCardsText">Body</h1>
                     </div>
                     <div className="homeCategoryCardss">
-                        <img src="/battery.png" alt="Electronics" className="homeCategoryImages" onClick={() => navigate("/shop/electronics")} />
-                        <h1 className="homeCategoryCardsText">{t("homeCatElectronics")}</h1>
+                        <img src="/battery.png" alt="Electronics" className="homeCategoryImages" onClick={() => navigate(" ")} />
+                        <h1 className="homeCategoryCardsText">Electronics</h1>
                     </div>
                     <div className="homeCategoryCardss">
-                        <img src="/interior.jpg" alt="Interior" className="homeCategoryImages" onClick={() => navigate("/shop/bedding")} />
-                        <h1 className="homeCategoryCardsText">{t("homeCatInterior")}</h1>
+                        <img src="/interior.jpg" alt="Interior" className="homeCategoryImages" onClick={() => navigate(" ")} />
+                        <h1 className="homeCategoryCardsText">Interior</h1>
                     </div>
                     <div className="homeCategoryCardss">
-                        <img src="/home6.jpg" alt="Exhausts" className="homeCategoryImages" onClick={() => navigate("/shop/kitchen")} />
-                        <h1 className="homeCategoryCardsText">{t("homeCatExhausts")}</h1>
+                        <img src="/home6.jpg" alt="Exhausts" className="homeCategoryImages" onClick={() => navigate(" ")} />
+                        <h1 className="homeCategoryCardsText">Exhausts</h1>
                     </div>
                     <div className="homeCategoryCardss">
-                        <img src="/Transmission-Fluid.jpg" alt="Fluids" className="homeCategoryImages" onClick={() => navigate("/shop/games")} />
-                        <h1 className="homeCategoryCardsText">{t("homeCatFluids")}</h1>
+                        <img src="/Transmission-Fluid.jpg" alt="Fluids" className="homeCategoryImages" onClick={() => navigate(" ")} />
+                        <h1 className="homeCategoryCardsText">Fluids</h1>
                     </div>
                     <div className="homeCategoryCardss">
-                        <img src="/suspension.jpg" alt="Suspensions" className="homeCategoryImages" onClick={() => navigate("")} />
-                        <h1 className="homeCategoryCardsText">{t("homeCatSuspensions")}</h1>
+                        <img src="/suspension.jpg" alt="Suspensions" className="homeCategoryImages" onClick={() => navigate(" ")} />
+                        <h1 className="homeCategoryCardsText">Suspensions</h1>
                     </div>
                 </div>
             </section>
 
             <section id="promoSection" className="homePromotion">
-                <h2>{t("bigDeals")}</h2>
+                <h2>Big Deals</h2>
                 <div className="homePromotionCardsContainer">
                     <div className="homePromocard1">
-                        <h1>{t("megaDeals")}</h1>
-                        <p>{t("megaDealsSub")}</p>
-                        <button>{t("shopNow")}</button>
+                        <h1>Mega Deals.</h1>
+                        <p>Spend R9 999 for free delivery.</p>
+                        <button>Shop now</button>
                     </div>
 
                     <div className="homePromocard2">
                         <div>
-                            <h1>{t("saveMore")}</h1>
-                        <p>{t("saveMoreSub")}</p>
-                        <button>{t("saveNow")}</button>
+                            <h1>Save More</h1>
+                        <p>Find selected parts at lower prices.</p>
+                        <button>Save Now</button>
                         </div>
                         <img src="/headlights1.jpg" alt="headlights1" className=".homePromocard2" />
                     </div>
@@ -203,71 +197,71 @@ function HomePage() {
 
             <section id="trendingSection" className="homeTrendingSection">
                 <div className="homeTrendingheader">
-                    <h2>{t("trendingTitle")}</h2>
-                    <button className="homeTrendingview-allButton" onClick={() => navigate("/products")}>{t("viewAll")} <FaAngleDoubleRight /></button>
+                    <h2>Trending</h2>
+                    <button className="homeTrendingview-allButton" onClick={() => navigate("/products")}>View all <FaAngleDoubleRight /></button>
                 </div>
 
                 <div className="homeTrendingCardsCollection1">  
                 <div className="homeTrendingmainCard">
-                    <h1>{t("whatsTrending")}</h1>
-                    <h2>{t("whatsTrendingSub")}</h2>
-                    <button>{t("explore")}</button>
+                    <h1>What's Trending</h1>
+                    <h2>See what's popular this week.</h2>
+                    <button>Explore</button>
                 </div>
 
                 <div className="homeTrendingCardsCollection">
                     <div className="homeTrendingCardss">
                         <img src="/Front-wheel-bearing.png" alt="Engines" className="homeTrendingImages" onClick={() => navigate("/shop/books")} />
                         <div className="homeTrendingCardsTextContainer">
-                            <p className="homeTrendingCardsText">{t("prodFrontWheelBearing")}</p>
+                            <p className="homeTrendingCardsText">Front wheel bearing</p>
                             <h1>R200.00</h1>
                         </div>
                     </div>
                     <div className="homeTrendingCardss">
                         <img src="/headlights.png" alt="Body" className="homeTrendingImages" onClick={() => navigate("/shop/clothes")} />
                         <div className="homeTrendingCardsTextContainer">
-                            <p className="homeTrendingCardsText">{t("prodBmwHeadlights")}</p>
+                            <p className="homeTrendingCardsText">BMW Headlights</p>
                             <h1>R200.00</h1>
                         </div>
                     </div>
                     <div className="homeTrendingCardss">
                         <img src="/Front-wheel-bearing.png" alt="Engines" className="homeTrendingImages" onClick={() => navigate("/shop/books")} />
                         <div className="homeTrendingCardsTextContainer">
-                            <p className="homeTrendingCardsText">{t("prodFrontWheelBearing")}</p>
+                            <p className="homeTrendingCardsText">Front wheel bearing</p>
                             <h1>R200.00</h1>
                         </div>
                     </div>
                     <div className="homeTrendingCardss">
                         <img src="/headlights.png" alt="Body" className="homeTrendingImages" onClick={() => navigate("/shop/clothes")} />
                         <div className="homeTrendingCardsTextContainer">
-                            <p className="homeTrendingCardsText">{t("prodBmwHeadlights")}</p>
+                            <p className="homeTrendingCardsText">BMW Headlights</p>
                             <h1>R200.00</h1>
                         </div>
                     </div>
                     <div className="homeTrendingCardss">
                         <img src="/Rear-shock-absober.png" alt="Electronics" className="homeTrendingImages" onClick={() => navigate("/shop/electronics")} />
                         <div className="homeTrendingCardsTextContainer">
-                            <p className="homeTrendingCardsText">{t("prodRearShockAbsorber")}</p>
+                            <p className="homeTrendingCardsText">Rear shock absober</p>
                             <h1>R200.00</h1>
                         </div>
                     </div>
                     <div className="homeTrendingCardss">
                         <img src="/Center-bearing2.png" alt="Interior" className="homeTrendingImages" onClick={() => navigate("/shop/bedding")} />
                         <div className="homeTrendingCardsTextContainer">
-                            <p className="homeTrendingCardsText">{t("prodCenterBearing")}</p>
+                            <p className="homeTrendingCardsText">Center bearing</p>
                             <h1>R200.00</h1>
                         </div>
                     </div>
                     <div className="homeTrendingCardss">
                         <img src="/Front-wheel-bearing-kit2.png" alt="Fluids" className="homeTrendingImages" onClick={() => navigate("/shop/games")} />
                         <div className="homeTrendingCardsTextContainer">
-                            <p className="homeTrendingCardsText">{t("prodFrontWheelBearingKit")}</p>
+                            <p className="homeTrendingCardsText">Front wheel bearing kit</p>
                             <h1>R200.00</h1>
                         </div>
                     </div>
                     <div className="homeTrendingCardss">
                         <img src="/Accelarator-peda2.png" alt="Suspensions" className="homeTrendingImages" onClick={() => navigate("")} />
                         <div className="homeTrendingCardsTextContainer">
-                            <p>{t("prodAcceleratorPedal")}</p>
+                            <p>Accelarator pedal</p>
                             <h1>R200.00</h1>
                         </div>
                     </div>
@@ -277,7 +271,7 @@ function HomePage() {
 
             <section id="brandsSection" className="homeBrandsSection">
                 <div className="homeBrandsheader">
-                    <h2>{t("popularBrands")}</h2>
+                    <h2>Popular Brands</h2>
                     {/* <button className="homeBrandsview-allButton">View all <FaAngleDoubleRight /></button> */}
                 </div>
 
@@ -315,25 +309,25 @@ function HomePage() {
 
             <section id="contactSection" className="homeContactSection">
                 <div className="homeContactHeading">
-                    <h1>{t("contactUsTitle")}</h1>
-                    <p>{t("contactUsSub")}</p>
+                    <h1>Contact us</h1>
+                    <p>We'll like to hear from you! Reach out to us for any question, feedback or support</p>
                 </div>
 
                 {/* Content */}
                 <div className="homeContactContent">
                     <div className="homeContactCard">
-                        <h3>{t("contactInfo")}</h3>
+                        <h3>CONTACT INFORMATION</h3>
 
                         <div className="homeContactInfoRow">
                             <div className="homeContactIconContainer">
                                 <FaMapPin className="homeContactInfoIcon" />
                             </div>
                             <div className="homeContactTextContainer">
-                                <strong>{t("addressLabel")}</strong>
+                                <strong>Address</strong>
                                 <p>
-                                    {t("addressLine1")}
+                                    Cape Peninsula University of Technology
                                     <br />
-                                    {t("addressLine2")}
+                                    District Six Campus, Cape Town, 7925
                                 </p>
                             </div>
                         </div>
@@ -343,7 +337,7 @@ function HomePage() {
                                 <FaEnvelope className="homeContactInfoIcon" />
                             </div>
                             <div className="homeContactTextContainer">
-                                <strong>{t("emailLabel")}</strong>
+                                <strong>Email</strong>
                                 <p>Support@unitrade.co.za</p>
                             </div>
                         </div>
@@ -353,7 +347,7 @@ function HomePage() {
                                 <FaPhone className="homeContactInfoIcon" />
                             </div>
                             <div className="homeContactTextContainer">
-                                <strong>{t("phoneLabel")}</strong>
+                                <strong>Phone</strong>
                                 <p>+27 21 489 1397</p>
                             </div>
                         </div>
@@ -363,11 +357,11 @@ function HomePage() {
                                 <FaClock className="homeContactInfoIcon" />
                             </div>
                             <div className="homeContactTextContainer">
-                                <strong>{t("hoursLabel")}</strong>
+                                <strong>Hours</strong>
                                 <p>
-                                    {t("hoursLine1")}
+                                    Monday - Friday: 08:00-17:00
                                     <br />
-                                    {t("hoursLine2")}
+                                    Saturday - Sunday: Closed
                                 </p>
                             </div>
                         </div>
@@ -388,31 +382,31 @@ function HomePage() {
                     </div>
 
                     <div className="homeContactCard1">
-                        <h3>{t("sendMessageHeading")}</h3>
+                        <h3>SEND US A MESSAGE</h3>
                         <form onSubmit={handleSubmit} className="homeContactForm">
 
                             <div className="homeMessageform-group">
-                                <label>{t("fullNameLabel")}</label>
+                                <label>Full name</label>
                                 <input type="text" placeholder="" required />
                             </div>
 
                             <div className="homeMessageform-group">
-                                <label>{t("emailLabel")}</label>
+                                <label>Email</label>
                                 <input type="text" placeholder="" required />
                             </div>
 
                             <div className="homeMessageform-group">
-                                <label>{t("subjectLabel")}</label>
+                                <label>Subject</label>
                                 <input type="text" placeholder="" required />
                             </div>
 
                             <div className="message-group">
-                                <label>{t("messageLabel")}</label>
+                                <label>Message</label>
                                 <input className="homeContactField" type="text" placeholder="" required />
                             </div>
 
                             <button type="submit" className="homeContactSubmit">
-                                {t("sendMessageButton")}
+                                Send Message
                             </button>
                         </form>
                     </div>
