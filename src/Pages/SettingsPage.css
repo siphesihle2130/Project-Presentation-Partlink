@@ -2,9 +2,10 @@
    which was causing headings to appear misaligned under longer paragraphs */
 .settingsPageWrapper {
   min-height: 100vh;
-  background-color: #f4f6f8;
+  background-color: var(--bg);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: left;
+  transition: background-color 0.2s ease;
 }
 
 /* ---------- Page header ---------- */
@@ -21,7 +22,7 @@
 .settingsPageHeader h1 {
   font-size: 32px;
   font-weight: 700;
-  color: #16233F;
+  color: var(--text-h);
   opacity: 1;
   background: none;
   -webkit-text-fill-color: initial;
@@ -31,7 +32,7 @@
 
 .settingsPageHeader p {
   font-size: 14px;
-  color: #6B7280;
+  color: var(--text);
   margin: 0;
   text-align: center;
 }
@@ -52,24 +53,25 @@
   top: 130px;
   width: 240px;
   flex-shrink: 0;
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 16px;
   padding: 24px 18px;
-  box-shadow: 0 4px 20px rgba(22, 35, 63, 0.06);
+  box-shadow: var(--shadow);
+  transition: background-color 0.2s ease;
 }
 
 .settingsSidebarHeader h1 {
   font-size: 22px;
   font-weight: 700;
   letter-spacing: normal;
-  color: #16233F;
+  color: var(--text-h);
   margin: 0 0 4px 0;
   text-align: left;
 }
 
 .settingsSidebarHeader p {
   font-size: 13px;
-  color: #6B7280;
+  color: var(--text);
   margin: 0 0 20px 0;
   text-align: left;
 }
@@ -91,19 +93,19 @@
   border-radius: 10px;
   font-size: 14px;
   font-weight: 600;
-  color: #6B7280;
+  color: var(--text);
   cursor: pointer;
   transition: 0.2s;
 }
 
 .settingsSidebarNav button:hover {
-  background: #f4f6f8;
-  color: #16233F;
+  background: var(--bg);
+  color: var(--text-h);
 }
 
 .settingsSidebarNav button.active {
-  background: #16233F;
-  color: #ffffff;
+  background: var(--text-h);
+  color: var(--bg);
 }
 
 .settingsSidebarNav button.danger {
@@ -117,7 +119,7 @@
 
 .settingsSidebarDivider {
   height: 1px;
-  background: #E7E9ED;
+  background: var(--border);
   margin: 10px 0;
 }
 
@@ -131,12 +133,13 @@
 }
 
 .settingsCard {
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 16px;
   padding: 28px 32px;
-  box-shadow: 0 4px 20px rgba(22, 35, 63, 0.06);
+  box-shadow: var(--shadow);
   scroll-margin-top: 140px;
   text-align: left;
+  transition: background-color 0.2s ease;
 }
 
 .settingsCardHeader {
@@ -151,14 +154,14 @@
   font-size: 17px;
   font-weight: 700;
   letter-spacing: normal;
-  color: #16233F;
+  color: var(--text-h);
   margin: 0 0 3px 0;
   text-align: left;
 }
 
 .settingsCardHeader p {
   font-size: 13px;
-  color: #6B7280;
+  color: var(--text);
   margin: 0;
   text-align: left;
 }
@@ -188,7 +191,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 14px 0;
-  border-bottom: 1px solid #F2F3F5;
+  border-bottom: 1px solid var(--border);
   text-align: left;
 }
 
@@ -208,13 +211,13 @@
 }
 
 .settingsToggleText strong {
-  color: #16233F;
+  color: var(--text-h);
   font-size: 14px;
   text-align: left;
 }
 
 .settingsToggleText p {
-  color: #9AA3AF;
+  color: var(--text);
   font-size: 12.5px;
   margin: 3px 0 0 0;
   text-align: left;
@@ -223,12 +226,12 @@
 /* ---------- Select dropdown ---------- */
 .settingsSelect {
   height: 38px;
-  border: 1px solid #E7E9ED;
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0 12px;
   font-size: 13px;
-  color: #16233F;
-  background: #f9fafb;
+  color: var(--text-h);
+  background: var(--bg-input);
   cursor: pointer;
   outline: none;
   flex-shrink: 0;
@@ -257,7 +260,7 @@
   position: absolute;
   cursor: pointer;
   inset: 0;
-  background-color: #d8dade;
+  background-color: var(--border);
   border-radius: 34px;
   transition: 0.2s;
 }
@@ -286,8 +289,8 @@
 /* ---------- Buttons ---------- */
 .settingsSecondaryButton {
   background: transparent;
-  border: 2px solid #16233F;
-  color: #16233F;
+  border: 2px solid var(--text-h);
+  color: var(--text-h);
   padding: 10px 18px;
   border-radius: 8px;
   cursor: pointer;
@@ -297,8 +300,8 @@
 }
 
 .settingsSecondaryButton:hover {
-  background: #16233F;
-  color: #fff;
+  background: var(--text-h);
+  color: var(--bg);
 }
 
 /* ---------- Danger zone ---------- */
@@ -343,11 +346,11 @@
 }
 
 .settingsDangerTip {
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 8px;
   padding: 12px 14px;
   font-size: 13px;
-  color: #6B7280 !important;
+  color: var(--text) !important;
   margin: 0 !important;
   text-align: left;
 }
@@ -408,26 +411,28 @@
 .settingsInput {
   width: 100%;
   height: 44px;
-  border: 1px solid #E7E9ED;
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: #f9fafb;
+  background: var(--bg-input);
   padding: 0 14px;
   font-size: 14px;
   outline: none;
   box-sizing: border-box;
   transition: 0.2s;
   text-align: left;
+  color: var(--text-h);
 }
 
 .settingsInput:focus {
   border-color: #F2681C;
-  background: #ffffff;
+  background: var(--bg-card);
   box-shadow: 0 0 0 3px rgba(242, 104, 28, 0.12);
 }
 
 .settingsDeleteInput {
   margin-bottom: 16px;
   background: #ffffff;
+  color: #16233F;
 }
 
 /* ---------- Modal ---------- */
@@ -448,7 +453,7 @@
 }
 
 .settingsModal {
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 16px;
   padding: 32px;
   max-width: 420px;
@@ -477,13 +482,13 @@
 }
 
 .settingsModal h3 {
-  color: #16233F;
+  color: var(--text-h);
   font-size: 19px;
   margin: 0 0 10px 0;
 }
 
 .settingsModal p {
-  color: #6B7280;
+  color: var(--text);
   font-size: 14px;
   line-height: 1.5;
   margin: 0 0 24px 0;
@@ -501,8 +506,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #16233F;
-  color: #ffffff;
+  background: var(--text-h);
+  color: var(--bg);
   padding: 16px 40px;
   display: flex;
   align-items: center;
@@ -531,7 +536,7 @@
 .settingsDiscardButton {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.4);
-  color: #ffffff;
+  color: inherit;
   padding: 10px 20px;
   border-radius: 20px;
   cursor: pointer;

@@ -2,6 +2,7 @@
 import "./CategoriesPage.css";
 import { useNavigate } from "react-router-dom";
 import NavigationBar from "../Components/NavigationBar";
+import Footer from "../Components/Footer";
 import {
   FaCogs,
   FaBolt,
@@ -36,15 +37,9 @@ function CategoriesPage() {
       <main className="CategoriesMainContent">
         {/* Header */}
         <header className="CategoriesTopHeader">
-          <div className="CategoriesPageTitle">
-            <h1>Categories</h1>
-          </div>
-          <div className="CategoriesHeaderActions" onClick={() => navigate("/profile")}>
-            <img src="Profile.png" alt="Profile" className="CategoriesProfilePic" />
-          </div>
+          <h1 className="CategoriesPageTitle">Categories</h1>
+          <p className="CategoriesSubtitle">Browse car parts by category</p>
         </header>
-
-        <p className="CategoriesSubtitle">Browse car parts by category</p>
 
         {/* Category Grid */}
         <div className="CategoriesGrid">
@@ -60,6 +55,8 @@ function CategoriesPage() {
           ))}
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }

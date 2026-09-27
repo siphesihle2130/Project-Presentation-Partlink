@@ -3,10 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavigationBar from "../Components/NavigationBar";
 import Footer from "../Components/Footer";
+import { useTheme } from "../Context/ThemeContext";
 import {
     FaBell,
     FaMoon,
-    FaTrash,
     FaCheckCircle,
     FaExclamationTriangle
 } from "react-icons/fa";
@@ -18,7 +18,7 @@ function SettingsPage() {
     const [smsNotifs, setSmsNotifs] = useState(false);
     const [promoNotifs, setPromoNotifs] = useState(true);
 
-    const [darkMode, setDarkMode] = useState(false);
+    const { darkMode, setDarkMode } = useTheme();
     const [compactLayout, setCompactLayout] = useState(false);
 
     const [dirty, setDirty] = useState(false);

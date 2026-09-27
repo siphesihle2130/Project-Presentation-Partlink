@@ -67,14 +67,18 @@ function RegisterPage() {
                 setError(signUpError.message);
                 return;
             }
+if (data.user) {
+    // Save the user's location so NavigationBar shows it immediately
+    const fullLocation = `${formData.city}, ${formData.province}`;
+    window.localStorage.setItem("partlink_location", fullLocation);
+    window.dispatchEvent(new Event("partlink-location-updated"));
 
-            if (data.user) {
-                alert(
-                    "Account created successfully! Please check your email if email confirmation is required."
-                );
+    alert(
+        "Account created successfully! Please check your email if email confirmation is required."
+    );
 
-                navigate("/login");
-            }
+    navigate("/login");
+}
         } catch (err) {
             console.error(err);
             setError("Something went wrong while creating your account.");
