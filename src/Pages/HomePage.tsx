@@ -1,16 +1,17 @@
 import "./HomePage.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 // import { UseCart } from "../Components/UseCart";
 import NavigationBar from "../Components/NavigationBar";
 import { FaAngleDoubleRight, FaMapPin, FaEnvelope, FaPhone, FaClock, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import ScrollProgressButton from "../Components/ScrollProgressButton";
 import Footer from "../Components/Footer";
 // import { FaShoppingBag, FaPhone, FaMailBulk, FaMapPin, FaStore, FaHeart, FaCreditCard, FaQuestionCircle, FaShoppingBasket } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 function HomePage() {
     const navigate = useNavigate();
+    const routerLocation = useLocation();
 
     const [form] = useState({
             fullName: "",
@@ -35,6 +36,26 @@ function HomePage() {
       });
     }
   };
+
+    // When another page (e.g. NavigationBar's "Contact" button, or the
+    // Help & Support "Contact Support" button) navigates here with
+    // state: { scrollTo: "someSectionId" }, actually scroll to it once
+    // this page has mounted. Without this, that navigation state was
+    // being passed but never read, so the scroll silently never happened.
+    useEffect(() => {
+        const scrollTo = (routerLocation.state as { scrollTo?: string } | null)?.scrollTo;
+        if (scrollTo) {
+            // Wait a tick for the page to render before scrolling
+            const timer = setTimeout(() => {
+                document.getElementById(scrollTo)?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+            }, 100);
+            return () => clearTimeout(timer);
+        }
+    }, [routerLocation.state]);
+
     return (
 
         <div className="homeContainer">
@@ -301,7 +322,7 @@ function HomePage() {
                 <div className="homeContactHeading">
                     <h1>Contact us</h1>
                     <p>We'll like to hear from you! Reach out to us for any question, feedback or support</p>
-                </div>\
+                </div>
 
                 <div className="homeContactContent">
                     <div className="homeContactCard">

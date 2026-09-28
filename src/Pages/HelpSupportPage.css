@@ -2,24 +2,26 @@
 :root {
   --navy: #1a2a3a;
   --orange: #e85d26;
-  --fog: #f4f6f8;
-  --white: #ffffff;
-  --neutral: #e8eaed;
-  --text-dark: #1a2a3a;
-  --text-light: #6b7a8a;
+}
+
+/* Full-bleed page background so the content doesn't look like a
+   boxed card floating on a plain white page. Space at the top is
+   reserved for the fixed navigation bar, matching the other pages. */
+.help-support-page {
+  min-height: 100vh;
+  background: var(--bg);
+  padding-top: 130px;
 }
 
 .help-support-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
-  background: var(--fog);
-  min-height: 100vh;
+  padding: 40px 20px 60px;
 }
 
 .help-hero {
   background: var(--navy);
-  color: var(--white);
+  color: #ffffff;
   padding: 60px 40px;
   text-align: center;
   border-radius: 8px;
@@ -45,10 +47,10 @@
 }
 
 .help-content {
-  background: var(--white);
+  background: var(--bg-card);
   padding: 40px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow);
 }
 
 .quick-help-grid {
@@ -59,10 +61,10 @@
 }
 
 .help-card {
-  background: var(--white);
+  background: var(--bg-card);
   padding: 24px;
   border-radius: 8px;
-  border: 1px solid var(--neutral);
+  border: 1px solid var(--border);
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -83,20 +85,20 @@
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
-  color: var(--navy);
+  color: var(--text-h);
   margin-bottom: 8px;
 }
 
 .help-card p {
   font-family: 'Liberation Sans', Arial, sans-serif;
   font-size: 0.95rem;
-  color: var(--text-dark);
+  color: var(--text);
   margin-bottom: 12px;
 }
 
 .help-btn {
   background: var(--orange);
-  color: var(--white);
+  color: #ffffff;
   border: none;
   padding: 10px 24px;
   border-radius: 6px;
@@ -120,7 +122,7 @@
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 1.8rem;
-  color: var(--navy);
+  color: var(--text-h);
   margin-bottom: 30px;
   border-bottom: 3px solid var(--orange);
   padding-bottom: 10px;
@@ -133,17 +135,17 @@
 }
 
 .faq-item {
-  border: 1px solid var(--neutral);
+  border: 1px solid var(--border);
   border-radius: 6px;
   margin-bottom: 12px;
   overflow: hidden;
-  background: var(--white);
+  background: var(--bg-card);
 }
 
 .faq-question {
   width: 100%;
   padding: 18px 24px;
-  background: var(--white);
+  background: var(--bg-card);
   border: none;
   text-align: left;
   font-family: 'Poppins', sans-serif;
@@ -154,16 +156,16 @@
   justify-content: space-between;
   align-items: center;
   transition: background 0.2s ease;
-  color: var(--navy);
+  color: var(--text-h);
 }
 
 .faq-question:hover {
-  background: var(--fog);
+  background: var(--bg);
 }
 
 .faq-question.active {
   background: var(--navy);
-  color: var(--white);
+  color: #ffffff;
 }
 
 .faq-icon {
@@ -174,8 +176,8 @@
 
 .faq-answer {
   padding: 20px 24px;
-  background: var(--fog);
-  border-top: 1px solid var(--neutral);
+  background: var(--bg);
+  border-top: 1px solid var(--border);
 }
 
 .faq-answer p {
@@ -183,7 +185,7 @@
   font-size: 0.95rem;
   line-height: 1.7;
   margin: 0;
-  color: var(--text-dark);
+  color: var(--text);
 }
 
 .support-contact {
@@ -198,7 +200,7 @@
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 1.8rem;
-  color: var(--white);
+  color: #ffffff;
   border-bottom: 3px solid var(--orange);
   display: inline-block;
   padding-bottom: 10px;
@@ -223,6 +225,7 @@
 
 .cta-btn {
   padding: 14px 36px;
+  border: none;
   border-radius: 6px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
@@ -235,7 +238,7 @@
 
 .cta-btn.primary {
   background: var(--orange);
-  color: var(--white);
+  color: #ffffff;
 }
 
 .cta-btn.primary:hover {
@@ -244,12 +247,12 @@
 }
 
 .cta-btn.secondary {
-  background: var(--white);
-  color: var(--navy);
+  background: var(--bg-card);
+  color: var(--text-h);
 }
 
 .cta-btn.secondary:hover {
-  background: var(--fog);
+  background: var(--bg);
   transform: scale(1.02);
 }
 
@@ -287,5 +290,135 @@
   
   .support-cta h2 {
     font-size: 1.4rem;
+  }
+}
+
+/* The "Email Us" quick-help card uses an <a> instead of a <button>
+   so it can open a real mailto: link — this makes it look identical
+   to .help-btn. */
+.help-btn-link {
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* ---------- Quick-help modals (Seller Guide / Fitment Help) ---------- */
+.help-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 2000;
+  animation: helpModalFadeIn 0.15s ease;
+}
+
+@keyframes helpModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.help-modal {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: helpModalPop 0.2s ease;
+}
+
+@keyframes helpModalPop {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.help-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--text);
+  cursor: pointer;
+  line-height: 1;
+  padding: 6px;
+}
+
+.help-modal-close:hover {
+  color: var(--text-h);
+}
+
+.help-modal-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--text-h);
+  margin: 0 0 12px;
+  border-bottom: 3px solid var(--orange);
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.help-modal-intro {
+  font-family: 'Liberation Sans', Arial, sans-serif;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 16px 0 20px;
+}
+
+.help-modal-steps,
+.help-modal-list {
+  margin: 0 0 24px;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.help-modal-steps li,
+.help-modal-list li {
+  font-family: 'Liberation Sans', Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.help-modal-steps li strong,
+.help-modal-list li strong {
+  color: var(--text-h);
+}
+
+.help-modal-cta {
+  background: var(--orange);
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.help-modal-cta:hover {
+  background: #c94d1f;
+  transform: scale(1.02);
+}
+
+@media (max-width: 480px) {
+  .help-modal {
+    padding: 28px 20px;
+  }
+
+  .help-modal-title {
+    font-size: 1.3rem;
   }
 }
