@@ -1,7 +1,7 @@
 // CartPage.tsx
 import "./CartPage.css";
 import { useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaTrash, FaShoppingCart } from "react-icons/fa";
+import { FaTrash, FaShoppingCart } from "react-icons/fa";
 import NavigationBar from "../Components/NavigationBar";
 import { useCart } from "../Context/CartContext";
 import { parsePrice, formatCurrency } from "../utils/currency";
@@ -26,13 +26,7 @@ function CartPage() {
       <main className="CartMainContent">
         {/* Header */}
         <header className="CartTopHeader">
-          <div className="CartPageTitle">
-            <FaArrowLeft className="CartBackBtn" onClick={() => navigate(-1)} />
-            <h1>My Cart</h1>
-          </div>
-          <div className="CartHeaderActions" onClick={() => navigate("/profile")}>
-            <img src="Profile.png" alt="Profile" className="CartProfilePic" />
-          </div>
+          <h1>My Cart</h1>
         </header>
 
         {items.length === 0 ? (

@@ -1,0 +1,608 @@
+/* Override the global #root { text-align: center } from index.css,
+   which was causing headings to appear misaligned under longer paragraphs */
+.settingsPageWrapper {
+  min-height: 100vh;
+  /* background-color: var(--bg); */
+  background-color: #c5ced4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: left;
+  transition: background-color 0.2s ease;
+}
+
+/* ---------- Page header ---------- */
+.settingsPageHeader {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1100px;
+  margin: 130px auto 0;
+  padding: 0 20px;
+}
+
+.settingsPageHeader h1 {
+  font-size: 1.778rem;
+  font-weight: 700;
+  color: var(--text-h);
+  opacity: 1;
+  background: none;
+  -webkit-text-fill-color: initial;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+.settingsPageHeader p {
+  font-size: 0.778rem;
+  color: var(--text);
+  margin: 0;
+  text-align: center;
+}
+
+.settingsLayout {
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 100px;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* ---------- Sidebar ---------- */
+.settingsSidebar {
+  position: sticky;
+  top: 130px;
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 24px 18px;
+  box-shadow: var(--shadow);
+  transition: background-color 0.2s ease;
+}
+
+.settingsSidebarHeader h1 {
+  font-size: 1.222rem;
+  font-weight: 700;
+  letter-spacing: normal;
+  color: var(--text-h);
+  margin: 0 0 4px 0;
+  text-align: left;
+}
+
+.settingsSidebarHeader p {
+  font-size: 0.722rem;
+  color: var(--text);
+  margin: 0 0 20px 0;
+  text-align: left;
+}
+
+.settingsSidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settingsSidebarNav button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.778rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.settingsSidebarNav button:hover {
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.settingsSidebarNav button.active {
+  background: var(--text-h);
+  color: var(--bg);
+}
+
+.settingsSidebarNav button.danger {
+  color: #d9420f;
+}
+
+.settingsSidebarNav button.danger.active {
+  background: #d9420f;
+  color: #ffffff;
+}
+
+.settingsSidebarDivider {
+  height: 1px;
+  background: var(--border);
+  margin: 10px 0;
+}
+
+/* ---------- Content ---------- */
+.settingsContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.settingsCard {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: var(--shadow);
+  scroll-margin-top: 140px;
+  text-align: left;
+  transition: background-color 0.2s ease;
+}
+
+.settingsCardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.settingsCardHeader h2 {
+  font-size: 0.944rem;
+  font-weight: 700;
+  letter-spacing: normal;
+  color: var(--text-h);
+  margin: 0 0 3px 0;
+  text-align: left;
+}
+
+.settingsCardHeader p {
+  font-size: 0.722rem;
+  color: var(--text);
+  margin: 0;
+  text-align: left;
+}
+
+.settingsIconBadge {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #FBE7DC;
+  color: #F2681C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.944rem;
+}
+
+.settingsIconBadgeDanger {
+  background: #fdeee9;
+  color: #d9420f;
+}
+
+/* ---------- Toggle / row layouts ---------- */
+.settingsToggleRow,
+.settingsRowBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.settingsToggleRow:last-child,
+.settingsRowBetween:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* This is the key fix: fixed max-width + left align so headings
+   never sit under the center of a longer paragraph beneath them */
+.settingsToggleText {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  max-width: 420px;
+}
+
+.settingsToggleText strong {
+  color: var(--text-h);
+  font-size: 0.778rem;
+  text-align: left;
+}
+
+.settingsToggleText p {
+  color: var(--text);
+  font-size: 0.694rem;
+  margin: 3px 0 0 0;
+  text-align: left;
+}
+
+/* ---------- Select dropdown ---------- */
+.settingsSelect {
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 0.722rem;
+  color: var(--text-h);
+  background: var(--bg-input);
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.settingsSelect:focus {
+  border-color: #F2681C;
+}
+
+/* ---------- Switch ---------- */
+.settingsSwitch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.settingsSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.settingsSlider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--border);
+  border-radius: 34px;
+  transition: 0.2s;
+}
+
+.settingsSlider::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.settingsSwitch input:checked + .settingsSlider {
+  background-color: #F2681C;
+}
+
+.settingsSwitch input:checked + .settingsSlider::before {
+  transform: translateX(18px);
+}
+
+/* ---------- Buttons ---------- */
+.settingsSecondaryButton {
+  background: transparent;
+  border: 2px solid var(--text-h);
+  color: var(--text-h);
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.722rem;
+  white-space: nowrap;
+}
+
+.settingsSecondaryButton:hover {
+  background: var(--text-h);
+  color: var(--bg);
+}
+
+/* ---------- Danger zone ---------- */
+.settingsDangerCard {
+  border: 1px solid #fbd9cc;
+}
+
+.settingsDangerExplainer {
+  background: #fdf5f2;
+  border: 1px solid #fbd9cc;
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.settingsDangerExplainer > p {
+  color: #6B2A0F;
+  font-size: 0.778rem;
+  margin: 0 0 14px 0;
+  text-align: left;
+}
+
+.settingsDangerExplainer ul {
+  margin: 0 0 16px 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.settingsDangerExplainer li {
+  color: #6B2A0F;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.settingsDangerExplainer li strong {
+  color: #a13407;
+}
+
+.settingsDangerTip {
+  background: var(--bg-card);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.722rem;
+  color: var(--text) !important;
+  margin: 0 !important;
+  text-align: left;
+}
+
+.settingsDangerLink {
+  color: #F2681C;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.settingsDangerActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.settingsDeleteButton {
+  background: transparent;
+  border: 2px solid #d9420f;
+  color: #d9420f;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.722rem;
+}
+
+.settingsDeleteButton:hover {
+  background: #d9420f;
+  color: #fff;
+}
+
+.settingsDeleteButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.settingsDeleteButton:disabled:hover {
+  background: transparent;
+  color: #d9420f;
+}
+
+.settingsDeleteConfirmInline {
+  background: #fdeee9;
+  border-radius: 12px;
+  padding: 20px 22px;
+  text-align: left;
+}
+
+.settingsDeleteConfirmInline p {
+  color: #a13407;
+  font-size: 0.778rem;
+  margin: 0 0 12px 0;
+  text-align: left;
+}
+
+.settingsInput {
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-input);
+  padding: 0 14px;
+  font-size: 0.778rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.2s;
+  text-align: left;
+  color: var(--text-h);
+}
+
+.settingsInput:focus {
+  border-color: #F2681C;
+  background: var(--bg-card);
+  box-shadow: 0 0 0 3px rgba(242, 104, 28, 0.12);
+}
+
+.settingsDeleteInput {
+  margin-bottom: 16px;
+  background: #ffffff;
+  color: #16233F;
+}
+
+/* ---------- Modal ---------- */
+.settingsModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 35, 63, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.settingsModal {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: modalPop 0.2s ease;
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.settingsModalIcon {
+  width: 56px;
+  height: 56px;
+  background: #fdeee9;
+  color: #d9420f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.222rem;
+  margin: 0 auto 18px;
+}
+
+.settingsModal h3 {
+  color: var(--text-h);
+  font-size: 1.056rem;
+  margin: 0 0 10px 0;
+}
+
+.settingsModal p {
+  color: var(--text);
+  font-size: 0.778rem;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+.settingsModalActions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* ---------- Sticky save bar ---------- */
+.settingsStickyBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--text-h);
+  color: var(--bg);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+  z-index: 1200;
+  animation: slideUp 0.25s ease;
+  text-align: left;
+}
+
+.settingsStickyBarSaved {
+  background: #1FA97E;
+  justify-content: center;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.settingsStickyBarActions {
+  display: flex;
+  gap: 12px;
+}
+
+.settingsDiscardButton {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: inherit;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.722rem;
+}
+
+.settingsDiscardButton:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.settingsSaveButton {
+  background: #F2681C;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.722rem;
+  transition: 0.2s;
+}
+
+.settingsSaveButton:hover {
+  background: #d9560f;
+}
+
+.settingsSavedMsg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.778rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .settingsLayout {
+    flex-direction: column;
+    padding: 30px 20px 100px;
+  }
+
+  .settingsPageHeader {
+    margin-top: 130px;
+  }
+
+  .settingsSidebar {
+    position: static;
+    width: 100%;
+  }
+
+  .settingsSidebarNav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .settingsStickyBar {
+    padding: 14px 20px;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .settingsStickyBarActions {
+    justify-content: center;
+  }
+}

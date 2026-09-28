@@ -1,24 +1,19 @@
 :root {
   --navy: #1a2a3a;
   --orange: #e85d26;
-  --fog: #f4f6f8;
-  --white: #ffffff;
-  --neutral: #e8eaed;
-  --text-dark: #1a2a3a;
-  --text-light: #6b7a8a;
 }
 
 .about-us-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px 60px;
-  background: var(--fog);
+  background: var(--bg);
 }
 
 /* HERO */
 .about-hero {
   background: var(--navy);
-  color: var(--white);
+  color: #ffffff;
   padding: 80px 40px;
   text-align: center;
   border-radius: 0 0 16px 16px;
@@ -78,7 +73,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 1.9rem;
-  color: var(--navy);
+  color: var(--text-h);
   margin: 0 0 20px;
 }
 
@@ -88,17 +83,17 @@
   grid-template-columns: 1.4fr 1fr;
   gap: 40px;
   align-items: start;
-  background: var(--white);
+  background: var(--bg-card);
   padding: 44px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
 }
 
 .story-text p {
   font-family: "Liberation Sans", Arial, sans-serif;
   font-size: 1.05rem;
   line-height: 1.75;
-  color: var(--text-dark);
+  color: var(--text-h);
   margin: 0 0 16px;
 }
 
@@ -127,7 +122,7 @@
   font-family: "Poppins", sans-serif;
   font-size: 1.3rem !important;
   font-weight: 600;
-  color: var(--white) !important;
+  color: #ffffff !important;
   line-height: 1.5;
   margin: 0;
 }
@@ -141,10 +136,10 @@
 }
 
 .value-card {
-  background: var(--white);
+  background: var(--bg-card);
   padding: 28px 24px;
   border-radius: 10px;
-  border: 1px solid var(--neutral);
+  border: 1px solid var(--border);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
@@ -158,7 +153,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 1.4rem;
-  color: var(--neutral);
+  color: var(--border);
   margin-bottom: 10px;
 }
 
@@ -166,7 +161,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
-  color: var(--navy);
+  color: var(--text-h);
   margin: 0 0 8px;
 }
 
@@ -174,18 +169,18 @@
   font-family: "Liberation Sans", Arial, sans-serif;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--text-light);
+  color: var(--text);
   margin: 0;
 }
 
 /* POSITIONING QUOTE */
 .positioning-text {
   position: relative;
-  background: var(--white);
+  background: var(--bg-card);
   padding: 40px 48px;
   border-radius: 12px;
   border-left: 4px solid var(--orange);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
 }
 
 .quote-mark {
@@ -203,7 +198,7 @@
   font-family: "Liberation Sans", Arial, sans-serif;
   font-size: 1.2rem;
   line-height: 1.6;
-  color: var(--navy);
+  color: var(--text-h);
   font-weight: 500;
   margin: 0;
   max-width: 800px;
@@ -221,7 +216,7 @@
 
 .stat-item {
   text-align: center;
-  color: var(--white);
+  color: #ffffff;
 }
 
 .stat-number {
@@ -243,8 +238,8 @@
 /* CTA */
 .cta-banner {
   text-align: center;
-  background: var(--white);
-  border: 2px dashed var(--neutral);
+  background: var(--bg-card);
+  border: 2px dashed var(--border);
   border-radius: 12px;
   padding: 50px 30px;
   margin-top: 60px;
@@ -256,7 +251,7 @@
 
 .cta-banner p {
   font-family: "Liberation Sans", Arial, sans-serif;
-  color: var(--text-light);
+  color: var(--text);
   font-size: 1.05rem;
   margin: 0 0 24px;
 }
@@ -265,7 +260,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 1rem;
-  color: var(--white);
+  color: #ffffff;
   background: var(--orange);
   border: none;
   padding: 14px 32px;

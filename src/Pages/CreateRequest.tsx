@@ -16,22 +16,21 @@ function CreateRequest() {
   const listingData = location.state || {};
 
   const [formData, setFormData] = useState({
-    id: listingData.id || 1,
-    name: listingData.name || "",
-    vehicle: listingData.vehicle || "",
-    price: listingData.price || "",
-    image: listingData.image || "",
-    views: listingData.views || 0,
-    likes: listingData.likes || 0,
-    description: listingData.description || "",
-    category: listingData.category || "",
-    condition: listingData.condition || "",
-    year: listingData.year || "",
-    location: listingData.location || "",
-    gender: listingData.gender || "",
-    quantity: listingData.quantity || "",
-    isActive: true
-  });
+  id: listingData.id || Date.now(),
+  name: listingData.name || "",
+  vehicle: listingData.vehicle || "",
+  budget: listingData.budget || "",
+  image: listingData.image || "",
+  responses: listingData.responses || 0,
+  description: listingData.description || "",
+  category: listingData.category || "",
+  condition: listingData.condition || "",
+  year: listingData.year || "",
+  date: listingData.date || new Date().toLocaleDateString("en-GB", {
+    day: "numeric", month: "long", year: "numeric"
+  }),
+  isActive: true
+});
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -169,12 +168,12 @@ function CreateRequest() {
 
             <div className="CreateRequestformRow">
               <div className="CreateRequestformGroup">
-                <label htmlFor="price">Price (R) *</label>
+                <label htmlFor="budget">Budget (R) *</label>
                 <input
                   type="text"
-                  id="price"
-                  name="price"
-                  value={formData.price}
+                  id="budget"
+                  name="budget"
+                  value={formData.budget}
                   onChange={handleInputChange}
                   placeholder="e.g., R8,250"
                   required

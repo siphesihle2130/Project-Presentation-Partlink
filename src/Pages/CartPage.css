@@ -9,14 +9,15 @@
 .CartContainer {
   display: flex;
   min-height: 100vh;
-  background-color: #f4f6f9;
+  background-color: #c5ced4;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
  
 /* --- Main Content --- */
 .CartMainContent {
   flex: 1;
-  padding: 20px 40px;
+  margin-top: 130px;
+  padding: 20px 40px 60px 40px;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -24,55 +25,16 @@
  
 .CartTopHeader {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 25px;
-  flex-wrap: wrap;
-  gap: 15px;
+  text-align: center;
 }
  
-.CartPageTitle {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
- 
-.CartBackBtn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 6px;
-  color: #0a0a0a;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 38px;
-  margin-top: 4px;
-}
- 
-.CartBackBtn:hover {
-  background: #f0f0f0;
-  border-color: #bbb;
-}
- 
-.CartPageTitle h1 {
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: #222;
-}
- 
-.CartHeaderActions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
- 
-.CartProfilePic {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  object-fit: cover;
-  cursor: pointer;
-  border: 2px solid #ddd;
+.CartTopHeader h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #16233F;
 }
  
 /* --- Layout --- */
@@ -288,7 +250,7 @@
 /* --- Responsive --- */
 @media (max-width: 1024px) {
   .CartMainContent {
-    padding: 15px 20px;
+    padding: 15px 20px 60px 20px;
   }
  
   .CartLayout {
@@ -305,8 +267,8 @@
     padding: 20px;
   }
  
-  .CartPageTitle h1 {
-    font-size: 1.3rem;
+  .CartTopHeader h1 {
+    font-size: 1.4rem;
   }
  
   .CartItemRow {
@@ -329,7 +291,8 @@
  
 @media (max-width: 480px) {
   .CartMainContent {
-    padding: 10px;
+    margin-top: 150px;
+    padding: 10px 10px 40px 10px;
   }
  
   .CartCard {

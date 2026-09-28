@@ -5,9 +5,11 @@ import {
     FaShoppingCart,
     FaSearch,
     FaCog,
-    FaHeart
+    FaHeart,
+    FaBell
 } from "react-icons/fa";
 import { useCart } from "../Context/CartContext";
+import { useLanguage } from "../Context/LanguageContext";
 import { useState, useEffect } from "react";
 import { MdLocationPin } from "react-icons/md";
 
@@ -15,6 +17,7 @@ function NavigationBar() {
     const navigate = useNavigate();
     const location = useLocation();
     const { cartCount } = useCart();
+    const { t } = useLanguage();
 
     const { user } = useAuth();
 
@@ -26,6 +29,7 @@ function NavigationBar() {
 
     const [avatar, setAvatar] = useState("/Profile.png");
 
+    // Set location and avatar when the user loads or changes
     useEffect(() => {
         if (!user) {
             setUserLocation("Select your location");
@@ -42,20 +46,19 @@ function NavigationBar() {
         setUserLocation(loc || "Select your location");
 
         setAvatar(
-            window.localStorage.getItem(
-                `partlink_avatar_${user.id}`
-            ) || "/Profile.png"
+            window.localStorage.getItem(`partlink_avatar_${user.id}`) ||
+            "/Profile.png"
         );
     }, [user]);
 
+    // Refresh avatar when the profile image is updated
     useEffect(() => {
         const refreshAvatar = () => {
             if (!user) return;
 
             setAvatar(
-                window.localStorage.getItem(
-                    `partlink_avatar_${user.id}`
-                ) || "/Profile.png"
+                window.localStorage.getItem(`partlink_avatar_${user.id}`) ||
+                "/Profile.png"
             );
         };
 
@@ -71,8 +74,9 @@ function NavigationBar() {
             );
     }, [user]);
 
+    // Refresh location when it is updated
     useEffect(() => {
-        const refreshLocation = async () => {
+        const refreshLocation = () => {
             if (!user) return;
 
             const meta = user.user_metadata || {};
@@ -102,6 +106,21 @@ function NavigationBar() {
         // navigate(`/shop?q=${encodeURIComponent(query)}`);
     };
 
+    const handleContactClick = () => {
+        if (location.pathname !== "/home") {
+            navigate("/home", { state: { scrollTo: "contactSection" } });
+        } else {
+            document.getElementById("contactSection")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    };
+
+    const isRequestsActive =
+        location.pathname === "/request" ||
+        location.pathname === "/requests";
+
     return (
         <div className="navContainer">
             <aside className="sidebar">
@@ -125,52 +144,45 @@ function NavigationBar() {
 
                         <input
                             type="text"
-                            placeholder="Search for car parts..."
+                            placeholder={t("navSearchPlaceholder")}
                             value={query}
                             onChange={(e) =>
                                 setQuery(e.target.value)
                             }
                         />
-
-                        <button type="submit">
-                            Search
-                        </button>
+                        <button type="submit">{t("navSearch")}</button>
                     </form>
+
+                    <button className="navContactButton" onClick={handleContactClick}>
+                        {t("navContact")}
+                    </button>
                 </div>
 
                 <div>
                     <header className="navTopHeader">
                         <div className="navHeaderActions">
                             <div className="navIcons">
-                                <FaShoppingCart
-                                    className="navCart"
-                                    onClick={() =>
-                                        navigate("/cart")
-                                    }
-                                />
+                                <span
+                                    className="navCartIconWrapper"
+                                    onClick={() => navigate("/cart")}
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    <FaShoppingCart className="navCart" />
+                                    {cartCount > 0 && (
+                                        <span className="navCartBadge">{cartCount}</span>
+                                    )}
+                                </span>
 
-                                <FaHeart
-                                    className="navCart"
-                                    onClick={() =>
-                                        navigate("/saved")
-                                    }
-                                />
-
-                                <FaCog
-                                    className="navSettings"
-                                    onClick={() =>
-                                        navigate("/settings")
-                                    }
-                                />
+                                <FaHeart className="navCart" onClick={() => navigate("/saved")} />
+                                <FaBell className="navSettings" onClick={() => navigate("/notifications")} />
+                                <FaCog className="navSettings" onClick={() => navigate("/settings")} />
                             </div>
 
                             <img
                                 src={avatar}
                                 alt="Profile"
                                 className="profileProfilePic"
-                                onClick={() =>
-                                    navigate("/profile")
-                                }
+                                onClick={() => navigate("/profile")}
                             />
                         </div>
                     </header>
@@ -179,117 +191,47 @@ function NavigationBar() {
 
             <div className="secondNav">
                 <nav className="navMenu">
-
                     <div
-                        className={`navItem navItemCart ${
-                            location.pathname === "/home"
-                                ? "navItemActive"
-                                : ""
-                        }`}
+                        className={`navItem ${location.pathname === "/home" ? "navItemActive" : ""}`}
                         onClick={() => navigate("/home")}
                     >
-                        <span className="navCartIconWrapper">
-                            {cartCount > 0 && (
-                                <span className="navCartBadge">
-                                    {cartCount}
-                                </span>
-                            )}
-                        </span>
-                        <span>Home</span>
+                        <span>{t("navHome")}</span>
                     </div>
 
                     <div
-                        className={`navItem navItemCart ${
-                            location.pathname === "/about-us"
-                                ? "navItemActive"
-                                : ""
-                        }`}
+                        className={`navItem ${location.pathname === "/about-us" ? "navItemActive" : ""}`}
                         onClick={() => navigate("/about-us")}
                     >
-                        <span className="navCartIconWrapper">
-                            {cartCount > 0 && (
-                                <span className="navCartBadge">
-                                    {cartCount}
-                                </span>
-                            )}
-                        </span>
-                        <span>About Us</span>
+                        <span>{t("navAboutUs")}</span>
                     </div>
 
                     <div
-                        className={`navItem navItemCart ${
-                            location.pathname === "/products"
-                                ? "navItemActive"
-                                : ""
-                        }`}
+                        className={`navItem ${location.pathname === "/products" ? "navItemActive" : ""}`}
                         onClick={() => navigate("/products")}
                     >
-                        <span className="navCartIconWrapper">
-                            {cartCount > 0 && (
-                                <span className="navCartBadge">
-                                    {cartCount}
-                                </span>
-                            )}
-                        </span>
-                        <span>Products</span>
+                        <span>{t("navProducts")}</span>
                     </div>
 
                     <div
-                        className={`navItem navItemCart ${
-                            location.pathname === "/categories"
-                                ? "navItemActive"
-                                : ""
-                        }`}
+                        className={`navItem ${location.pathname === "/categories" ? "navItemActive" : ""}`}
                         onClick={() => navigate("/categories")}
                     >
-                        <span className="navCartIconWrapper">
-                            {cartCount > 0 && (
-                                <span className="navCartBadge">
-                                    {cartCount}
-                                </span>
-                            )}
-                        </span>
-                        <span>Categories</span>
+                        <span>{t("navCategories")}</span>
                     </div>
 
                     <div
-                        className={`navItem navItemCart ${
-                            location.pathname === "/carpart-listing"
-                                ? "navItemActive"
-                                : ""
-                        }`}
-                        onClick={() =>
-                            navigate("/carpart-listing")
-                        }
+                        className={`navItem ${location.pathname === "/carpart-listing" ? "navItemActive" : ""}`}
+                        onClick={() => navigate("/carpart-listing")}
                     >
-                        <span className="navCartIconWrapper">
-                            {cartCount > 0 && (
-                                <span className="navCartBadge">
-                                    {cartCount}
-                                </span>
-                            )}
-                        </span>
-                        <span>Sell</span>
+                        <span>{t("navSell")}</span>
                     </div>
 
                     <div
-                        className={`navItem navItemCart ${
-                            location.pathname === "/requests"
-                                ? "navItemActive"
-                                : ""
-                        }`}
+                        className={`navItem ${isRequestsActive ? "navItemActive" : ""}`}
                         onClick={() => navigate("/request")}
                     >
-                        <span className="navCartIconWrapper">
-                            {cartCount > 0 && (
-                                <span className="navCartBadge">
-                                    {cartCount}
-                                </span>
-                            )}
-                        </span>
-                        <span>Requests</span>
+                        <span>{t("navRequests")}</span>
                     </div>
-
                 </nav>
             </div>
         </div>

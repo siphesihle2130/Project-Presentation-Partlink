@@ -1,198 +1,134 @@
-.image-uploader {
+.image-uploader-dark {
   width: 100%;
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 25px;
-  background-color: white;
-  border: 1px solid #ddd;
+  max-width: 350px; /* Matches the column width in the screenshot */
+  background-color: #1a2a45; /* Dark Navy Background */
   border-radius: 12px;
+  padding: 20px;
   box-sizing: border-box;
+  color: #fff;
 }
 
-/* Header */
+.upload-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: #ffffff;
+}
 
-.upload-header {
+/* Main Large Preview */
+.main-preview {
+  width: 100%;
+  height: 220px;
+  background-color: #101f33; /* Slightly darker navy for the box */
+  border-radius: 12px;
+  overflow: hidden;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  justify-content: center;
+  margin-bottom: 15px;
 }
 
-.upload-header h2 {
-  margin: 0;
-  font-size: 22px;
+.main-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Keeps image fully visible inside the box */
 }
 
-.upload-header p {
-  margin: 5px 0 0;
-  color: #777;
-}
-
-.upload-header span {
-  color: #777;
+.empty-main-preview {
+  color: #8e96a8;
   font-size: 14px;
 }
 
-
-/* Add Photos button */
-
-.add-photos-button {
-  width: 40%;
-  height: 40px;
-  /* display: flex; */
-  /* padding: 15px; */
-  border: none;
-  border-radius: 30px;
-  background-color: #F2681C;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
+/* Thumbnails Row */
+.thumbnail-row {
+  display: flex;
+  gap: 12px;
   align-items: center;
-  margin-top: 20px;
 }
 
-.add-photos-button:hover {
-  background-color: #1e3647;
-}
-
-.add-photos-button:disabled {
-  cursor: not-allowed;
-  /* opacity: 0.5; */
-}
-
-.camera-icon {
-  margin-right: 8px;
-}
-
-
-/* Image grid */
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin-top: 20px;
-}
-
-
-/* Individual image */
-
-.image-card {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
+.thumbnail-card {
+  width: 50px;
+  height: 50px;
   border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background-color: #101f33;
   border: 2px solid transparent;
-  background-color: #eee;
+  transition: border-color 0.2s ease;
 }
 
-.image-card img {
+.thumbnail-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-
-/* Main image */
-
-.image-card.main-image {
-  border: 3px solid #222;
+/* Active Thumbnail Border */
+.active-thumbnail {
+  border-color: #d24f1a; /* Teal Border */
 }
 
-
-/* Main image badge */
-
-.main-badge {
+/* Delete Badge */
+.delete-badge {
   position: absolute;
-  top: 8px;
-  left: 8px;
-  padding: 5px 8px;
-  border-radius: 5px;
-  background-color: white;
-  color: #222;
-  font-size: 11px;
-  font-weight: bold;
-}
-
-
-/* Delete button */
-
-.delete-button {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-
-  width: 30px;
-  height: 30px;
-
+  top: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
   border: none;
   border-radius: 50%;
-
-  background-color: white;
-  color: #333;
-
-  font-size: 20px;
-  line-height: 20px;
-
-  cursor: pointer;
-}
-
-.delete-button:hover {
-  background-color: #eee;
-}
-
-
-/* Set as Main */
-
-.set-main-button {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  right: 8px;
-
-  padding: 7px;
-
-  border: none;
-  border-radius: 6px;
-
-  background-color: white;
-  color: #222;
-
   font-size: 12px;
-  font-weight: 600;
-
+  line-height: 12px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
-.set-main-button:hover {
-  background-color: #eee;
+.delete-badge:hover {
+  background-color: #ff4d4f;
 }
 
+/* Add Button */
+.add-image-button {
+  width: 50px;
+  height: 50px;
+  background-color: #253653;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
 
-/* Instructions */
+.add-image-button:hover {
+  background-color: #d24f1a;
+}
 
-.upload-info {
+.add-image-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.upload-limit-info {
   margin-top: 15px;
-  color: #777;
-  font-size: 13px;
+  color: #8e96a8;
+  font-size: 12px;
+  text-align: center;
 }
 
-.imagesTopic{
-    font-size: 20px;
-    font-weight: 600;
-    color: #222;
-}
-
-/* ===================================================================Mobile */
-
-@media (max-width: 600px) {
-
-  .image-uploader {
-    padding: 15px;
+/* Mobile */
+@media (max-width: 400px) {
+  .thumbnail-row {
+    flex-wrap: wrap;
   }
-
-  .image-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
 }

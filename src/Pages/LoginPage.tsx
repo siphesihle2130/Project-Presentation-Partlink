@@ -11,14 +11,6 @@ function LoginPage() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const handleForgotPassword = () => {
-        navigate("/reset-password");
-    };
-
-    const handleSignUp = () => {
-        navigate("/register");
-    };
-
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("");
@@ -38,16 +30,23 @@ function LoginPage() {
                 });
 
             if (signInError) {
-                setError(signInError.message);
+                console.error("Login error:", signInError);
+                setError(
+                    signInError.message === "Email not confirmed"
+                        ? "Please confirm your email first. Check your inbox."
+                        : signInError.message
+                );
                 return;
             }
 
             if (data.session) {
-                navigate("/home");
+                navigate("/home", { replace: true });
+            } else {
+                setError("Login succeeded but no session was created.");
             }
         } catch (err) {
             console.error(err);
-            setError("Something went wrong while signing you in.");
+            setError("Could not reach the server. Check your internet and try again.");
         } finally {
             setLoading(false);
         }
@@ -90,9 +89,9 @@ function LoginPage() {
                         className="forgot-link"
                         role="button"
                         tabIndex={0}
-                        onClick={handleForgotPassword}
-                        onKeyPress={(e) => {
-                            if (e.key === "Enter") handleForgotPassword();
+                        onClick={() => navigate("/reset-password")}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") navigate("/reset-password");
                         }}
                     >
                         Forgot password?
@@ -111,9 +110,9 @@ function LoginPage() {
                         <span
                             role="button"
                             tabIndex={0}
-                            onClick={handleSignUp}
-                            onKeyPress={(e) => {
-                                if (e.key === "Enter") handleSignUp();
+                            onClick={() => navigate("/register")}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") navigate("/register");
                             }}
                         >
                             Sign up
