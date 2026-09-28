@@ -1,5 +1,5 @@
 import "./SettingsPage.css";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import NavigationBar from "../Components/NavigationBar";
 import Footer from "../Components/Footer";
@@ -7,11 +7,14 @@ import { useTheme } from "../Context/ThemeContext";
 import { useLanguage, type Language } from "../Context/LanguageContext";
 import { useTextSize, type TextSize } from "../Context/TextSizeContext";
 import { useCompactLayout } from "../Context/CompactLayoutContext";
+import { useAuth } from "../Context/AuthContext"; // NEW
+import { supabase } from "../lib/supabaseClient"; // NEW
 import {
     FaBell,
     FaMoon,
     FaCheckCircle,
-    FaExclamationTriangle
+    FaExclamationTriangle,
+    FaLock // NEW
 } from "react-icons/fa";
 
 function SettingsPage() {
@@ -39,6 +42,15 @@ function SettingsPage() {
     // Danger zone flow
     const [deleteStep, setDeleteStep] = useState<"idle" | "confirming" | "modal">("idle");
     const [deleteInput, setDeleteInput] = useState("");
+
+    // NEW: Change password
+    const { user } = useAuth();
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [pwLoading, setPwLoading] = useState(false);
+    const [pwError, setPwError] = useState("");
+    const [pwSuccess, setPwSuccess] = useState("");
 
     const markDirty = <T,>(setter: (v: T) => void) => (value: T) => {
         setter(value);
@@ -71,6 +83,63 @@ function SettingsPage() {
         setDeleteInput("");
         // Hook up real deletion logic + redirect here, e.g.:
         // navigate("/");
+    };
+
+    // NEW: change the logged-in user's password (no email is sent, so no rate limit)
+    const handleChangePassword = async (e: FormEvent) => {
+        e.preventDefault();
+        setPwError("");
+        setPwSuccess("");
+
+        if (!user || !user.email) {
+            setPwError("You need to be signed in to change your password.");
+            return;
+        }
+
+        if (newPassword.length < 8) {
+            setPwError("New password must be at least 8 characters.");
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            setPwError("New passwords do not match.");
+            return;
+        }
+
+        if (newPassword === currentPassword) {
+            setPwError("New password must be different from your current one.");
+            return;
+        }
+
+        setPwLoading(true);
+
+        // Confirm the user really knows their current password
+        const { error: verifyError } = await supabase.auth.signInWithPassword({
+            email: user.email,
+            password: currentPassword,
+        });
+
+        if (verifyError) {
+            setPwLoading(false);
+            setPwError("Your current password is incorrect.");
+            return;
+        }
+
+        const { error: updateError } = await supabase.auth.updateUser({
+            password: newPassword,
+        });
+
+        setPwLoading(false);
+
+        if (updateError) {
+            setPwError(updateError.message);
+            return;
+        }
+
+        setCurrentPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+        setPwSuccess("Your password has been changed.");
     };
 
     return (
@@ -211,6 +280,75 @@ function SettingsPage() {
                                 <span className="settingsSlider"></span>
                             </label>
                         </div>
+                    </section>
+
+                    {/* NEW: Change password */}
+                    <section className="settingsCard">
+                        <div className="settingsCardHeader">
+                            <span className="settingsIconBadge"><FaLock /></span>
+                            <div>
+                                <h2>Change password</h2>
+                                <p>Enter your current password, then choose a new one.</p>
+                            </div>
+                        </div>
+
+                        <form className="settingsPasswordForm" onSubmit={handleChangePassword}>
+                            <div className="settingsFieldGroup">
+                                <label htmlFor="currentPassword">Current password</label>
+                                <input
+                                    id="currentPassword"
+                                    type="password"
+                                    className="settingsInput"
+                                    autoComplete="current-password"
+                                    value={currentPassword}
+                                    onChange={(e) => setCurrentPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <div className="settingsFieldGroup">
+                                <label htmlFor="newPassword">New password</label>
+                                <input
+                                    id="newPassword"
+                                    type="password"
+                                    className="settingsInput"
+                                    autoComplete="new-password"
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <div className="settingsFieldGroup">
+                                <label htmlFor="confirmPassword">Retype new password</label>
+                                <input
+                                    id="confirmPassword"
+                                    type="password"
+                                    className="settingsInput"
+                                    autoComplete="new-password"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            {pwError && (
+                                <div className="settingsFormMessage settingsFormError">{pwError}</div>
+                            )}
+                            {pwSuccess && (
+                                <div className="settingsFormMessage settingsFormSuccess">{pwSuccess}</div>
+                            )}
+
+                            <div className="settingsDangerActions">
+                                <button
+                                    type="submit"
+                                    className="settingsSaveButton"
+                                    disabled={pwLoading}
+                                >
+                                    {pwLoading ? "Saving..." : "Change password"}
+                                </button>
+                            </div>
+                        </form>
                     </section>
 
                     {/* Danger Zone */}

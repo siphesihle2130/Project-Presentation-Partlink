@@ -10,12 +10,10 @@ function RegisterPage() {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
-        city: "", 
+        city: "",
         province: "",
-        // gender: "",
         email: "",
         mobile: "",
-        // username: "",
         password: "",
         confirmPassword: ""
     });
@@ -48,18 +46,18 @@ function RegisterPage() {
         setLoading(true);
 
         try {
+            // These values are saved on the user and copied into the
+            // profiles table by the database trigger (handle_new_user).
             const { data, error: signUpError } = await supabase.auth.signUp({
-                email: formData.email,
+                email: formData.email.trim(),
                 password: formData.password,
                 options: {
                     data: {
-                        first_name: formData.firstName,
-                        last_name: formData.lastName,
-                        city: formData.city,
+                        first_name: formData.firstName.trim(),
+                        last_name: formData.lastName.trim(),
+                        city: formData.city.trim(),
                         province: formData.province,
-                        // gender: formData.gender,
-                        mobile: formData.mobile,
-                        // username: formData.username
+                        mobile: formData.mobile.trim()
                     }
                 }
             });
@@ -68,25 +66,21 @@ function RegisterPage() {
                 setError(signUpError.message);
                 return;
             }
-if (data.user) {
-    // Save the user's location so NavigationBar shows it immediately
-    const fullLocation = `${formData.city}, ${formData.province}`;
-    window.localStorage.setItem("partlink_location", fullLocation);
-    window.dispatchEvent(new Event("partlink-location-updated"));
 
-    // First notification a new user ever receives
-    addNotification({
-        type: "system",
-        title: "Welcome to Partlink!",
-        description: `Hi ${formData.firstName}, your account has been created. Start browsing parts or list your first item.`,
-    });
+            if (data.user) {
+                // First notification a new user ever receives
+                addNotification({
+                    type: "system",
+                    title: "Welcome to Partlink!",
+                    description: `Hi ${formData.firstName}, your account has been created. Start browsing parts or list your first item.`,
+                });
 
-    alert(
-        "Account created successfully! Please check your email if email confirmation is required."
-    );
+                alert(
+                    "Account created successfully! Please check your email if email confirmation is required."
+                );
 
-    navigate("/login");
-}
+                navigate("/login");
+            }
         } catch (err) {
             console.error(err);
             setError("Something went wrong while creating your account.");
@@ -166,26 +160,8 @@ if (data.user) {
                         </div>
                     </div>
 
-                    {/* Row 3: Gender & Mobile */}
+                    {/* Row 3: Mobile & Email */}
                     <div className="RegisterformRow">
-                        {/* <div className="Registerform-group">
-                            <label>Gender</label>
-                            <select
-                                name="gender"
-                                value={formData.gender}
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Non-binary">Non-binary</option>
-                                <option value="Prefer not to say">
-                                    Prefer not to say
-                                </option>
-                            </select>
-                        </div> */}
-
                         <div className="Registerform-group">
                             <label>Mobile Number</label>
                             <input
@@ -209,7 +185,7 @@ if (data.user) {
                         </div>
                     </div>
 
-                    {/* Row 5: Password & Confirm Password */}
+                    {/* Row 4: Password & Confirm Password */}
                     <div className="RegisterformRow">
                         <div className="Registerform-group">
                             <label>Password</label>
@@ -219,8 +195,8 @@ if (data.user) {
                                 value={formData.password}
                                 onChange={handleChange}
                                 required
-                                minLength={6} 
-                            /> 
+                                minLength={6}
+                            />
                         </div>
 
                         <div className="Registerform-group">
