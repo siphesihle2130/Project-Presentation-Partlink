@@ -73,7 +73,7 @@ function NavigationBar() {
 
     const handleContactClick = () => {
         if (location.pathname !== "/home") {
-            navigate("/home", { state: { scrollTo: "contactSection" } });
+            navigate("/contact-us", { state: { scrollTo: "contactSection" } });
         } else {
             document.getElementById("contactSection")?.scrollIntoView({
                 behavior: "smooth",
@@ -186,7 +186,7 @@ function NavigationBar() {
 
                     <div
                         className={`navItem ${location.pathname === "/requests" ? "navItemActive" : ""}`}
-                        onClick={() => navigate("/request")}
+                        onClick={() => navigate("/requests")}
                     >
                         <span>{t("navRequests")}</span>
                     </div>

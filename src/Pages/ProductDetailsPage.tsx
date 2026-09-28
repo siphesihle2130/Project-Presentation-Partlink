@@ -9,7 +9,6 @@ import {
   FaRegHeart,
   FaShareAlt,
   FaCheck,
-  FaTimes,
   FaBoxOpen,
   FaShoppingCart,
   FaMinus,

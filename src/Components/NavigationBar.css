@@ -253,7 +253,7 @@
 }
 
 /* ====================================================== */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .sidebar {
     position: fixed;
     top: 0;
@@ -266,4 +266,4 @@
     padding: 20px 0;
     z-index: 1000;
   }
-}
+} */

@@ -1,60 +1,124 @@
 // CreateRequest.js
 import "./CreateRequest.css";
-import {useState } from 'react';
+import { useState, type ChangeEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaArrowLeft, FaTimes } from "react-icons/fa";
-// import { FiLogOut } from "react-icons/fi";
-import ImageUploader from "../Components/ImageUploader";
-import NavigationBar from "../Components/NavigationBar";
+import { supabase } from "../lib/supabaseClient";        // ← new
 
 function CreateRequest() {
-
-  // const [productsOpen, setProductsOpen] = useState(false);
-  // const [communityOpen, setCommunityOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const listingData = location.state || {};
 
   const [formData, setFormData] = useState({
-  id: listingData.id || Date.now(),
-  name: listingData.name || "",
-  vehicle: listingData.vehicle || "",
-  budget: listingData.budget || "",
-  image: listingData.image || "",
-  responses: listingData.responses || 0,
-  description: listingData.description || "",
-  category: listingData.category || "",
-  condition: listingData.condition || "",
-  year: listingData.year || "",
-  date: listingData.date || new Date().toLocaleDateString("en-GB", {
-    day: "numeric", month: "long", year: "numeric"
-  }),
-  isActive: true
-});
+    id: listingData.id || Date.now(),
+    name: listingData.name || "",
+    vehicle: listingData.vehicle || "",
+    budget: listingData.budget || "",
+    image: listingData.image || "",
+    responses: listingData.responses || 0,
+    description: listingData.description || "",
+    category: listingData.category || "",
+    condition: listingData.condition || "",
+    year: listingData.year || "",
+    date:
+      listingData.date ||
+      new Date().toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
+    isActive: true,
+  });
 
   const [isEditing, setIsEditing] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);   // ← new
+  const [formError, setFormError] = useState<string | null>(null); // ← fixed type
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
     setIsEditing(true);
+    if (formError) setFormError(null);                       // ← new
   };
 
-  const handleSave = () => {
-    // Here you would typically make an API call to save the changes
-    console.log("Saving changes:", formData);
-    setIsEditing(false);
-    // Show success message or navigate back
-    alert("Listing updated successfully!");
-    navigate("/my-listing");
+  // ─────────────────────────────────────────────
+  // Validate required fields
+  // ─────────────────────────────────────────────
+  const validateForm = () => {                               // ← new
+    const missing = [];
+    if (!formData.name.trim()) missing.push("Part Name");
+    if (!formData.category) missing.push("Category");
+    if (!formData.vehicle.trim()) missing.push("Vehicle Model");
+    if (!formData.budget.toString().trim()) missing.push("Budget");
+    if (!formData.condition) missing.push("Condition");
+    return missing;
+  };
+
+  // ─────────────────────────────────────────────
+  // Submit: insert into Requests table
+  // ─────────────────────────────────────────────
+  const handleSave = async () => {                           // ← now async
+    const missing = validateForm();
+    if (missing.length > 0) {
+      setFormError(`Please fill in: ${missing.join(", ")}`);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setFormError(null);
+
+    try {
+      // Get the current user (optional — only if using auth)
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      const { data: inserted, error: insertError } = await supabase
+        .from("Requests")                                    // ← your table
+        .insert({
+          name: formData.name,
+          category: formData.category,
+          vehicle: formData.vehicle,
+          year: formData.year || null,
+          budget: formData.budget,                           // text column
+          condition: formData.condition,
+          description: formData.description || null,
+          responses: 0,
+          is_active: true,
+          user_id: user?.id ?? null,
+        })
+        .select()
+        .single();
+
+      if (insertError) {
+        throw new Error(`Database insert failed: ${insertError.message}`);
+      }
+
+      console.log("Request submitted:", inserted);
+      setIsEditing(false);
+      alert("Request submitted successfully!");
+      navigate("/requests");                              // ← adjust to your route
+    } catch (err) {
+      console.error(err);
+      setFormError(err instanceof Error ? err.message : "Something went wrong. Try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCancel = () => {
     if (isEditing) {
-      if (window.confirm("You have unsaved changes. Are you sure you want to cancel?")) {
+      if (
+        window.confirm(
+          "You have unsaved changes. Are you sure you want to cancel?"
+        )
+      ) {
         navigate("/my-listing");
       }
     } else {
@@ -64,44 +128,19 @@ function CreateRequest() {
 
   return (
     <div className="CreateRequestcontainer">
-
-      <NavigationBar />
-
-      {/* Main Content */}
       <main className="CreateRequestmainContent">
-
-        {/* Header */}
         <header className="CreateRequesttopHeader">
           <div className="CreateRequestpageTitle">
             <FaArrowLeft className="CreateRequestbackBtn" onClick={handleCancel} />
             <h1>Product Request</h1>
           </div>
-          <div className="CreateRequestheaderActions" onClick={() => navigate("/profile")}>
-            <img src="Profile.png" alt="Profile" className="CreateRequestprofilePic" />
-          </div>
         </header>
 
-        {/* ======================================================== picture form3======================================== */}
-
-        <div className="CreateRequesteditForm3">
-          <div>
-            <h2 className="CreateRequestcreate-listing">Upload Images</h2>
-
-            <ImageUploader />
-
-          </div>
-        </div>
-
-        {/* =========================================================Edit Form================================================ */}
         <div className="CreateRequesteditForm">
-
-          {/* Image Upload Section */}
-          {/* <div className="imageSection">
-          </div> */}
-
-          {/* Form Fields */}
           <div className="CreateRequestformFields">
-            <h2 className="CreateRequestGeneral-information">General Information</h2>
+            <h2 className="CreateRequestGeneral-information">
+              General Information
+            </h2>
 
             <div className="CreateRequestformRow">
               <div className="CreateRequestformGroup">
@@ -116,7 +155,7 @@ function CreateRequest() {
                   required
                 />
               </div>
-              
+
               <div className="CreateRequestformGroup">
                 <label htmlFor="category">Category *</label>
                 <select
@@ -189,14 +228,17 @@ function CreateRequest() {
                   onChange={handleInputChange}
                 >
                   <option value="">Select Condition</option>
-                  <option value="New">New</option>
-                  <option value="Excellent">Excellent</option>
-                  <option value="Good">Good</option>
-                  <option value="Fair">Fair</option>
-                  <option value="Poor">Poor</option>
+                  <option value="Any">Any condition</option>
+                  <option value="Likely New">Likely new</option>
+                  <option value="Used (fully functioning)">
+                    Used (fully functioning)
+                  </option>
+                  <option value="Used (Minor problems)">
+                    Used (Minor problems)
+                  </option>
+                  <option value="Refurbished">Refurbished</option>
                 </select>
               </div>
-              
             </div>
 
             <div className="CreateRequestformGroup fullWidth">
@@ -210,28 +252,32 @@ function CreateRequest() {
                 rows={5}
               />
             </div>
-
           </div>
         </div>
 
-        {/* ==============================form2======================================== */}
-        
+        {/* Error message */}
+        {formError && (                                        // ← new
+          <div className="CreateRequestFormError">{formError}</div>
+        )}
 
         <div className="CreateRequestactionButtons">
-              <div className="CreateRequestrightActions">
-                <button className="CreateRequestbtnCancel" onClick={handleCancel}>
-                  <FaTimes /> Cancel
-                </button>
-                <button
-                  className={`CreateRequestbtnSubmit ${!isEditing ? 'disabled' : ''}`}
-                  onClick={handleSave}
-                  disabled={!isEditing}
-                >
-                  Submit Request
-                </button>
-              </div>
-            </div>
-
+          <div className="CreateRequestrightActions">
+            <button
+              className="CreateRequestbtnCancel"
+              onClick={handleCancel}
+              disabled={isSubmitting}
+            >
+              <FaTimes /> Cancel
+            </button>
+            <button
+              className="CreateRequestbtnSubmit"
+              onClick={handleSave}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting…" : "Submit Request"}
+            </button>
+          </div>
+        </div>
       </main>
     </div>
   );

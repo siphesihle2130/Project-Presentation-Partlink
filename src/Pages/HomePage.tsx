@@ -1,11 +1,9 @@
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
-// import { UseCart } from "../Components/UseCart";
 import NavigationBar from "../Components/NavigationBar";
 import { FaAngleDoubleRight, FaMapPin, FaEnvelope, FaPhone, FaClock, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import ScrollProgressButton from "../Components/ScrollProgressButton";
 import Footer from "../Components/Footer";
-// import { FaShoppingBag, FaPhone, FaMailBulk, FaMapPin, FaStore, FaHeart, FaCreditCard, FaQuestionCircle, FaShoppingBasket } from "react-icons/fa";
 import { useState } from "react";
 
 

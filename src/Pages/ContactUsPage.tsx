@@ -1,147 +1,139 @@
 import React, { useState } from 'react';
 import './ContactUsPage.css';
+import NavigationBar from "../Components/NavigationBar";
+import Footer from "../Components/Footer";
+import { FaMapPin, 
+  FaEnvelope, 
+  FaPhone, 
+  FaClock, 
+  FaFacebookF, 
+  FaTwitter, 
+  FaInstagram, 
+  FaLinkedinIn } from "react-icons/fa";
 
-const ContactUsPage: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    partType: '',
-    message: ''
-  });
+function ContactUsPage() {
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const [form] = useState({
+            fullName: "",
+            email: "",
+            subject: "",
+            message: "",
+        });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thanks for reaching out! A Partlink team member will get back to you within 24 hours.');
-    setFormData({
-      name: '',
-      email: '',
-      partType: '',
-      message: ''
-    });
-  };
+        e.preventDefault();
+        // Hook up to your backend / email service here
+        console.log("Contact form submitted:", form);
+    };
 
   return (
     <div className="contact-us-container">
-      <div className="contact-hero">
-        <h1>Contact Partlink</h1>
-        <p className="hero-subtitle">
-          Find the right part. Make the link. — We're here to help.
-        </p>
-      </div>
+      <NavigationBar />
 
-      <div className="contact-content">
-        {/* Contact Information Cards */}
-        <div className="contact-info-grid">
-          <div className="info-card">
-            <span className="info-icon">📧</span>
-            <h3>Email Us</h3>
-            <p>support@partlink.com</p>
-            <p>sellers@partlink.com</p>
-            <p className="info-note">Responses within 24 hours</p>
-          </div>
-          <div className="info-card">
-            <span className="info-icon">📞</span>
-            <h3>Call Us</h3>
-            <p>+1 (555) 727-8465</p>
-            <p className="info-note">Mon-Fri 9AM - 6PM EST</p>
-          </div>
-          <div className="info-card">
-            <span className="info-icon">💬</span>
-            <h3>Live Chat</h3>
-            <p>Available during business hours</p>
-            <p className="info-note">Click the chat icon below</p>
-          </div>
-          <div className="info-card">
-            <span className="info-icon">📍</span>
-            <h3>Visit Us</h3>
-            <p>Partlink HQ</p>
-            <p>123 Garage Street</p>
-            <p>Detroit, MI 48201</p>
-          </div>
-        </div>
-
-        {/* Contact Form */}
-        <div className="contact-form-wrapper">
-          <div className="form-header">
-            <h2>Get in touch</h2>
-            <p>Questions about a part? Need help with an order? Just want to say hello?</p>
+      <section className="contactUsSection">
+          <div className="contactHeading">
+            <h1>Contact us</h1>
+            <p>We'll like to hear from you! Reach out to us for any question, feedback or support</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="contact-form">
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="name">Full Name *</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Enter your full name"
-                  required
-                />
+          <div className="contactContent">
+            <div className="contactCard">
+              <h3>CONTACT INFORMATION</h3>
+
+              <div className="contactInfoRow">
+                <div className="contactIconContainer">
+                  <FaMapPin className="contactInfoIcon" />
+                </div>
+                <div className="contactTextContainer">
+                  <strong>Address</strong>
+                  <p>
+                    Cape Peninsula University of Technology
+                    <br />
+                    District Six Campus, Cape Town, 7925
+                  </p>
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="email">Email Address *</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter your email address"
-                  required
-                />
+
+              <div className="contactInfoRow">
+                <div className="contactIconContainer">
+                  <FaEnvelope className="contactInfoIcon" />
+                </div>
+                <div className="contactTextContainer">
+                  <strong>Email</strong>
+                  <p>Support@unitrade.co.za</p>
+                </div>
+              </div>
+
+              <div className="contactInfoRow">
+                <div className="contactIconContainer">
+                  <FaPhone className="contactInfoIcon" />
+                </div>
+                <div className="contactTextContainer">
+                  <strong>Phone</strong>
+                  <p>+27 21 489 1397</p>
+                </div>
+              </div>
+
+              <div className="contactInfoRow">
+                <div className="contactIconContainer">
+                  <FaClock className="contactInfoIcon" />
+                </div>
+                <div className="contactTextContainer">
+                  <strong>Hours</strong>
+                  <p>
+                    Monday - Friday: 08:00-17:00
+                    <br />
+                    Saturday - Sunday: Closed
+                  </p>
+                </div>
+              </div>
+
+              <div className="contactInfoRow">
+                <div className="mediaContainer">
+                  <FaFacebookF className="contactMediaIcon" />
+                  <FaTwitter className="contactMediaIcon" />
+                  <FaInstagram className="contactMediaIcon" />
+                  <FaLinkedinIn className="contactMediaIcon" />
+
+                </div>
               </div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="partType">What part are you looking for?</label>
-              <select
-                id="partType"
-                name="partType"
-                value={formData.partType}
-                onChange={handleChange}
-              >
-                <option value="">Select a part type (optional)</option>
-                <option value="engine">Engine Parts</option>
-                <option value="brakes">Brakes & Suspension</option>
-                <option value="electrical">Electrical & Sensors</option>
-                <option value="body">Body & Exterior</option>
-                <option value="interior">Interior & Accessories</option>
-                <option value="other">Other / Not sure</option>
-              </select>
-            </div>
+            <div className="contactCard1">
+              <h3>SEND US A MESSAGE</h3>
+              <form onSubmit={handleSubmit} className="contactForm">
 
-            <div className="form-group">
-              <label htmlFor="message">Message *</label>
-              <textarea
-                id="message"
-                name="message"
-                rows={6}
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Tell us what you need — the part, the fit, or the problem you're trying to solve..."
-                required
-              ></textarea>
-            </div>
+                <div className="messageform-group">
+                  <label>Full name</label>
+                  <input type="text" placeholder="" required />
+                </div>
 
-            <button type="submit" className="submit-btn">
-              Send Message
-            </button>
-          </form>
-        </div>
-      </div>
+                <div className="messageform-group">
+                  <label>Email</label>
+                  <input type="text" placeholder="" required />
+                </div>
+
+                <div className="messageform-group">
+                  <label>Subject</label>
+                  <input type="text" placeholder="" required />
+                </div>
+
+                <div className="message-group">
+                  <label>Message</label>
+                  <input className="contactField" type="text" placeholder="" required />
+                </div>
+
+                <button type="submit" className="contactSubmit">
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        {/* </section> */}
+      </section>
+      <Footer />
     </div>
   );
-};
+}
 
 export default ContactUsPage;

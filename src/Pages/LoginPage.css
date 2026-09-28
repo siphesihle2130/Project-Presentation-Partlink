@@ -76,6 +76,7 @@
 .login-link {
     text-align: left;
     color: rgb(29, 29, 29);
+    font-size: 20px;
 
 }
 
@@ -91,6 +92,7 @@
     color: #1310d1;
     cursor: pointer;
     font-weight: normal;
+    font-size: 18px;
 
 }
 
@@ -127,4 +129,5 @@
 .Loginwelcome-text{
     margin-top: 65%;
     font-weight: 700;
+    color: #ececec;
 }

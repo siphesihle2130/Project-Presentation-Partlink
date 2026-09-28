@@ -1,380 +1,316 @@
 import "./RequestsPage.css";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  FaSearch,
+  FaFilter,
+  FaTimes,
+  FaPlus,
+  FaMapPin,
+  FaCar,
+  FaCalendarAlt,
+  FaTag,
+} from "react-icons/fa";
+import NavigationBar from "../Components/NavigationBar";
+import Footer from "../Components/Footer";
+import { supabase } from "../lib/supabaseClient";
+
+// ─────────────────────────────────────────────
+// Types
+// ─────────────────────────────────────────────
+type Request = {
+  id: string;
+  name: string;
+  category: string;
+  vehicle: string;
+  year: string | null;
+  budget: string;
+  condition: string;
+  description: string | null;
+  responses: number;
+  is_active: boolean;
+  created_at: string;
+};
+
+type SortOption = "newest" | "oldest" | "budget-asc" | "budget-desc" | "responses";
 
 function RequestsPage() {
   const navigate = useNavigate();
 
+  const [requests, setRequests] = useState<Request[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Search + filters
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("");
+  const [condition, setCondition] = useState("");
+  const [sort, setSort] = useState<SortOption>("newest");
+  const [showFilters, setShowFilters] = useState(false);
+
+  // ─────────────────────────────────────────────
+  // Fetch requests
+  // ─────────────────────────────────────────────
+  useEffect(() => {
+    const fetchRequests = async () => {
+      setLoading(true);
+      setError(null);
+
+      let req = supabase.from("Requests").select("*").eq("is_active", true);
+
+      // Search across name, vehicle, description
+      if (query.trim()) {
+        const q = `%${query.trim()}%`;
+        req = req.or(
+          `name.ilike.${q},vehicle.ilike.${q},description.ilike.${q}`
+        );
+      }
+
+      if (category) req = req.eq("category", category);
+      if (condition) req = req.eq("condition", condition);
+
+      // Sorting
+      switch (sort) {
+        case "newest":
+          req = req.order("created_at", { ascending: false });
+          break;
+        case "oldest":
+          req = req.order("created_at", { ascending: true });
+          break;
+        case "budget-asc":
+          req = req.order("budget", { ascending: true });
+          break;
+        case "budget-desc":
+          req = req.order("budget", { ascending: false });
+          break;
+        case "responses":
+          req = req.order("responses", { ascending: false });
+          break;
+      }
+
+      const { data, error: fetchError } = await req;
+
+      if (fetchError) {
+        console.error(fetchError);
+        setError(fetchError.message);
+        setRequests([]);
+      } else {
+        setRequests((data as Request[]) || []);
+      }
+      setLoading(false);
+    };
+
+    const timer = setTimeout(fetchRequests, 300);
+    return () => clearTimeout(timer);
+  }, [query, category, condition, sort]);
+
+  const clearFilters = () => {
+    setQuery("");
+    setCategory("");
+    setCondition("");
+    setSort("newest");
+  };
+
+  const activeFilterCount = [category, condition].filter(Boolean).length;
+
   return (
-    <div className="requestsPage">
+    <div className="requestsContainer">
+      <NavigationBar />
 
-      {/* ================= HEADER ================= */}
-      <header className="requestsHeader">
-
-        <div className="requestsBrand">
-
-          <img
-            src="/logo-icon.png"
-            alt="PartLink"
-            className="requestsLogoIcon"
-          />
-
-          <img
-            src="/logo-name.png"
-            alt="PartLink"
-            className="requestsLogoName"
-          />
-
-        </div>
-
-        <button
-          className="requestsBackButton"
-          onClick={() => navigate(-1)}
-        >
-          ← Back
-        </button>
-
-      </header>
-
-      {/* ================= MAIN ================= */}
-      <main className="requestsMain">
-
-        {/* ================= HEADING ================= */}
-        <div className="requestsHeading">
-
+      <section className="requestsMainSection">
+        {/* ── Header ── */}
+        <div className="requestsHeader">
           <div>
-
-            <p className="requestsSmallTitle">
-              PARTLINK
-            </p>
-
-            <h1 className="requestsTitle">
-              My Requests
-            </h1>
-
-            <p className="requestsSubtitle">
-              Find the car parts you need and manage your requests.
-            </p>
-
+            <h1>Parts Requests</h1>
+            <p>See what parts buyers are looking for right now.</p>
           </div>
 
           <button
-            className="requestsCreateButton"
+            className="requestsAddBtn"
             onClick={() => navigate("/create-request")}
           >
-            + Create Request
+            <FaPlus /> Post a Request
           </button>
-
         </div>
 
-        {/* ================= SUMMARY ================= */}
-        <section className="requestsSummary">
+        {/* ── Search + Filter bar ── */}
+        <div className="requestsFilterBar">
+          <form
+            className="requestsSearchBar"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <FaSearch className="requestsSearchIcon" />
+            <input
+              type="text"
+              placeholder="Search by part, vehicle, or keyword..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </form>
 
-          <div className="requestsSummaryCard">
-            <span className="requestsSummaryNumber">
-              3
-            </span>
+          <button
+            type="button"
+            className={`requestsFilterToggle ${
+              showFilters ? "active" : ""
+            }`}
+            onClick={() => setShowFilters((s) => !s)}
+          >
+            <FaFilter />
+            Filters
+            {activeFilterCount > 0 && (
+              <span className="requestsFilterBadge">{activeFilterCount}</span>
+            )}
+          </button>
+        </div>
 
-            <span className="requestsSummaryLabel">
-              Active Requests
-            </span>
-          </div>
-
-          <div className="requestsSummaryCard">
-            <span className="requestsSummaryNumber">
-              5
-            </span>
-
-            <span className="requestsSummaryLabel">
-              Completed
-            </span>
-          </div>
-
-          <div className="requestsSummaryCard">
-            <span className="requestsSummaryNumber">
-              2
-            </span>
-
-            <span className="requestsSummaryLabel">
-              Responses
-            </span>
-          </div>
-
-        </section>
-
-        {/* ================= REQUEST OVERVIEW ================= */}
-        <section className="requestsContent">
-
-          <h2 className="requestsSectionTitle">
-            Request Overview
-          </h2>
-
-          <div className="requestsCards">
-
-            {/* ================= REQUEST 1 ================= */}
-            <div className="requestsCard">
-
-              <div className="requestsCardImage">
-                <img
-                  src="/Clutch kit.png"
-                  alt="Clutch kit"
-                />
-              </div>
-
-              <div className="requestsCardTop">
-
-                <span className="requestsCardCategory">
-                  Engine Parts
-                </span>
-
-                <span className="requestsActiveStatus">
-                  Active
-                </span>
-
-              </div>
-
-              <h3 className="requestsCardTitle">
-                Clutch Kit
-              </h3>
-
-              <p className="requestsCardDescription">
-                Looking for a good quality clutch kit for a
-                Toyota Corolla.
-              </p>
-
-              <div className="requestsCardBottom">
-
-                <span className="requestsCardDate">
-                  Posted: 18 Aug 2026
-                </span>
-
-                <button
-                  className="requestsViewButton"
-                  onClick={() =>
-                    navigate("/active-requests-details", {
-                      state: {
-                        id: 1,
-                        name: "Clutch Kit",
-                        vehicle: "Toyota Corolla",
-                        budget: "R2,250 - R3,000",
-                        responses: 50,
-                        image: "/Clutch kit.png",
-                        description:
-                          "Genuine Toyota clutch kit in excellent condition.",
-                        category: "Engine Parts",
-                        condition: "Good",
-                        year: "2020",
-                        date: "18 August 2026",
-                      },
-                    })
-                  }
-                >
-                  View Details →
-                </button>
-
-              </div>
-
+        {/* ── Expandable filters ── */}
+        {showFilters && (
+          <div className="requestsFilterPanel">
+            <div className="requestsFilterGroup">
+              <label>Category</label>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value="">All Categories</option>
+                <option>Engine</option>
+                <option>Electrical</option>
+                <option>Body</option>
+                <option>Interior</option>
+                <option>Suspension</option>
+                <option>Brakes</option>
+                <option>Transmission</option>
+                <option>Exhaust</option>
+              </select>
             </div>
 
-            {/* ================= REQUEST 2 ================= */}
-            <div className="requestsCard">
-
-              <div className="requestsCardImage">
-                <img
-                  src="/Air-intake-horse.png"
-                  alt="Air intake hose"
-                />
-              </div>
-
-              <div className="requestsCardTop">
-
-                <span className="requestsCardCategory">
-                  Engine Parts
-                </span>
-
-                <span className="requestsActiveStatus">
-                  Active
-                </span>
-
-              </div>
-
-              <h3 className="requestsCardTitle">
-                Air Intake Hose
-              </h3>
-
-              <p className="requestsCardDescription">
-                Need a good quality air intake hose for a
-                Corsa B.
-              </p>
-
-              <div className="requestsCardBottom">
-
-                <span className="requestsCardDate">
-                  Posted: 16 Aug 2026
-                </span>
-
-                <button
-                  className="requestsViewButton"
-                  onClick={() =>
-                    navigate("/active-requests-details", {
-                      state: {
-                        id: 2,
-                        name: "Air Intake Hose",
-                        vehicle: "Corsa B 1.3",
-                        budget: "R5,550 - R6,000",
-                        responses: 33,
-                        image: "/Air-intake-horse.png",
-                        description:
-                          "Quality air intake hose in good working condition.",
-                        category: "Engine Parts",
-                        condition: "Good",
-                        year: "2020",
-                        date: "16 August 2026",
-                      },
-                    })
-                  }
-                >
-                  View Details →
-                </button>
-
-              </div>
-
+            <div className="requestsFilterGroup">
+              <label>Condition</label>
+              <select
+                value={condition}
+                onChange={(e) => setCondition(e.target.value)}
+              >
+                <option value="">Any Condition</option>
+                <option>Any</option>
+                <option>Likely New</option>
+                <option>Used (fully functioning)</option>
+                <option>Used (Minor problems)</option>
+                <option>Refurbished</option>
+              </select>
             </div>
 
-            {/* ================= REQUEST 3 ================= */}
-            <div className="requestsCard">
-
-              <div className="requestsCardImage">
-                <img
-                  src="/side-mirror.png"
-                  alt="Side mirror"
-                />
-              </div>
-
-              <div className="requestsCardTop">
-
-                <span className="requestsCardCategory">
-                  Exterior Parts
-                </span>
-
-                <span className="requestsCompletedStatus">
-                  Completed
-                </span>
-
-              </div>
-
-              <h3 className="requestsCardTitle">
-                Side Mirror
-              </h3>
-
-              <p className="requestsCardDescription">
-                Request for a good quality side mirror for
-                a Hyundai i20.
-              </p>
-
-              <div className="requestsCardBottom">
-
-                <span className="requestsCardDate">
-                  Completed: 12 Aug 2026
-                </span>
-
-                <button
-                  className="requestsViewButton"
-                  onClick={() =>
-                    navigate("/completed-request-details", {
-                      state: {
-                        id: 3,
-                        name: "Side Mirror",
-                        vehicle: "Hyundai i20",
-                        budget: "R450 - R500",
-                        responses: 63,
-                        image: "/side-mirror.png",
-                        description:
-                          "Genuine Hyundai side mirror in good condition.",
-                        category: "Exterior Parts",
-                        condition: "Good",
-                        year: "2020",
-                        date: "12 August 2026",
-                      },
-                    })
-                  }
-                >
-                  View Details →
-                </button>
-
-              </div>
-
+            <div className="requestsFilterGroup">
+              <label>Sort By</label>
+              <select
+                value={sort}
+                onChange={(e) => setSort(e.target.value as SortOption)}
+              >
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="budget-asc">Budget: Low → High</option>
+                <option value="budget-desc">Budget: High → Low</option>
+                <option value="responses">Most Responses</option>
+              </select>
             </div>
 
-            {/* ================= REQUEST 4 ================= */}
-            <div className="requestsCard">
-
-              <div className="requestsCardImage">
-                <img
-                  src="/Outer-tie-rod.png"
-                  alt="Outer tie rod"
-                />
-              </div>
-
-              <div className="requestsCardTop">
-
-                <span className="requestsCardCategory">
-                  Suspension
-                </span>
-
-                <span className="requestsActiveStatus">
-                  Active
-                </span>
-
-              </div>
-
-              <h3 className="requestsCardTitle">
-                Outer Tie Rod
-              </h3>
-
-              <p className="requestsCardDescription">
-                Looking for an outer tie rod for an
-                Audi TT 2023.
-              </p>
-
-              <div className="requestsCardBottom">
-
-                <span className="requestsCardDate">
-                  Posted: 8 Aug 2026
-                </span>
-
-                <button
-                  className="requestsViewButton"
-                  onClick={() =>
-                    navigate("/active-requests-details", {
-                      state: {
-                        id: 4,
-                        name: "Outer Tie Rod",
-                        vehicle: "Audi TT 2023",
-                        budget: "R700 - R1,000",
-                        responses: 104,
-                        image: "/Outer-tie-rod.png",
-                        description:
-                          "Genuine Audi outer tie rod in good condition.",
-                        category: "Suspension",
-                        condition: "Good",
-                        year: "2023",
-                        date: "8 August 2026",
-                      },
-                    })
-                  }
-                >
-                  View Details →
-                </button>
-
-              </div>
-
-            </div>
-
+            <button
+              type="button"
+              className="requestsClearFilters"
+              onClick={clearFilters}
+            >
+              <FaTimes /> Clear Filters
+            </button>
           </div>
+        )}
 
-        </section>
+        {/* ── Results grid ── */}
+        <div className="requestsGrid">
+          {loading && <p className="requestsStatus">Loading requests…</p>}
 
-      </main>
+          {!loading && error && (
+            <p className="requestsStatus requestsError">
+              Failed to load requests: {error}
+            </p>
+          )}
+
+          {!loading && !error && requests.length === 0 && (
+            <p className="requestsStatus">
+              No requests match your filters yet.
+            </p>
+          )}
+
+          {!loading &&
+            !error &&
+            requests.map((request) => (
+              <div
+                key={request.id}
+                className="requestCard"
+                onClick={() => navigate(`/request/${request.id}`)}
+              >
+                <div className="requestCardHeader">
+                  <span className="requestCategoryTag">
+                    {request.category}
+                  </span>
+                  {request.responses > 0 && (
+                    <span className="requestResponsesBadge">
+                      {request.responses}{" "}
+                      {request.responses === 1 ? "reply" : "replies"}
+                    </span>
+                  )}
+                </div>
+
+                <h3 className="requestCardTitle">{request.name}</h3>
+
+                <div className="requestCardMeta">
+                  <div className="requestMetaRow">
+                    <FaCar className="requestMetaIcon" />
+                    <span>
+                      {request.vehicle}
+                      {request.year ? ` · ${request.year}` : ""}
+                    </span>
+                  </div>
+
+                  <div className="requestMetaRow">
+                    <FaTag className="requestMetaIcon" />
+                    <span>{request.condition}</span>
+                  </div>
+
+                  <div className="requestMetaRow">
+                    <FaCalendarAlt className="requestMetaIcon" />
+                    <span>
+                      {new Date(request.created_at).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </span>
+                  </div>
+                </div>
+
+                {request.description && (
+                  <p className="requestCardDescription">
+                    {request.description}
+                  </p>
+                )}
+
+                <div className="requestCardFooter">
+                  <span className="requestBudget">R {request.budget}</span>
+                  <button
+                    className="requestRespondBtn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/request/${request.id}`);
+                    }}
+                  >
+                    Respond
+                  </button>
+                </div>
+              </div>
+            ))}
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 }

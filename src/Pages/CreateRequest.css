@@ -38,6 +38,12 @@
   gap: 15px;
 }
 
+.CreateRequestpageTitle h1{
+  font-size: 30px;
+  font-weight: bold;
+  color: #00102d;
+}
+
 .CreateRequestbackBtn {
   display: flex;
   align-items: center;
@@ -58,11 +64,11 @@
   border-color: #bbb;
 }
 
-.CreateRequestpageTitle h1 {
+/* .CreateRequestpageTitle h1 {
   font-size: 1.6rem;
   font-weight: 500;
   color: #222;
-}
+} */
 
 .CreateRequestheaderActions {
   display: flex;
@@ -168,7 +174,7 @@
 .CreateRequestformGroup select:focus,
 .CreateRequestformGroup textarea:focus {
   outline: none;
-  border-color: #2e52f2;
+  border-color: #d24f1a;
   background: white;
   box-shadow: 0 0 0 3px rgba(46, 82, 242, 0.1);
 }
@@ -248,7 +254,7 @@
   padding: 10px 50px;
   background: #f5f5f5;
   color: #555;
-  border: 1px solid #2e52f2;
+  border: 1px solid #d24f1a;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
@@ -265,7 +271,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 40px;
-  background: #2e52f2;
+  background: #d24f1a;
   color: rgb(241, 238, 238);
   border: none;
   border-radius: 8px;
@@ -302,6 +308,17 @@
   margin-bottom: 40px;
 
   
+}
+
+.CreateRequestFormError {
+  margin: 15px 0;
+  padding: 12px 18px;
+  background: rgba(231, 76, 60, 0.1);
+  color: #c0392b;
+  border: 1px solid rgba(231, 76, 60, 0.35);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* ----------------------------------------------------- Animations -------------------------------- */
