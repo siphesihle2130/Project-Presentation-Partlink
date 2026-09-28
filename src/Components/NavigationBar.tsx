@@ -1,4 +1,5 @@
 import "./NavigationBar.css";
+import { useAuth } from "../Context/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
     FaShoppingCart,
@@ -6,12 +7,11 @@ import {
     FaCog,
     FaHeart,
     FaBell
-
 } from "react-icons/fa";
 import { useCart } from "../Context/CartContext";
 import { useLanguage } from "../Context/LanguageContext";
 import { useState, useEffect } from "react";
-import { MdLocationPin } from 'react-icons/md';
+import { MdLocationPin } from "react-icons/md";
 
 function NavigationBar() {
     const navigate = useNavigate();
@@ -19,51 +19,86 @@ function NavigationBar() {
     const { cartCount } = useCart();
     const { t } = useLanguage();
 
+    const { user } = useAuth();
+
     const [query, setQuery] = useState("");
 
     const [userLocation, setUserLocation] = useState(
-        () =>
-            window.localStorage.getItem("partlink_location") ||
-            "Dalton Road, Belhar 23, Bellville"
+        "Select your location"
     );
 
-    const [avatar, setAvatar] = useState(
-        () =>
-            window.localStorage.getItem("partlink_profile_image") ||
+    const [avatar, setAvatar] = useState("/Profile.png");
+
+    // Set location and avatar when the user loads or changes
+    useEffect(() => {
+        if (!user) {
+            setUserLocation("Select your location");
+            setAvatar("/Profile.png");
+            return;
+        }
+
+        const meta = user.user_metadata || {};
+
+        const loc = [meta.city, meta.province]
+            .filter(Boolean)
+            .join(", ");
+
+        setUserLocation(loc || "Select your location");
+
+        setAvatar(
+            window.localStorage.getItem(`partlink_avatar_${user.id}`) ||
             "/Profile.png"
-    );
+        );
+    }, [user]);
 
+    // Refresh avatar when the profile image is updated
     useEffect(() => {
-        const refreshLocation = () =>
-            setUserLocation(
-                window.localStorage.getItem("partlink_location") ||
-                "Dalton Road, Belhar 23, Bellville"
-            );
+        const refreshAvatar = () => {
+            if (!user) return;
 
-        window.addEventListener("partlink-location-updated", refreshLocation);
-        window.addEventListener("storage", refreshLocation);
-
-        return () => {
-            window.removeEventListener("partlink-location-updated", refreshLocation);
-            window.removeEventListener("storage", refreshLocation);
-        };
-    }, []);
-
-    useEffect(() => {
-        const refreshAvatar = () =>
             setAvatar(
-                window.localStorage.getItem("partlink_profile_image") ||
+                window.localStorage.getItem(`partlink_avatar_${user.id}`) ||
                 "/Profile.png"
             );
-
-        window.addEventListener("partlink-profile-image-updated", refreshAvatar);
-        window.addEventListener("storage", refreshAvatar);
-
-        return () => {
-            window.removeEventListener("partlink-profile-image-updated", refreshAvatar);
-            window.removeEventListener("storage", refreshAvatar);
         };
-    }, []);
+
+        window.addEventListener(
+            "partlink-profile-image-updated",
+            refreshAvatar
+        );
+
+        return () =>
+            window.removeEventListener(
+                "partlink-profile-image-updated",
+                refreshAvatar
+            );
+    }, [user]);
+
+    // Refresh location when it is updated
+    useEffect(() => {
+        const refreshLocation = () => {
+            if (!user) return;
+
+            const meta = user.user_metadata || {};
+
+            setUserLocation(
+                [meta.city, meta.province]
+                    .filter(Boolean)
+                    .join(", ") || "Select your location"
+            );
+        };
+
+        window.addEventListener(
+            "partlink-location-updated",
+            refreshLocation
+        );
+
+        return () =>
+            window.removeEventListener(
+                "partlink-location-updated",
+                refreshLocation
+            );
+    }, [user]);
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
@@ -82,25 +117,38 @@ function NavigationBar() {
         }
     };
 
+    const isRequestsActive =
+        location.pathname === "/request" ||
+        location.pathname === "/requests";
+
     return (
         <div className="navContainer">
             <aside className="sidebar">
                 <div className="navImageContainer">
-                    <img src="/logo2.png" alt="UniTrade Logo" className="logo2" />
+                    <img
+                        src="/logo2.png"
+                        alt="UniTrade Logo"
+                        className="logo2"
+                    />
 
                     <div className="navLocationcontainer">
                         <MdLocationPin className="navLocation" />
                         <p>{userLocation}</p>
                     </div>
 
-
-                    <form className="search-bar" onSubmit={handleSearch}>
+                    <form
+                        className="search-bar"
+                        onSubmit={handleSearch}
+                    >
                         <FaSearch className="search-icon" />
+
                         <input
                             type="text"
                             placeholder={t("navSearchPlaceholder")}
                             value={query}
-                            onChange={(e) => setQuery(e.target.value)}
+                            onChange={(e) =>
+                                setQuery(e.target.value)
+                            }
                         />
                         <button type="submit">{t("navSearch")}</button>
                     </form>
@@ -108,14 +156,12 @@ function NavigationBar() {
                     <button className="navContactButton" onClick={handleContactClick}>
                         {t("navContact")}
                     </button>
-
                 </div>
 
                 <div>
                     <header className="navTopHeader">
                         <div className="navHeaderActions">
                             <div className="navIcons">
-
                                 <span
                                     className="navCartIconWrapper"
                                     onClick={() => navigate("/cart")}
@@ -127,7 +173,6 @@ function NavigationBar() {
                                     )}
                                 </span>
 
-                                {/* <FaShoppingCart className="navCart" onClick={() => navigate("/cart")} /> */}
                                 <FaHeart className="navCart" onClick={() => navigate("/saved")} />
                                 <FaBell className="navSettings" onClick={() => navigate("/notifications")} />
                                 <FaCog className="navSettings" onClick={() => navigate("/settings")} />
@@ -144,11 +189,8 @@ function NavigationBar() {
                 </div>
             </aside>
 
-
-
             <div className="secondNav">
                 <nav className="navMenu">
-
                     <div
                         className={`navItem ${location.pathname === "/home" ? "navItemActive" : ""}`}
                         onClick={() => navigate("/home")}

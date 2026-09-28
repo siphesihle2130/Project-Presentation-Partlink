@@ -1,76 +1,78 @@
-// import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom"; 
-import { CartProvider } from "./Context/CartContext"; 
-import MyListingPage from "./Pages/MyListingPage"; 
-import MyListingSoldPage from "./Pages/MyListingSoldPage"; 
-import EditListingPage from "./Pages/EditListingPage"; 
-import SoldListDetailsPage from "./Pages/SoldListDetailsPage"; 
-import MyActiveRequestsPage from "./Pages/MyActiveRequestsPage" 
-import ActiveRequestDetailsPage from "./Pages/ActiveRequestDetailsPage" 
-import MyCompletedRequestPage from "./Pages/MyCompletedRequestPage" 
-import CompletedRequestDetailsPage from "./Pages/CompletedRequestDetailsPage" 
-import CreateRequest from "./Pages/CreateRequest" 
-import LandingPage from "./Pages/LandingPage" 
-import LoginPage from "./Pages/LoginPage" 
-import RegisterPage from "./Pages/RegisterPage" 
-import ResetPasswordPage from "./Pages/ResetPasswordPage" 
-import Profile from "./Pages/Profile" 
-import CarPartListing from "./Pages/CarPartListing" 
-import CheckoutPage from "./Pages/CheckoutPage" 
-import CartPage from "./Pages/CartPage" 
-import ContactUsPage from "./Pages/ContactUsPage"
-import AboutUsPage from "./Pages/AboutUsPage"
-import HelpSupportPage from "./Pages/HelpSupportPage"
-import SavedItemsDetailsPage from "./Pages/SavedItemsDetailsPage"
-import SettingsPage from "./Pages/SettingsPage"
-import RequestsPage from "./Pages/RequestsPage"
-import WishlistPage from "./Pages/WishlistPage"
-import MyPurchasesPage from "./Pages/MyPurchasesPage"
-import CategoriesPage from "./Pages/CategoriesPage"
-import HomePage from "./Pages/HomePage"
-import NotificationsPage from "./Pages/NotificationsPage"
-import ProductsPage from "./Pages/ProductsPage"
-import ProductDetailsPage from "./Pages/ProductDetailsPage"
- 
-function App(){ 
-    return ( 
-      <CartProvider> 
-      <BrowserRouter> 
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/home" element={<HomePage />} /> 
-        <Route path="/my-listing" element={<MyListingPage />} /> 
-        <Route path="/my-sold-listing" element={<MyListingSoldPage />} /> 
-        <Route path="/edit-listing" element={<EditListingPage />} /> 
-        <Route path="/sold-list-details" element={<SoldListDetailsPage />} /> 
-        <Route path="/active-requests" element={<MyActiveRequestsPage />} /> 
-        <Route path="/active-requests-details" element={<ActiveRequestDetailsPage />} /> 
-        <Route path="/completed-requests" element={<MyCompletedRequestPage />} /> 
-        <Route path="/completed-request-details" element={<CompletedRequestDetailsPage />} /> 
-        <Route path="/create-request" element={<CreateRequest />} /> 
-        <Route path="/categories" element={<CategoriesPage />} /> 
-        <Route path="/login" element={<LoginPage />} /> 
-        <Route path="/register" element={<RegisterPage />} /> 
-        <Route path="/reset-password" element={<ResetPasswordPage />} /> 
-        <Route path="/profile" element={<Profile />} /> 
-        <Route path="/carpart-listing" element={<CarPartListing />} /> 
-        <Route path="/checkout" element={<CheckoutPage />} /> 
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/contact-us" element={<ContactUsPage />} /> 
-        <Route path="/about-us" element={<AboutUsPage />} /> 
-         <Route path="/help-support" element={<HelpSupportPage />} /> 
-        <Route path="/saved-items-details" element={<SavedItemsDetailsPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/requests" element={<RequestsPage />} />
-        <Route path="/saved" element={<WishlistPage />} />
-        <Route path="/my-purchases" element={<MyPurchasesPage />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/product/:id" element={<ProductDetailsPage />} />
-      </Routes> 
-    </BrowserRouter> 
-    </CartProvider> 
-    ); 
- 
-  }  
-  export default App;
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./Context/AuthContext";
+import { CartProvider } from "./Context/CartContext";
+import MyListingPage from "./Pages/MyListingPage";
+import MyListingSoldPage from "./Pages/MyListingSoldPage";
+import EditListingPage from "./Pages/EditListingPage";
+import SoldListDetailsPage from "./Pages/SoldListDetailsPage";
+import MyActiveRequestsPage from "./Pages/MyActiveRequestsPage";
+import ActiveRequestDetailsPage from "./Pages/ActiveRequestDetailsPage";
+import MyCompletedRequestPage from "./Pages/MyCompletedRequestPage";
+import CompletedRequestDetailsPage from "./Pages/CompletedRequestDetailsPage";
+import CreateRequest from "./Pages/CreateRequest";
+import LandingPage from "./Pages/LandingPage";
+import LoginPage from "./Pages/LoginPage";
+import RegisterPage from "./Pages/RegisterPage";
+import ResetPasswordPage from "./Pages/ResetPasswordPage";
+import Profile from "./Pages/Profile";
+import CarPartListing from "./Pages/CarPartListing";
+import CheckoutPage from "./Pages/CheckoutPage";
+import CartPage from "./Pages/CartPage";
+import ContactUsPage from "./Pages/ContactUsPage";
+import AboutUsPage from "./Pages/AboutUsPage";
+import HelpSupportPage from "./Pages/HelpSupportPage";
+import SavedItemsDetailsPage from "./Pages/SavedItemsDetailsPage";
+import SettingsPage from "./Pages/SettingsPage";
+import RequestsPage from "./Pages/RequestsPage";
+import WishlistPage from "./Pages/WishlistPage";
+import MyPurchasesPage from "./Pages/MyPurchasesPage";
+import CategoriesPage from "./Pages/CategoriesPage";
+import HomePage from "./Pages/HomePage";
+import NotificationsPage from "./Pages/NotificationsPage";
+import ProductsPage from "./Pages/ProductsPage";
+import ProductDetailsPage from "./Pages/ProductDetailsPage";
+
+function App() {
+  return (
+    <AuthProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/my-listing" element={<MyListingPage />} />
+            <Route path="/my-sold-listing" element={<MyListingSoldPage />} />
+            <Route path="/edit-listing" element={<EditListingPage />} />
+            <Route path="/sold-list-details" element={<SoldListDetailsPage />} />
+            <Route path="/active-requests" element={<MyActiveRequestsPage />} />
+            <Route path="/active-requests-details" element={<ActiveRequestDetailsPage />} />
+            <Route path="/completed-requests" element={<MyCompletedRequestPage />} />
+            <Route path="/completed-request-details" element={<CompletedRequestDetailsPage />} />
+            <Route path="/create-request" element={<CreateRequest />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/carpart-listing" element={<CarPartListing />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/contact-us" element={<ContactUsPage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/help-support" element={<HelpSupportPage />} />
+            <Route path="/saved-items-details" element={<SavedItemsDetailsPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/requests" element={<RequestsPage />} />
+            <Route path="/saved" element={<WishlistPage />} />
+            <Route path="/my-purchases" element={<MyPurchasesPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/product/:id" element={<ProductDetailsPage />} />
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
+    </AuthProvider>
+  );
+}
+
+export default App;
