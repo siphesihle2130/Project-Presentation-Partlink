@@ -2,22 +2,17 @@
 import "./CarPartListing.css";
 import { useRef, useState, useEffect, type ChangeEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import {
-  FaCheck,
-  FaExclamationCircle,
-} from "react-icons/fa";
+import { FaCheck, FaExclamationCircle } from "react-icons/fa";
 import ImageUploader from "../Components/ImageUploader";
 import NavigationBar from "../Components/NavigationBar";
-import { supabase } from "../lib/supabaseClient";       // ← new import
+import { supabase } from "../lib/supabaseClient";
 
 function CarPartListing() {
   const navigate = useNavigate();
   const location = useLocation();
   const listingData = location.state || {};
 
-  // ─────────────────────────────────────────────
-  // FIX 1: useState instead of useRef
-  // ─────────────────────────────────────────────
+
   const [formData, setFormData] = useState({
     id: listingData.id || 1,
     name: listingData.name || "",
@@ -57,9 +52,7 @@ function CarPartListing() {
     { id: 4, label: "Image" },
   ];
 
-  // ─────────────────────────────────────────────
-  // Validation
-  // ─────────────────────────────────────────────
+  
   const validateStep = (step: number) => {
     const missing = [];
     const fields = [];
@@ -108,9 +101,8 @@ function CarPartListing() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
-  // ─────────────────────────────────────────────
+  
   // Input handling
-  // ─────────────────────────────────────────────
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -218,7 +210,7 @@ function CarPartListing() {
     setStepError(null);
 
     try {
-      // ── 1. Upload image to Supabase Storage ──
+      //Upload image to Supabase Storage
       const file = imageFileRef.current;
       const ext = file.name.split(".").pop();
       const fileName = `${crypto.randomUUID()}.${ext}`;
@@ -230,19 +222,19 @@ function CarPartListing() {
 
       if (uploadError) throw new Error(`Image upload failed: ${uploadError.message}`);
 
-      // ── 2. Get public URL ──
+      //Get public URL
       const { data: urlData } = supabase.storage
         .from("product-images")
         .getPublicUrl(filePath);
 
       const publicImageUrl = urlData.publicUrl;
 
-      // ── 3. Get current user (optional, if using auth) ──
+      //Get current user (optional, if using auth)
       const { data: { user } } = await supabase.auth.getUser();
 
-      // ── 4. Insert product row ──
+      //Insert product row
       const { data: inserted, error: insertError } = await supabase
-        .from("car_parts")             // ← your table name
+        .from("CarParts")
         .insert({
           name: formData.name,
           description: formData.description,

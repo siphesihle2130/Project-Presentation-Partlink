@@ -29,6 +29,8 @@ import MyPurchasesPage from "./Pages/MyPurchasesPage"
 import CategoriesPage from "./Pages/CategoriesPage"
 import HomePage from "./Pages/HomePage"
 import NotificationsPage from "./Pages/NotificationsPage"
+import ProductsPage from "./Pages/ProductsPage"
+import ProductDetailsPage from "./Pages/ProductDetailsPage"
  
 function App(){ 
     return ( 
@@ -63,6 +65,8 @@ function App(){
         <Route path="/saved" element={<WishlistPage />} />
         <Route path="/my-purchases" element={<MyPurchasesPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/product/:id" element={<ProductDetailsPage />} />
       </Routes> 
     </BrowserRouter> 
     </CartProvider> 
