@@ -119,10 +119,10 @@ function CreateRequest() {
           "You have unsaved changes. Are you sure you want to cancel?"
         )
       ) {
-        navigate("/my-listing");
+        navigate("/requests");
       }
     } else {
-      navigate("/my-listing");
+      navigate("/requests");
     }
   };
 
