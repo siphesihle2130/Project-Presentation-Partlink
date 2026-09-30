@@ -1,28 +1,27 @@
 import "./HomePage.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import NavigationBar from "../Components/NavigationBar";
-import { FaAngleDoubleRight, FaMapPin, FaEnvelope, FaPhone, FaClock, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaAngleDoubleRight } from "react-icons/fa";
 import ScrollProgressButton from "../Components/ScrollProgressButton";
 import Footer from "../Components/Footer";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 
 function HomePage() {
     const navigate = useNavigate();
     const routerLocation = useLocation();
 
-    const [form] = useState({
-            fullName: "",
-            email: "",
-            subject: "",
-            message: "",
-        });
+    // const [form] = useState({
+    //         fullName: "",
+    //         email: "",
+    //         subject: "",
+    //         message: "",
+    //     });
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Hook up to your backend / email service here
-        console.log("Contact form submitted:", form);
-    };
+    // const handleSubmit = (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     console.log("Contact form submitted:", form);
+    // };
 
       const goToSection = (id: string) => {
     if (location.pathname !== "/home") {
@@ -315,107 +314,6 @@ function HomePage() {
                     </div>
                 </div>
             </section>
-
-            {/* <section id="contactSection" className="homeContactSection">
-                <div className="homeContactHeading">
-                    <h1>Contact us</h1>
-                    <p>We'll like to hear from you! Reach out to us for any question, feedback or support</p>
-                </div>
-
-                <div className="homeContactContent">
-                    <div className="homeContactCard">
-                        <h3>CONTACT INFORMATION</h3>
-
-                        <div className="homeContactInfoRow">
-                            <div className="homeContactIconContainer">
-                                <FaMapPin className="homeContactInfoIcon" />
-                            </div>
-                            <div className="homeContactTextContainer">
-                                <strong>Address</strong>
-                                <p>
-                                    Cape Peninsula University of Technology
-                                    <br />
-                                    District Six Campus, Cape Town, 7925
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="homeContactInfoRow">
-                            <div className="homeContactIconContainer">
-                                <FaEnvelope className="homeContactInfoIcon" />
-                            </div>
-                            <div className="homeContactTextContainer">
-                                <strong>Email</strong>
-                                <p>Support@unitrade.co.za</p>
-                            </div>
-                        </div>
-
-                        <div className="homeContactInfoRow">
-                            <div className="homeContactIconContainer">
-                                <FaPhone className="homeContactInfoIcon" />
-                            </div>
-                            <div className="homeContactTextContainer">
-                                <strong>Phone</strong>
-                                <p>+27 21 489 1397</p>
-                            </div>
-                        </div>
-
-                        <div className="homeContactInfoRow">
-                            <div className="homeContactIconContainer">
-                                <FaClock className="homeContactInfoIcon" />
-                            </div>
-                            <div className="homeContactTextContainer">
-                                <strong>Hours</strong>
-                                <p>
-                                    Monday - Friday: 08:00-17:00
-                                    <br />
-                                    Saturday - Sunday: Closed
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="homeContactInfoRow">
-                            <div className="mediaContainer">
-                                <FaFacebookF className="homeContactMediaIcon" />
-                                <FaTwitter className="homeContactMediaIcon" />
-                                <FaInstagram className="homeContactMediaIcon" />
-                                <FaLinkedinIn className="homeContactMediaIcon" />
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="homeContactCard1">
-                        <h3>SEND US A MESSAGE</h3>
-                        <form onSubmit={handleSubmit} className="homeContactForm">
-
-                            <div className="homeMessageform-group">
-                                <label>Full name</label>
-                                <input type="text" placeholder="" required />
-                            </div>
-
-                            <div className="homeMessageform-group">
-                                <label>Email</label>
-                                <input type="text" placeholder="" required />
-                            </div>
-
-                            <div className="homeMessageform-group">
-                                <label>Subject</label>
-                                <input type="text" placeholder="" required />
-                            </div>
-
-                            <div className="message-group">
-                                <label>Message</label>
-                                <input className="homeContactField" type="text" placeholder="" required />
-                            </div>
-
-                            <button type="submit" className="homeContactSubmit">
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section> */}
  
             <Footer />
         </div>
