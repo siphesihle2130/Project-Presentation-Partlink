@@ -30,7 +30,7 @@ function ResetPasswordPage() {
   const [step, setStep] = useState<Step>("details");
 
   const [email, setEmail] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
+  // const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [code, setCode] = useState("");
@@ -85,28 +85,28 @@ function ResetPasswordPage() {
       return;
     }
 
-    if (newPassword === currentPassword) {
-      setError("New password must be different from your current one.");
-      return;
-    }
+    // if (newPassword === currentPassword) {
+    //   setError("New password must be different from your current one.");
+    //   return;
+    // }
 
     setLoading(true);
 
     /* Proves the user knows their current password */
-    const { error: signInError } = await supabase.auth.signInWithPassword({
-      email: email.trim(),
-      password: currentPassword,
-    });
+    // const { error: signInError } = await supabase.auth.signInWithPassword({
+    //   email: email.trim(),
+    //   password: currentPassword,
+    // });
 
-    if (signInError) {
-      setLoading(false);
-      setError(
-        signInError.message.toLowerCase().includes("rate limit")
-          ? friendlyError(signInError.message)
-          : "Username or current password is incorrect."
-      );
-      return;
-    }
+    // if (signInError) {
+    //   setLoading(false);
+    //   setError(
+    //     signInError.message.toLowerCase().includes("rate limit")
+    //       ? friendlyError(signInError.message)
+    //       : "Username or current password is incorrect."
+    //   );
+    //   return;
+    // }
 
     await supabase.auth.signOut();
 
@@ -156,7 +156,8 @@ function ResetPasswordPage() {
 
   const subtitle =
     step === "details"
-      ? "Confirm your current password and choose a new one."
+      // ? "Confirm your current password and choose a new one."
+      ? " "
       : `Enter the code we sent to ${email}.`;
 
   return (
@@ -183,7 +184,7 @@ function ResetPasswordPage() {
               />
             </div>
 
-            <div className="Resetform-group">
+            {/* <div className="Resetform-group">
               <label>Current Password</label>
               <input
                 type="password"
@@ -192,7 +193,7 @@ function ResetPasswordPage() {
                 onChange={(e) => setCurrentPassword(e.target.value)}
                 required
               />
-            </div>
+            </div> */}
 
             <div className="Resetform-group">
               <label>New Password</label>
@@ -230,7 +231,7 @@ function ResetPasswordPage() {
               <button
                 type="button"
                 className="ResetCancelButton"
-                onClick={() => navigate("/home")}
+                onClick={() => navigate("/login")}
               >
                 Cancel
               </button>
