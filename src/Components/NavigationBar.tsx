@@ -117,9 +117,9 @@ function NavigationBar() {
         }
     };
 
-    const isRequestsActive =
-        location.pathname === "/request" ||
-        location.pathname === "/requests";
+    // const isRequestsActive =
+    //     location.pathname === "/request" ||
+    //     location.pathname === "/requests";
 
     return (
         <div className="navContainer">

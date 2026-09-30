@@ -6,7 +6,6 @@ import {
   FaFilter,
   FaTimes,
   FaPlus,
-  FaMapPin,
   FaCar,
   FaCalendarAlt,
   FaTag,
