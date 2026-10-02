@@ -260,7 +260,7 @@ function CarPartListing() {
       console.log("Product listed:", inserted);
       setIsEditing(false);
       alert("Listing published successfully!");
-      navigate("/my-listing");
+      navigate("/products");
     } catch (err) {
       console.error(err);
       setStepError(err instanceof Error ? err.message : "Something went wrong. Please try again.");

@@ -8,7 +8,7 @@ import { parsePrice, formatCurrency } from "../utils/currency";
 
 function CartPage() {
   const navigate = useNavigate();
-  const { items, removeFromCart, updateQuantity, cartTotal } = useCart();
+  const { items, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
 
   const deliveryFee = items.length > 0 ? 99 : 0;
   const total = cartTotal + deliveryFee;

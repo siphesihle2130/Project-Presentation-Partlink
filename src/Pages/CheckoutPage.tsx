@@ -7,6 +7,7 @@ import NavigationBar from "../Components/NavigationBar";
 import { useCart } from "../Context/CartContext";
 import type { CartItem } from "../Context/CartContext";
 import { parsePrice, formatCurrency } from "../utils/currency";
+import { supabase } from "../lib/supabaseClient";
 
 type PaymentMethod = "card" | "eft" | "cod";
 
@@ -136,9 +137,44 @@ function CheckoutPage() {
     }, 600);
   };
 
-  const handleConfirmationClose = () => {
-    setShowConfirmation(false);
-    navigate("/home");
+  // const handleConfirmationClose = () => {
+  //   setShowConfirmation(false);
+  //   navigate("/home");
+  // };
+
+  const handleConfirmationClose = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      alert("Please sign in to complete your purchase.");
+      return;
+    }
+
+    const orderRows = orderItems.map((item: any) => ({
+      buyer_id: user.id,
+      seller_id: item.seller_id ?? null,
+      product_id: item.id,
+      product_name: item.name,
+      product_image: item.image,
+      price: parsePrice(item.price),
+      quantity: item.quantity,
+      total: parsePrice(item.price) * item.quantity,
+      status: "pending",
+      delivery_address: delivery.address || null,
+    }));
+
+    const { error } = await supabase.from("Orders").insert(orderRows);
+
+    if (error) {
+      alert("Checkout failed: " + error.message);
+      return;
+    }
+
+    // Clear the cart, navigate to /my-purchases
+    clearCart();
+    navigate("/my-purchases");
   };
 
   return (

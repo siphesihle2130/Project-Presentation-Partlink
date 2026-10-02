@@ -1,197 +1,353 @@
 import "./MyListingPage.css";
-import NavigationBar from "../Components/NavigationBar";
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaEye } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { FaCaretRight } from "react-icons/fa";
-// import { FaLock } from "react-icons/fa";
+import {
+  FaSearch,
+  FaPlus,
+  FaEdit,
+  FaTrash,
+  FaEye,
+  FaBoxOpen,
+  FaCheckCircle,
+  FaTimesCircle,
+  FaExclamationTriangle,
+} from "react-icons/fa";
+import NavigationBar from "../Components/NavigationBar";
+import Footer from "../Components/Footer";
+import { supabase } from "../lib/supabaseClient";
 
+type CarPart = {
+  id: string;
+  name: string;
+  description: string;
+  brand: string;
+  model: string;
+  category: string;
+  condition: string;
+  city: string;
+  province: string;
+  price: number;
+  quantity: number;
+  image_url: string;
+  is_active: boolean;
+  views: number;
+  created_at: string;
+  user_id: string | null;
+};
+
+type StatusFilter = "all" | "active" | "inactive";
 
 function MyListingPage() {
-  const [activeTab, setActiveTab] = useState<'active' | 'sold'>('active');
   const navigate = useNavigate();
-  const handleTabChange = (tab: "active" | "sold", path: string) => {
-    setActiveTab(tab);
-    navigate(path);
+
+  const [listings, setListings] = useState<CarPart[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const [query, setQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  // ─────────────────────────────────────────────
+  // Fetch current user's listings
+  // ─────────────────────────────────────────────
+  useEffect(() => {
+    const fetchListings = async () => {
+      setLoading(true);
+      setError(null);
+
+      // Get current user
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        setError("You must be signed in to view your listings.");
+        setListings([]);
+        setLoading(false);
+        return;
+      }
+
+      let req = supabase
+        .from("CarParts")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false });
+
+      if (query.trim()) {
+        const q = `%${query.trim()}%`;
+        req = req.or(`name.ilike.${q},brand.ilike.${q},model.ilike.${q}`);
+      }
+
+      if (statusFilter === "active") req = req.eq("is_active", true);
+      if (statusFilter === "inactive") req = req.eq("is_active", false);
+
+      const { data, error: fetchError } = await req;
+
+      if (fetchError) {
+        console.error(fetchError);
+        setError(fetchError.message);
+        setListings([]);
+      } else {
+        setListings((data as CarPart[]) || []);
+      }
+      setLoading(false);
+    };
+
+    const timer = setTimeout(fetchListings, 300);
+    return () => clearTimeout(timer);
+  }, [query, statusFilter]);
+
+  // ─────────────────────────────────────────────
+  // Delete a listing
+  // ─────────────────────────────────────────────
+  const handleDelete = async (id: string, name: string) => {
+    if (!window.confirm(`Delete "${name}"? This cannot be undone.`)) return;
+
+    setDeletingId(id);
+    try {
+      const { error: deleteError } = await supabase
+        .from("CarParts")
+        .delete()
+        .eq("id", id);
+
+      if (deleteError) throw deleteError;
+
+      setListings((prev) => prev.filter((l) => l.id !== id));
+    } catch (err) {
+      console.error(err);
+      alert(
+        err instanceof Error ? err.message : "Failed to delete the listing."
+      );
+    } finally {
+      setDeletingId(null);
+    }
   };
 
-  return (
-    <div className="MyListingscontainer">
+  // ─────────────────────────────────────────────
+  // Toggle active status
+  // ─────────────────────────────────────────────
+  const handleToggleActive = async (id: string, current: boolean) => {
+    try {
+      const { error: updateError } = await supabase
+        .from("CarParts")
+        .update({ is_active: !current })
+        .eq("id", id);
 
+      if (updateError) throw updateError;
+
+      setListings((prev) =>
+        prev.map((l) => (l.id === id ? { ...l, is_active: !current } : l))
+      );
+    } catch (err) {
+      console.error(err);
+      alert(
+        err instanceof Error ? err.message : "Failed to update the listing."
+      );
+    }
+  };
+
+  // ─────────────────────────────────────────────
+  // Stats
+  // ─────────────────────────────────────────────
+  const totalListings = listings.length;
+  const activeCount = listings.filter((l) => l.is_active).length;
+  const inactiveCount = totalListings - activeCount;
+
+  return (
+    <div className="myListingsContainer">
       <NavigationBar />
 
-      {/* Main Content */}
-      <main className="MyListingsmainContent">
-
-        {/* Header */}
-        <header className="MyListingstopHeader">
-          <div className="MyListingspageTitle">
+      <section className="myListingsMainSection">
+        {/* ── Header ── */}
+        <div className="myListingsHeader">
+          <div>
             <h1>My Listings</h1>
+            <p>Manage the car parts you've posted for sale.</p>
           </div>
-          <div className="MyListingsheaderActions" onClick={() => navigate("/profile")}>
-            <img src="Profile.png" alt="Profile" className="MyListingsprofilePic" />
+
+          <button
+            className="myListingsAddBtn"
+            onClick={() => navigate("/carpart-listing")}
+          >
+            <FaPlus /> List a New Part
+          </button>
+        </div>
+
+        {/* ── Stats ── */}
+        <div className="myListingsStats">
+          <div className="myListingsStatCard">
+            <span className="myListingsStatLabel">Total Listings</span>
+            <span className="myListingsStatValue">{totalListings}</span>
           </div>
-        </header>
-
-        {/* Layout Grid */}
-        <div className="MyListingscontentGrid">
-
-          {/*====================== Navigation Bar ======================*/}
-          <div className="MyListingstabs-wrapper">
-            <div className="MyListingstabs-container">
-              <div className="MyListingstabs-underline"></div>
-              {/* Active Tab */}
-              <button
-                className={`MyListingstab-btn ${activeTab === 'active' ? 'active' : ''}`}
-                onClick={() => handleTabChange('active', "/my-listing")}
-              >
-                Active (12)
-              </button>
-
-              {/* Sold Tab */}
-              <button
-                className={`MyListingstab-btn ${activeTab === 'sold' ? 'active' : ''}`}
-                onClick={() => handleTabChange('sold', "/my-sold-listing")}
-              >
-                Sold (8)
-              </button>
-            </div>
+          <div className="myListingsStatCard">
+            <span className="myListingsStatLabel">Active</span>
+            <span className="myListingsStatValue myListingsStatGreen">
+              {activeCount}
+            </span>
+          </div>
+          <div className="myListingsStatCard">
+            <span className="myListingsStatLabel">Inactive</span>
+            <span className="myListingsStatValue myListingsStatGrey">
+              {inactiveCount}
+            </span>
           </div>
         </div>
 
-        {/* =========================================list============================= */}
-        <div className="MyListingslist">
-          <div className="MyListingscard1">
-            <img src="/alternator.png" alt="Alternator" className="MyListingsalt1" />
-            <h4 className="MyListingsname1">Alternator</h4>
-            <p className="MyListingsveh1">Vehicle: Toyota Corolla</p>
-            <p className="MyListingsprice1">Price: R8, 250</p>
-            <FaEye className="MyListingseye1" />
-            <p className="MyListingseye1-text">50</p>
-            <FaHeart className="MyListingsheart1" />
-            <p className="MyListingsheart1-text">10</p>
-            <FaCaretRight
-              className="MyListingscaret1"
-              onClick={() => navigate("/edit-listing", {
-                state: {
-                  id: 1,
-                  name: "Alternator",
-                  vehicle: "Toyota Corolla",
-                  price: "R8,250",
-                  image: "/alternator.png",
-                  views: 50,
-                  likes: 10,
-                  description: "Genuine Toyota alternator in excellent condition. 100% working.",
-                  category: "Electrical",
-                  condition: "Good",
-                  year: "2020"
-                }
-              })}
+        {/* ── Filter bar ── */}
+        <div className="myListingsFilterBar">
+          <form
+            className="myListingsSearchBar"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <FaSearch className="myListingsSearchIcon" />
+            <input
+              type="text"
+              placeholder="Search your listings..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
             />
+          </form>
 
+          <div className="myListingsStatusTabs">
+            {(["all", "active", "inactive"] as StatusFilter[]).map((status) => (
+              <button
+                key={status}
+                className={`myListingsTab ${
+                  statusFilter === status ? "active" : ""
+                }`}
+                onClick={() => setStatusFilter(status)}
+              >
+                {status === "all"
+                  ? "All"
+                  : status === "active"
+                  ? "Active"
+                  : "Inactive"}
+              </button>
+            ))}
           </div>
-
-          <div className="MyListingscard2">
-            <img src="/headlights.png" alt="Headlights" className="MyListingsalt2" />
-            <h4 className="MyListingsname2">Headlights</h4>
-            <p className="MyListingsveh2">Vehicle: BMW 3 Series</p>
-            <p className="MyListingsprice2">Price: R5, 550</p>
-            <FaEye className="MyListingseye2" />
-            <p className="MyListingseye2-text">33</p>
-            <FaHeart className="MyListingsheart2" />
-            <p className="MyListingsheart2-text">7</p>
-            <FaCaretRight
-              className="MyListingscaret1"
-              onClick={() => navigate("/edit-listing", {
-                state: {
-                  id: 2,
-                  name: "Headlights",
-                  vehicle: "BMW 3 Series",
-                  price: "R5,550",
-                  image: "/headlights.png",
-                  views: 33,
-                  likes: 7,
-                  description: "Genuine BMW headlights in excellent condition. 100% working.",
-                  category: "Electrical",
-                  condition: "Good",
-                  year: "2020"
-                }
-              })}
-            />
-
-          </div>
-
-          <div className="MyListingscard3">
-            <img src="/side-mirror.png" alt="Side Mirror" className="MyListingsalt3" />
-            <h4 className="MyListingsname3">Side Mirror</h4>
-            <p className="MyListingsveh3">Vehicle: Hyundai i20</p>
-            <p className="MyListingsprice3">Price: R450</p>
-            <FaEye className="MyListingseye3" />
-            <p className="MyListingseye3-text">63</p>
-            <FaHeart className="MyListingsheart3" />
-            <p className="MyListingsheart3-text">17</p>
-            <FaCaretRight
-              className="MyListingscaret1"
-              onClick={() => navigate("/edit-listing", {
-                state: {
-                  id: 3,
-                  name: "Side Mirror",
-                  vehicle: "Hyundai i20",
-                  price: "R450",
-                  image: "/side-mirror.png",
-                  views: 63,
-                  likes: 17,
-                  description: "Genuine Hyundai side mirror in excellent condition. 100% working.",
-                  category: "Electrical",
-                  condition: "Good",
-                  year: "2020"
-                }
-              })}
-            />
-
-          </div>
-
-          <div className="MyListingscard4">
-            <img src="/radiator.png" alt="Radiator" className="MyListingsalt4" />
-            <h4 className="MyListingsname4">Radiator</h4>
-            <p className="MyListingsveh4">Vehicle: VW Polo</p>
-            <p className="MyListingsprice4">Price: R700</p>
-            <FaEye className="MyListingseye4" />
-            <p className="MyListingseye4-text">104</p>
-            <FaHeart className="MyListingsheart4" />
-            <p className="MyListingsheart4-text">48</p>
-            <FaCaretRight
-              className="MyListingscaret1"
-              onClick={() => navigate("/edit-listing", {
-                state: {
-                  id: 4,
-                  name: "Radiator",
-                  vehicle: "VW Polo",
-                  price: "R700",
-                  image: "/radiator.png",
-                  views: 104,
-                  likes: 48,
-                  description: "Genuine Toyota alternator in excellent condition. 100% working.",
-                  category: "Electrical",
-                  condition: "Good",
-                  year: "2020"
-                }
-              })}
-            />
-
-          </div>
-
         </div>
 
-        <button className="MyListingsbtnAdd"
-          onClick={() => navigate("/create-listing")}>
-          Add New Listing
-        </button>
+        {/* ── Content ── */}
+        {loading && <p className="myListingsStatus">Loading your listings…</p>}
 
-      </main>
+        {!loading && error && (
+          <p className="myListingsStatus myListingsError">{error}</p>
+        )}
+
+        {!loading && !error && listings.length === 0 && (
+          <div className="myListingsEmpty">
+            <FaBoxOpen size={48} />
+            <h2>No listings yet</h2>
+            <p>Start selling by listing your first car part.</p>
+            <button
+              className="myListingsAddBtn"
+              onClick={() => navigate("/carpart-listing")}
+            >
+              <FaPlus /> List a New Part
+            </button>
+          </div>
+        )}
+
+        {!loading && !error && listings.length > 0 && (
+          <div className="myListingsGrid">
+            {listings.map((listing) => (
+              <div key={listing.id} className="myListingCard">
+                {/* Image */}
+                <div className="myListingImageWrap">
+                  {listing.image_url ? (
+                    <img
+                      src={listing.image_url}
+                      alt={listing.name}
+                      className="myListingImage"
+                    />
+                  ) : (
+                    <div className="myListingNoImage">No image</div>
+                  )}
+
+                  <span
+                    className={`myListingStatusBadge ${
+                      listing.is_active ? "active" : "inactive"
+                    }`}
+                  >
+                    {listing.is_active ? (
+                      <>
+                        <FaCheckCircle /> Active
+                      </>
+                    ) : (
+                      <>
+                        <FaTimesCircle /> Inactive
+                      </>
+                    )}
+                  </span>
+                </div>
+
+                {/* Body */}
+                <div className="myListingBody">
+                  <h3 className="myListingTitle">{listing.name}</h3>
+                  <p className="myListingMeta">
+                    {listing.brand} · {listing.model}
+                  </p>
+                  <p className="myListingLocation">
+                    {listing.city}, {listing.province}
+                  </p>
+                  <p className="myListingPrice">R {listing.price}</p>
+
+                  {/* Actions */}
+                  <div className="myListingActions">
+                    <button
+                      className="myListingBtn myListingBtnView"
+                      onClick={() => navigate(`/product/${listing.id}`)}
+                      title="View"
+                    >
+                      <FaEye />
+                    </button>
+
+                    <button
+                      className="myListingBtn myListingBtnEdit"
+                      onClick={() =>
+                        navigate(`/edit-listing/${listing.id}`, {
+                          state: listing,
+                        })
+                      }
+                      title="Edit"
+                    >
+                      <FaEdit />
+                    </button>
+
+                    <button
+                      className="myListingBtn myListingBtnToggle"
+                      onClick={() =>
+                        handleToggleActive(listing.id, listing.is_active)
+                      }
+                      title={listing.is_active ? "Deactivate" : "Activate"}
+                    >
+                      {listing.is_active ? (
+                        <FaTimesCircle />
+                      ) : (
+                        <FaCheckCircle />
+                      )}
+                    </button>
+
+                    <button
+                      className="myListingBtn myListingBtnDelete"
+                      onClick={() => handleDelete(listing.id, listing.name)}
+                      disabled={deletingId === listing.id}
+                      title="Delete"
+                    >
+                      <FaTrash />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <Footer />
     </div>
   );
-};
+}
 
 export default MyListingPage;
