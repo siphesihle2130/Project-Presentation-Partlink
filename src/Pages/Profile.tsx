@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import NavigationBar from "../Components/NavigationBar";
 import { useAuth } from "../Context/AuthContext";
 import { supabase } from "../lib/supabaseClient";
+import PaymentMethods from "./Paymentmethods";
+import type { IconType } from "react-icons";
 import {
     FaPhone,
     FaMailBulk,
@@ -104,7 +106,7 @@ function Profile() {
 
     const { user, loading, signOut, refreshUser } = useAuth();
 
-    const [section, setSection] = useState<"overview" | "details">(
+    const [section, setSection] = useState<"overview" | "details" | "payments">(
         "overview"
     );
 
@@ -326,7 +328,12 @@ function Profile() {
         navigate("/login");
     };
 
-    const quickLinks = [
+    const quickLinks: {
+        label: string;
+        icon: IconType;
+        path?: string;
+        section?: "payments";
+    }[] = [
         {
             label: "My Listings",
             icon: FaStore,
@@ -345,17 +352,17 @@ function Profile() {
         {
             label: "Saved items",
             icon: FaHeart,
-            path: "/saved",
+            path: "/saved-items-details", // SavedItemsDetailsPage.tsx
         },
         {
             label: "Payment methods",
             icon: FaCreditCard,
-            path: "/payment-methods",
+            section: "payments", // opens inside this page
         },
         {
             label: "Help & Support",
             icon: FaQuestionCircle,
-            path: "/help",
+            path: "/help-support", // HelpSupportPage.tsx
         },
     ];
 
@@ -597,8 +604,23 @@ function Profile() {
                         >
                             <FaIdCard /> Personal details
                         </button>
+
+                        <button
+                            type="button"
+                            className={
+                                section === "payments"
+                                    ? "pp-nav-item active"
+                                    : "pp-nav-item"
+                            }
+                            onClick={() => setSection("payments")}
+                        >
+                            <FaCreditCard /> Payment methods
+                        </button>
                     </nav>
 
+                    {section === "payments" ? (
+                        <PaymentMethods embedded />
+                    ) : (
                     <section className="pp-panel">
                         {section === "overview" && (
                             <>
@@ -615,13 +637,18 @@ function Profile() {
                                             label,
                                             icon: Icon,
                                             path,
+                                            section: target,
                                         }) => (
                                             <button
                                                 key={label}
                                                 className="pp-card"
-                                                onClick={() =>
-                                                    navigate(path)
-                                                }
+                                                onClick={() => {
+                                                    if (target) {
+                                                        setSection(target);
+                                                    } else if (path) {
+                                                        navigate(path);
+                                                    }
+                                                }}
                                             >
                                                 <Icon className="pp-card-icon" />
                                                 <p>{label}</p>
@@ -835,6 +862,7 @@ function Profile() {
                             </>
                         )}
                     </section>
+                    )}
                 </div>
             </div>
         </div>
