@@ -13,14 +13,15 @@ import {
   FaShoppingCart,
   FaMinus,
   FaPlus,
+  FaEdit,
 } from "react-icons/fa";
 import NavigationBar from "../Components/NavigationBar";
 import Footer from "../Components/Footer";
 import { supabase } from "../lib/supabaseClient";
-import { useCart } from "../Context/CartContext";   // ← adjust path if needed
+import { useCart } from "../Context/CartContext";
 
 type CarPart = {
-  id: string;
+  id: number;
   name: string;
   description: string;
   brand: string;
@@ -31,7 +32,7 @@ type CarPart = {
   city: string;
   province: string;
   postal_code: string;
-  price: number;
+  price: number | string;
   quantity: number;
   image_url: string;
   is_active: boolean;
@@ -50,17 +51,26 @@ function ProductDetailsPage() {
   const [saved, setSaved] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [addedMessage, setAddedMessage] = useState(false);
+  const [isOwner, setIsOwner] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
   // ─────────────────────────────────────────────
-  // Fetch single product
+  // Fetch product + check saved + check owner
   // ─────────────────────────────────────────────
   useEffect(() => {
     if (!id) return;
 
-    const fetchProduct = async () => {
+    const fetchAll = async () => {
       setLoading(true);
       setError(null);
 
+      // 1. Get current user
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setCurrentUserId(user?.id ?? null);
+
+      // 2. Fetch the product
       const { data, error: fetchError } = await supabase
         .from("CarParts")
         .select("*")
@@ -70,13 +80,34 @@ function ProductDetailsPage() {
       if (fetchError) {
         console.error(fetchError);
         setError(fetchError.message);
-      } else {
-        setProduct(data as CarPart);
+        setLoading(false);
+        return;
       }
+
+      const fetched = data as CarPart;
+      setProduct(fetched);
+
+      // 3. Is the current user the owner?
+      if (user && fetched.user_id === user.id) {
+        setIsOwner(true);
+      }
+
+      // 4. Is it already saved?
+      if (user) {
+        const { data: savedRow } = await supabase
+          .from("SavedItems")
+          .select("id")
+          .eq("user_id", user.id)
+          .eq("product_id", fetched.id)
+          .maybeSingle();
+
+        setSaved(!!savedRow);
+      }
+
       setLoading(false);
     };
 
-    fetchProduct();
+    fetchAll();
   }, [id]);
 
   const handleBack = () => navigate(-1);
@@ -99,6 +130,48 @@ function ProductDetailsPage() {
   };
 
   // ─────────────────────────────────────────────
+  // Toggle save / unsave
+  // ─────────────────────────────────────────────
+  const handleToggleSave = async () => {
+    if (!product) return;
+
+    if (!currentUserId) {
+      alert("Please sign in to save items.");
+      return;
+    }
+
+    try {
+      if (saved) {
+        // Remove
+        const { error: deleteError } = await supabase
+          .from("SavedItems")
+          .delete()
+          .eq("user_id", currentUserId)
+          .eq("product_id", product.id);
+
+        if (deleteError) throw deleteError;
+        setSaved(false);
+      } else {
+        // Add
+        const { error: insertError } = await supabase
+          .from("SavedItems")
+          .insert({
+            user_id: currentUserId,
+            product_id: product.id,
+          });
+
+        if (insertError) throw insertError;
+        setSaved(true);
+      }
+    } catch (err) {
+      console.error(err);
+      alert(
+        err instanceof Error ? err.message : "Failed to update saved items."
+      );
+    }
+  };
+
+  // ─────────────────────────────────────────────
   // Quantity controls
   // ─────────────────────────────────────────────
   const increaseQty = () => {
@@ -117,16 +190,19 @@ function ProductDetailsPage() {
     setQuantity(Math.max(1, Math.min(val, product.quantity)));
   };
 
+  // ─────────────────────────────────────────────
   // Add to cart
+  // ─────────────────────────────────────────────
   const handleAddToCart = () => {
-    if (!product) return;
+    if (!product || isOwner) return;
 
     addToCart(
       {
         id: Number(product.id),
         name: product.name,
         price: String(product.price),
-        image: product.image_url,
+        image_url: product.image_url ?? "",
+        maxQuantity: Number(product.quantity),
       },
       quantity
     );
@@ -135,7 +211,9 @@ function ProductDetailsPage() {
     setTimeout(() => setAddedMessage(false), 2000);
   };
 
+  // ─────────────────────────────────────────────
   // Render states
+  // ─────────────────────────────────────────────
   if (loading) {
     return (
       <div className="productDetailContainer">
@@ -179,7 +257,6 @@ function ProductDetailsPage() {
         </button>
 
         <div className="productDetailGrid">
-          {/* ═══ Left: image ═══ */}
           <div className="productDetailImageCol">
             <div className="productDetailImage">
               {product.image_url ? (
@@ -190,14 +267,13 @@ function ProductDetailsPage() {
             </div>
           </div>
 
-          {/* ═══ Right: details ═══ */}
           <div className="productDetailInfoCol">
             <div className="productDetailHeader">
               <h1>{product.name}</h1>
               <div className="productDetailActions">
                 <button
                   className={`productDetailIconBtn ${saved ? "saved" : ""}`}
-                  onClick={() => setSaved((s) => !s)}
+                  onClick={handleToggleSave}
                   aria-label="Save"
                 >
                   {saved ? <FaHeart /> : <FaRegHeart />}
@@ -257,47 +333,63 @@ function ProductDetailsPage() {
               </div>
             </div>
 
-            {/* ── Cart controls ── */}
-            <div className="productDetailCartRow">
-              <div className="productDetailQtyBox">
+            {/* ── Owner view: Edit button ── */}
+            {isOwner ? (
+              <div className="productDetailOwnerNotice">
+                <p>This is your listing. You can edit it from My Listings.</p>
                 <button
-                  className="qtyBtn"
-                  onClick={decreaseQty}
-                  disabled={quantity <= 1 || outOfStock}
-                  aria-label="Decrease quantity"
+                  className="productDetailEditBtn"
+                  onClick={() =>
+                    navigate(`/edit-listing/${product.id}`, {
+                      state: product,
+                    })
+                  }
                 >
-                  <FaMinus />
-                </button>
-                <input
-                  type="number"
-                  className="qtyInput"
-                  value={quantity}
-                  onChange={handleQtyInput}
-                  min={1}
-                  max={product.quantity}
-                  disabled={outOfStock}
-                />
-                <button
-                  className="qtyBtn"
-                  onClick={increaseQty}
-                  disabled={quantity >= product.quantity || outOfStock}
-                  aria-label="Increase quantity"
-                >
-                  <FaPlus />
+                  <FaEdit /> Edit Listing
                 </button>
               </div>
+            ) : (
+              /* ── Buyer view: Quantity + Add to Cart ── */
+              <div className="productDetailCartRow">
+                <div className="productDetailQtyBox">
+                  <button
+                    className="qtyBtn"
+                    onClick={decreaseQty}
+                    disabled={quantity <= 1 || outOfStock}
+                    aria-label="Decrease quantity"
+                  >
+                    <FaMinus />
+                  </button>
+                  <input
+                    type="number"
+                    className="qtyInput"
+                    value={quantity}
+                    onChange={handleQtyInput}
+                    min={1}
+                    max={product.quantity}
+                    disabled={outOfStock}
+                  />
+                  <button
+                    className="qtyBtn"
+                    onClick={increaseQty}
+                    disabled={quantity >= product.quantity || outOfStock}
+                    aria-label="Increase quantity"
+                  >
+                    <FaPlus />
+                  </button>
+                </div>
 
-              <button
-                className="productDetailAddCartBtn"
-                onClick={handleAddToCart}
-                disabled={outOfStock}
-              >
-                <FaShoppingCart />
-                {outOfStock ? "Out of Stock" : "Add to Cart"}
-              </button>
-            </div>
+                <button
+                  className="productDetailAddCartBtn"
+                  onClick={handleAddToCart}
+                  disabled={outOfStock}
+                >
+                  <FaShoppingCart />
+                  {outOfStock ? "Out of Stock" : "Add to Cart"}
+                </button>
+              </div>
+            )}
 
-            {/* Confirmation toast */}
             {addedMessage && (
               <div className="productDetailToast">
                 <FaCheck /> Added {quantity} to cart

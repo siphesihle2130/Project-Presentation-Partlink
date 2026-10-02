@@ -347,12 +347,12 @@ function Profile() {
         {
             label: "My Requests",
             icon: FaShoppingBasket,
-            path: "/active-requests",
+            path: "/my-requests",
         },
         {
             label: "Saved items",
             icon: FaHeart,
-            path: "/saved-items-details", // SavedItemsDetailsPage.tsx
+            path: "/saved",
         },
         {
             label: "Payment methods",

@@ -5,10 +5,10 @@ import MyListingPage from "./Pages/MyListingPage";
 import MyListingSoldPage from "./Pages/MyListingSoldPage";
 import EditListingPage from "./Pages/EditListingPage";
 import SoldListDetailsPage from "./Pages/SoldListDetailsPage";
-import MyActiveRequestsPage from "./Pages/MyActiveRequestsPage";
-import ActiveRequestDetailsPage from "./Pages/ActiveRequestDetailsPage";
-import MyCompletedRequestPage from "./Pages/MyCompletedRequestPage";
-import CompletedRequestDetailsPage from "./Pages/CompletedRequestDetailsPage";
+import MyRequestsPage from "./Pages/MyRequestsPage";
+// import ActiveRequestDetailsPage from "./Pages/ActiveRequestDetailsPage";
+// import MyCompletedRequestPage from "./Pages/MyCompletedRequestPage";
+// import CompletedRequestDetailsPage from "./Pages/CompletedRequestDetailsPage";
 import CreateRequest from "./Pages/CreateRequest";
 import LandingPage from "./Pages/LandingPage";
 import LoginPage from "./Pages/LoginPage";
@@ -44,10 +44,8 @@ function App() {
             <Route path="/my-sold-listing" element={<MyListingSoldPage />} />
             <Route path="/edit-listing" element={<EditListingPage />} />
             <Route path="/sold-list-details" element={<SoldListDetailsPage />} />
-            <Route path="/active-requests" element={<MyActiveRequestsPage />} />
-            <Route path="/active-requests-details" element={<ActiveRequestDetailsPage />} />
-            <Route path="/completed-requests" element={<MyCompletedRequestPage />} />
-            <Route path="/completed-request-details" element={<CompletedRequestDetailsPage />} />
+            <Route path="/my-requests" element={<MyRequestsPage />} />
+            {/* <Route path="/my-requests-details" element={<MyRequestsDetailsPage />} /> */}
             <Route path="/create-request" element={<CreateRequest />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/login" element={<LoginPage />} />

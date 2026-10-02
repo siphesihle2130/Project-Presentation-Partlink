@@ -1,5 +1,11 @@
 // src/Context/CartContext.tsx
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import type { ReactNode } from "react";
 import { parsePrice } from "../utils/currency";
 
@@ -8,10 +14,10 @@ const STORAGE_KEY = "partlink_cart";
 export type CartItem = {
   id: number;
   name: string;
-  vehicle?: string;
-  price: string; // e.g. "R8,250"
-  image: string;
+  price: string;
+  image_url: string;
   quantity: number;
+  maxQuantity: number;
 };
 
 type CartContextType = {
@@ -44,19 +50,23 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [items]);
 
-  const addToCart = (item: Omit<CartItem, "quantity">, quantity: number = 1) => {
+  const addToCart = (
+    item: Omit<CartItem, "quantity">,
+    quantity: number = 1
+  ) => {
     setItems((prev) => {
       const existing = prev.find((i) => i.id === item.id);
+      const cap = Math.max(1, item.maxQuantity || 1);
 
       if (existing) {
         return prev.map((i) =>
           i.id === item.id
-            ? { ...i, quantity: Math.min(i.quantity + quantity, 10) }
+            ? { ...i, quantity: Math.min(i.quantity + quantity, cap) }
             : i
         );
       }
 
-      return [...prev, { ...item, quantity: Math.min(quantity, 10) }];
+      return [...prev, { ...item, quantity: Math.min(quantity, cap) }];
     });
   };
 
@@ -67,7 +77,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const updateQuantity = (id: number, quantity: number) => {
     setItems((prev) =>
       prev.map((i) =>
-        i.id === id ? { ...i, quantity: Math.max(1, Math.min(quantity, 10)) } : i
+        i.id === id
+          ? {
+              ...i,
+              quantity: Math.max(1, Math.min(quantity, i.maxQuantity || 1)),
+            }
+          : i
       )
     );
   };
